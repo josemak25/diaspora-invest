@@ -15,23 +15,24 @@ export default function SignUp({ history }) {
 
 	const onChange = ({ target: { name, value } }) => {
 		setValues({ ...values, [name]: value });
+		setErrors({ ...errors, [name]: '' });
 	};
 
 	const onSubmit = event => {
 		event.preventDefault();
 
 		if (!values.name) {
-			return setErrors({ name: 'Name must not be empty' });
+			return setErrors({ ...errors, name: 'Name must not be empty' });
 		} else if (!values.email) {
-			return setErrors({ email: 'Email must not be empty' });
-		} else if (!values.password) {
-			return setErrors({ password: 'Password must not be empty' });
-		} else if (!values.password2) {
-			return setErrors({ password2: 'Confirm password must not be empty' });
-		} else if (values.password !== values.password2) {
-			return setErrors({ password2: 'Passwords must match' });
+			return setErrors({ ...errors, email: 'Email must not be empty' });
 		} else if (!values.phone) {
-			return setErrors({ phone: 'Phone must not be empty' });
+			return setErrors({ ...errors, phone: 'Phone must not be empty' });
+		} else if (!values.password) {
+			return setErrors({ ...errors, password: 'Password must not be empty' });
+		} else if (!values.password2) {
+			return setErrors({ ...errors, password2: 'Confirm password must not be empty' });
+		} else if (values.password !== values.password2) {
+			return setErrors({ ...errors, password2: 'Passwords must match' });
 		}
 
 		axios
@@ -84,14 +85,44 @@ export default function SignUp({ history }) {
 													value={values.name}
 													type='text'
 													placeholder='Full Name'
+													id='fullname'
 													onChange={onChange}
 												/>
+												{errors.name ? (
+													<label className='list-group-item-danger' htmlFor='fullname'>
+														{errors.name}
+													</label>
+												) : null}
 											</div>
 											<div className='col-12 mb-30'>
-												<input name='email' value={values.email} type='email' placeholder='Email' onChange={onChange} />
+												<input
+													name='email'
+													value={values.email}
+													type='email'
+													placeholder='Email'
+													id='email'
+													onChange={onChange}
+												/>
+												{errors.email ? (
+													<label className='list-group-item-danger' htmlFor='email'>
+														{errors.email}
+													</label>
+												) : null}
 											</div>
 											<div className='col-12 mb-30'>
-												<input name='phone' value={values.phone} type='text' placeholder='Phone' onChange={onChange} />
+												<input
+													name='phone'
+													value={values.phone}
+													type='text'
+													placeholder='Phone'
+													id='phone'
+													onChange={onChange}
+												/>
+												{errors.phone ? (
+													<label className='list-group-item-danger' htmlFor='phone'>
+														{errors.phone}
+													</label>
+												) : null}
 											</div>
 											<div className='col-12 mb-30'>
 												<input
@@ -99,8 +130,14 @@ export default function SignUp({ history }) {
 													value={values.password}
 													type='password'
 													placeholder='Password'
+													id='password'
 													onChange={onChange}
 												/>
+												{errors.password ? (
+													<label className='list-group-item-danger' htmlFor='password'>
+														{errors.password}
+													</label>
+												) : null}
 											</div>
 											<div className='col-12 mb-30'>
 												<input
@@ -108,8 +145,14 @@ export default function SignUp({ history }) {
 													value={values.password2}
 													type='password'
 													placeholder='Confirm Password'
+													id='password2'
 													onChange={onChange}
 												/>
+												{errors.password2 ? (
+													<label className='list-group-item-danger' htmlFor='password2'>
+														{errors.password2}
+													</label>
+												) : null}
 											</div>
 											<div className='col-12 mb-30'>
 												<ul>
@@ -128,6 +171,7 @@ export default function SignUp({ history }) {
 															type='radio'
 															name='user_type'
 															value='investor'
+															id='investor'
 															checked={values.user_type === 'investor'}
 															onChange={onChange}
 														/>
@@ -138,6 +182,7 @@ export default function SignUp({ history }) {
 															type='radio'
 															name='user_type'
 															value='seller'
+															id='seller'
 															checked={values.user_type === 'seller'}
 															onChange={onChange}
 														/>
@@ -150,17 +195,6 @@ export default function SignUp({ history }) {
 											</div>
 										</div>
 									</form>
-									{Object.keys(errors).length > 0 && (
-										<div>
-											<ul className='list-group'>
-												{Object.values(errors).map((error, index) => (
-													<li className='list-group-item list-group-item-danger' key={index}>
-														{error}
-													</li>
-												))}
-											</ul>
-										</div>
-									)}
 								</div>
 							</div>
 						</div>
