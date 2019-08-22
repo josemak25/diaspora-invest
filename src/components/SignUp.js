@@ -19,18 +19,23 @@ export default function SignUp({ history }) {
 	};
 
 	const onSubmit = event => {
-		event.preventDefault();
+    event.preventDefault();
+    
+    //the default HTML5 regex for email
+		const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 		if (!values.name) {
-			return setErrors({ ...errors, name: 'Name must not be empty' });
+			return setErrors({ ...errors, name: 'Full name is required' });
 		} else if (!values.email) {
-			return setErrors({ ...errors, email: 'Email must not be empty' });
+			return setErrors({ ...errors, email: 'Email is required' });
+		} else if (!emailRegex.test(values.email)) {
+			return setErrors({ ...errors, email: 'Invalid email address' });
 		} else if (!values.phone) {
-			return setErrors({ ...errors, phone: 'Phone must not be empty' });
+			return setErrors({ ...errors, phone: 'Phone is required' });
 		} else if (!values.password) {
-			return setErrors({ ...errors, password: 'Password must not be empty' });
+			return setErrors({ ...errors, password: 'Password is required' });
 		} else if (!values.password2) {
-			return setErrors({ ...errors, password2: 'Confirm password must not be empty' });
+			return setErrors({ ...errors, password2: 'Confirm password is required' });
 		} else if (values.password !== values.password2) {
 			return setErrors({ ...errors, password2: 'Passwords must match' });
 		}
@@ -56,7 +61,6 @@ export default function SignUp({ history }) {
 				// history.push('/properties');
 			})
 			.catch(err => {
-				console.log(err);
 				return err;
 			});
 	};
@@ -98,8 +102,8 @@ export default function SignUp({ history }) {
 												<input
 													name='email'
 													value={values.email}
-													type='email'
-													placeholder='Email'
+													type='text'
+													placeholder='you@example.com'
 													id='email'
 													onChange={onChange}
 												/>
