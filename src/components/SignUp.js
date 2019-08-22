@@ -45,6 +45,9 @@ export default function SignUp({ history }) {
 		}
 		if (!values.password) {
 			errorFields.password = 'Password is required';
+    }
+    if (values.password.length < 6) {
+			errorFields.password = 'Password must be at least 6 characters';
 		}
 		if (!values.password2) {
 			errorFields.password2 = 'Confirm password is required';
