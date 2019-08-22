@@ -20,6 +20,20 @@ export default function SignUp({ history }) {
 	const onSubmit = event => {
 		event.preventDefault();
 
+		if (!values.name) {
+			return setErrors({ name: 'Name must not be empty' });
+		} else if (!values.email) {
+			return setErrors({ email: 'Email must not be empty' });
+		} else if (!values.password) {
+			return setErrors({ password: 'Password must not be empty' });
+		} else if (!values.password2) {
+			return setErrors({ password2: 'Confirm password must not be empty' });
+		} else if (values.password !== values.password2) {
+			return setErrors({ password2: 'Passwords must match' });
+		} else if (!values.phone) {
+			return setErrors({ phone: 'Phone must not be empty' });
+		}
+
 		axios
 			.post('http://localhost:5000/api/v1/public/signup', values)
 			.then(res => {
@@ -139,9 +153,9 @@ export default function SignUp({ history }) {
 									{Object.keys(errors).length > 0 && (
 										<div>
 											<ul className='list-group'>
-												{Object.values(errors).map((value, index) => (
+												{Object.values(errors).map((error, index) => (
 													<li className='list-group-item list-group-item-danger' key={index}>
-														{value}
+														{error}
 													</li>
 												))}
 											</ul>
