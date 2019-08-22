@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default function SignUp({ history }) {
 	const [errors, setErrors] = useState({});
+	const [checkbox, setCheckbox] = useState(false);
 
 	const [values, setValues] = useState({
 		name: '',
@@ -17,11 +18,14 @@ export default function SignUp({ history }) {
 		setValues({ ...values, [name]: value });
 		setErrors({ ...errors, [name]: '' });
 	};
+	const check = e => {
+		setCheckbox(e.target.checked);
+	};
 
 	const onSubmit = event => {
-    event.preventDefault();
-    
-    //the default HTML5 regex for email
+		event.preventDefault();
+
+		//the default HTML5 regex for email
 		const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 		if (!values.name) {
@@ -38,6 +42,8 @@ export default function SignUp({ history }) {
 			return setErrors({ ...errors, password2: 'Confirm password is required' });
 		} else if (values.password !== values.password2) {
 			return setErrors({ ...errors, password2: 'Passwords must match' });
+		} else if (checkbox === false) {
+			return setErrors({ ...errors, checkbox: 'accept terms and conditions' });
 		}
 
 		axios
@@ -161,10 +167,15 @@ export default function SignUp({ history }) {
 											<div className='col-12 mb-30'>
 												<ul>
 													<li>
-														<input type='checkbox' id='register_agree' onChange={onChange} />
+														<input type='checkbox' id='register_agree' checked={checkbox} onChange={check} />
 														<label htmlFor='register_agree'>
 															I agree with your <a href='/'>Terms & Conditions</a>
 														</label>
+														{errors.checkbox ? (
+															<label className='list-group-item-danger' htmlFor='register_agree'>
+																{errors.checkbox}
+															</label>
+														) : null}
 													</li>
 												</ul>
 											</div>
