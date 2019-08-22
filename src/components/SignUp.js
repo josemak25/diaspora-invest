@@ -3,7 +3,8 @@ import axios from 'axios';
 
 export default function SignUp({ history }) {
 	const [errors, setErrors] = useState({});
-	const [checkbox, setCheckbox] = useState(false);
+
+	const [isChecked, setIsChecked] = useState(false);
 
 	const [values, setValues] = useState({
 		name: '',
@@ -18,31 +19,46 @@ export default function SignUp({ history }) {
 		setValues({ ...values, [name]: value });
 		setErrors({ ...errors, [name]: '' });
 	};
+
 	const check = e => {
-		setCheckbox(e.target.checked);
+		setIsChecked(e.target.checked);
 	};
 
 	const onSubmit = event => {
 		event.preventDefault();
 
+		const errorFields = {};
+
 		const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 		if (!values.name) {
-			return setErrors({ ...errors, name: 'Full name is required' });
-		} else if (!values.email) {
-			return setErrors({ ...errors, email: 'Email is required' });
-		} else if (!emailRegex.test(values.email)) {
-			return setErrors({ ...errors, email: 'Invalid email address' });
-		} else if (!values.phone) {
-			return setErrors({ ...errors, phone: 'Phone is required' });
-		} else if (!values.password) {
-			return setErrors({ ...errors, password: 'Password is required' });
-		} else if (!values.password2) {
-			return setErrors({ ...errors, password2: 'Confirm password is required' });
-		} else if (values.password !== values.password2) {
-			return setErrors({ ...errors, password2: 'Passwords must match' });
-		} else if (checkbox === false) {
-			return setErrors({ ...errors, checkbox: 'accept terms and conditions' });
+			errorFields.name = 'Full name is required';
+		}
+		if (!values.email) {
+			errorFields.email = 'Email is required';
+		}
+		if (!emailRegex.test(values.email)) {
+			errorFields.email = 'Invalid email address';
+		}
+		if (!values.phone) {
+			errorFields.phone = 'Phone is required';
+		}
+		if (!values.password) {
+			errorFields.password = 'Password is required';
+		}
+		if (!values.password2) {
+			errorFields.password2 = 'Confirm password is required';
+		}
+		if (values.password !== values.password2) {
+			errorFields.password2 = 'Passwords must match';
+		}
+		if (isChecked === false) {
+			errorFields.checkbox = 'accept terms and conditions';
+		}
+
+		if (Object.keys(errorFields).length > 0) {
+			setErrors(errorFields);
+			return;
 		}
 
 		axios
@@ -61,7 +77,10 @@ export default function SignUp({ history }) {
 						phone: '',
 						user_type: 'investor',
 					});
+
 					setErrors({});
+
+					setIsChecked(false);
 				}
 				// history.push('/properties');
 			})
@@ -166,12 +185,12 @@ export default function SignUp({ history }) {
 											<div className='col-12 mb-30'>
 												<ul>
 													<li>
-														<input type='checkbox' id='register_agree' checked={checkbox} onChange={check} />
-														<label htmlFor='register_agree'>
+														<input type='checkbox' id='accept_terms' checked={isChecked} onChange={check} />
+														<label htmlFor='accept_terms'>
 															I agree with your <a href='/'>Terms & Conditions</a>
 														</label>
 														{errors.checkbox ? (
-															<label className='list-group-item-danger' htmlFor='register_agree'>
+															<label className='list-group-item-danger' htmlFor='accept_terms'>
 																{errors.checkbox}
 															</label>
 														) : null}
