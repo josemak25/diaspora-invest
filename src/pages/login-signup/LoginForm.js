@@ -55,7 +55,7 @@ export default function LoginForm() {
 						onChange={onChange}
 					/>
 					{errors.email ? (
-						<Label className='list-group-item-danger' htmlFor='login-email'>
+						<Label useFor='validation_error' className='list-group-item-danger' htmlFor='login-email'>
 							{errors.email}
 						</Label>
 					) : null}
@@ -70,7 +70,7 @@ export default function LoginForm() {
 						onChange={onChange}
 					/>
 					{errors.password ? (
-						<Label className='list-group-item-danger' htmlFor='login-password'>
+						<Label useFor='validation_error' className='list-group-item-danger' htmlFor='login-password'>
 							{errors.password}
 						</Label>
 					) : null}

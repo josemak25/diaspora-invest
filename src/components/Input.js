@@ -19,9 +19,9 @@ export const TextArea = ({ name, value, id, onChange }) => {
 	return <SimpleTextArea name={name} value={value} id={id} onChange={onChange} />;
 };
 
-export const Label = ({ htmlFor, children, className }) => {
+export const Label = ({ htmlFor, children, className, useFor }) => {
 	return (
-		<SimpleLabel htmlFor={htmlFor} className={className}>
+		<SimpleLabel htmlFor={htmlFor} className={className} style={useFor=== 'validation_error'? {padding: '5px'} : null }>
 			{children}
 		</SimpleLabel>
 	);

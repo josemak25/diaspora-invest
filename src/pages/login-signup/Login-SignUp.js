@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SignUpForm from './SignUpForm';
-// import LoginForm from './LoginForm';
+import LoginForm from './LoginForm';
 
 export default function LoginSignUp() {
 	return (
@@ -26,7 +26,7 @@ export default function LoginSignUp() {
 
 							<div className='tab-content'>
 								<div id='login-tab' className='tab-pane show '>
-									{/* <LoginForm /> */}
+									<LoginForm />
 								</div>
 								<div id='register-tab' className='tab-pane show active'>
 									<SignUpForm />

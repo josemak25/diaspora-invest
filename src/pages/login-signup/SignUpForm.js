@@ -80,7 +80,7 @@ export default function SignUpForm({ history, ...props }) {
 						onChange={onChange}
 					/>
 					{errors.name ? (
-						<Label className='list-group-item-danger' htmlFor='fullname'>
+						<Label useFor='validation_error' className='list-group-item-danger' htmlFor='fullname'>
 							{errors.name}
 						</Label>
 					) : null}
@@ -95,7 +95,7 @@ export default function SignUpForm({ history, ...props }) {
 						onChange={onChange}
 					/>
 					{errors.email ? (
-						<Label className='list-group-item-danger' htmlFor='email'>
+						<Label useFor='validation_error' className='list-group-item-danger' htmlFor='email'>
 							{errors.email}
 						</Label>
 					) : null}
@@ -103,7 +103,7 @@ export default function SignUpForm({ history, ...props }) {
 				<div className='col-12 mb-30'>
 					<Input name='phone' value={values.phone} type='text' placeholder='Phone' id='phone' onChange={onChange} />
 					{errors.phone ? (
-						<Label className='list-group-item-danger' htmlFor='phone'>
+						<Label useFor='validation_error' className='list-group-item-danger' htmlFor='phone'>
 							{errors.phone}
 						</Label>
 					) : null}
@@ -118,7 +118,7 @@ export default function SignUpForm({ history, ...props }) {
 						onChange={onChange}
 					/>
 					{errors.password ? (
-						<Label className='list-group-item-danger' htmlFor='password'>
+						<Label useFor='validation_error' className='list-group-item-danger' htmlFor='password'>
 							{errors.password}
 						</Label>
 					) : null}
@@ -133,7 +133,7 @@ export default function SignUpForm({ history, ...props }) {
 						onChange={onChange}
 					/>
 					{errors.password2 ? (
-						<Label className='list-group-item-danger' htmlFor='password2'>
+						<Label useFor='validation_error' className='list-group-item-danger' htmlFor='password2'>
 							{errors.password2}
 						</Label>
 					) : null}
@@ -146,7 +146,7 @@ export default function SignUpForm({ history, ...props }) {
 								I agree with your <a href='/'>Terms & Conditions</a>
 							</Label>
 							{errors.checkbox ? (
-								<Label className='list-group-item-danger' htmlFor='accept_terms'>
+								<Label useFor='validation_error' className='list-group-item-danger' htmlFor='accept_terms'>
 									{errors.checkbox}
 								</Label>
 							) : null}
