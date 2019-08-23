@@ -45,8 +45,8 @@ export default function SignUp({ history }) {
 		}
 		if (!values.password) {
 			errorFields.password = 'Password is required';
-    }
-    if (values.password.length < 6) {
+		}
+		if (values.password.length < 6) {
 			errorFields.password = 'Password must be at least 6 characters';
 		}
 		if (!values.password2) {
@@ -65,7 +65,7 @@ export default function SignUp({ history }) {
 		}
 
 		axios
-			.post('http://localhost:5000/api/v1/public/signup', values)
+			.post('/public/signup', values)
 			.then(res => {
 				if (res.data.statusCode !== 200) {
 					setErrors(res.data.errors);
@@ -108,10 +108,11 @@ export default function SignUp({ history }) {
 
 							<div className='tab-content'>
 								<div id='register-tab' className='tab-pane show active'>
-									<form onSubmit={onSubmit}>
+									<form onSubmit={onSubmit} data-testid='signup-form'>
 										<div className='row'>
 											<div className='col-12 mb-30'>
 												<input
+													data-testid='input-name'
 													name='name'
 													value={values.name}
 													type='text'
@@ -120,7 +121,7 @@ export default function SignUp({ history }) {
 													onChange={onChange}
 												/>
 												{errors.name ? (
-													<label className='list-group-item-danger' htmlFor='fullname'>
+													<label data-testid='name-error' className='list-group-item-danger' htmlFor='fullname'>
 														{errors.name}
 													</label>
 												) : null}
@@ -227,7 +228,9 @@ export default function SignUp({ history }) {
 												</ul>
 											</div>
 											<div className='col-12'>
-												<button className='btn'>Register</button>
+												<button className='btn' data-testid='signup-button'>
+													Sign Up
+												</button>
 											</div>
 										</div>
 									</form>
