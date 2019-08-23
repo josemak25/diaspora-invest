@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-import SignUp from './components/SignUp';
+import LoginSignUp from './pages/login-signup/Login-SignUp';
 import './App.css';
 
 function App() {
 	return (
 		<>
 			<Router>
-				<Route path='/signup' exact component={SignUp} />
+				<Route path='/login-signup' exact component={LoginSignUp} />
 			</Router>
 			,
 		</>
