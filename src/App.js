@@ -1,9 +1,14 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import LoginSignUp from './pages/login-signup/Login-SignUp';
 import './App.css';
+import './assets/css/Helper.css';
 
 function App() {
   return (
-    <h1>Hi Decadevs</h1>
+    <Router>
+      <Route path="/login-signup" exact component={LoginSignUp} />
+    </Router>
   );
 }
 
