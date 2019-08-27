@@ -23,8 +23,8 @@ export default function LoginSignUp() {
 								</li>
 								<li>or</li>
 								<li>
-									<a className='active' href='#register-tab' data-toggle='tab'>
-										Register
+									<a className='active' href='#signup-tab' data-toggle='tab'>
+										Sign Up
 									</a>
 								</li>
 							</ul>
@@ -33,7 +33,7 @@ export default function LoginSignUp() {
 								<div id='login-tab' className='tab-pane show '>
 									<LoginForm />
 								</div>
-								<div id='register-tab' className='tab-pane show active'>
+								<div id='signup-tab' className='tab-pane show active'>
 									<SignUpForm />
 								</div>
 							</div>

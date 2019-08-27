@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import { signupValidator } from '../../utils/signupValidator';
+import { signupValidator } from './utils/signupValidator';
 import Button from '../../components/Button';
 import { Input, Label } from '../../components/Input';
 import '../../App.css';

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import jwtDecode from 'jwt-decode';
-
-import { loginValidator } from '../../utils/loginValidator';
+import { withRouter } from 'react-router-dom';
+import loginUser from './LoginForm.action';
+import { useSelector, connect } from 'react-redux';
+import { loginValidator } from './utils/loginValidator';
 import Button from '../../components/Button';
 import { Input, Label } from '../../components/Input';
 
-export default function LoginForm() {
+function LoginForm(props) {
 	const [errors, setErrors] = useState({});
+
+	const { loading } = useSelector(({ auth }) => auth);
 
 	const [values, setValues] = useState({
 		email: '',
@@ -20,6 +22,9 @@ export default function LoginForm() {
 		setErrors({ ...errors, [name]: '' });
 	};
 
+	const navigateUser = () => {
+		props.history.push('/');
+	};
 	const onSubmit = event => {
 		event.preventDefault();
 
@@ -30,34 +35,7 @@ export default function LoginForm() {
 			return;
 		}
 
-		axios
-			.post('/public/login', values)
-			.then(res => {
-				if (res.data.statusCode !== 200) {
-					setErrors(res.data.errors);
-					alert(res.data.errors.error);
-				}
-				if (res.data.statusCode === 200 && res.data.token) {
-					const { payload, token } = res.data;
-
-					alert(`Welcome back ${payload.name}`);
-
-					setValues({
-						email: '',
-						password: '',
-					});
-
-					localStorage.setItem('jwtToken', token);
-
-					const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-					// console.log(decodedToken);
-
-					setErrors({});
-				}
-			})
-			.catch(err => {
-				return err;
-			});
+		props.login(values, setErrors, navigateUser);
 	};
 
 	return (
@@ -94,14 +72,14 @@ export default function LoginForm() {
 					) : null}
 				</div>
 				<div className='col-12 mb-30'>
-					<Button testId='login-button' textContent='Login' submit={true} />
+					<Button testId='login-button' textContent={loading ? 'Loading' : 'Login'} submit={true} />
 				</div>
 
 				<div className='col-12 d-flex justify-content-between'>
 					<span>
 						New User to Diaspora Invest?&nbsp;
-						<a className='register-toggle' href='#register-tab'>
-							Register!
+						<a className='register-toggle' href='#signup-tab'>
+							Sign Up!
 						</a>
 					</span>
 					<span>
@@ -112,3 +90,12 @@ export default function LoginForm() {
 		</form>
 	);
 }
+
+const mapDispatchToProps = {
+	login: loginUser,
+};
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(withRouter(LoginForm));
