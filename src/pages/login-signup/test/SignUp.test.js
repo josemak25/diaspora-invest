@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import SignUpForm from '../pages/login-signup/SignUpForm';
+import SignUpForm from '../SignUpForm';
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
