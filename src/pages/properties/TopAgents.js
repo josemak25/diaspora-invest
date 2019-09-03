@@ -48,12 +48,6 @@ const TopAgents = ({ agent, socials }) => {
 export default TopAgents;
 
 TopAgents.defaultProps = {
-  agent: {
-    image: require('../../assets/images/agent/agent-1.jpg'),
-    name: 'Donald Palmer',
-    phone: '(756) 447 5779',
-    noOfProperties: 7
-  },
   socials: [
     { icon: 'fa fa-facebook', class: 'facebook', path: 'http://google.com' },
     { icon: 'fa fa-twitter', class: 'twitter', path: 'http://google.com' },

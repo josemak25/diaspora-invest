@@ -7,7 +7,7 @@ import FeatureProperty from './FeatureProperty';
 import Property from './Property';
 import { Input } from '../../components/Input';
 
-const Properties = ({ propertyCategories, properties }) => {
+const Properties = ({ propertyCategories, properties, agents, featureProperties }) => {
   return (
     <>
       <Header />
@@ -47,16 +47,33 @@ const Properties = ({ propertyCategories, properties }) => {
                       </select>
                     </div>
 
+                    <div />
                     <div>
-                      <select className="nice-select">
-                        <option>category</option>
-                        <option>gory</option>
-                        <option>cate</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <div id="search-price-range"></div>
+                      <div>
+                        <div
+                          id="search-price-range"
+                          className="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                        >
+                          <div
+                            className="ui-slider-range ui-corner-all ui-widget-header"
+                            style={{ left: '12.5%', width: '42.43%' }}
+                          ></div>
+                          <span
+                            tabIndex="0"
+                            className="ui-slider-handle ui-corner-all ui-state-default"
+                            style={{ left: '12.5%' }}
+                          >
+                            <span>$12500</span>
+                          </span>
+                          <span
+                            tabIndex="0"
+                            className="ui-slider-handle ui-corner-all ui-state-default"
+                            style={{ left: '54.93%' }}
+                          >
+                            <span>$54930</span>
+                          </span>
+                        </div>
+                      </div>
                     </div>
 
                     <div>
@@ -73,8 +90,9 @@ const Properties = ({ propertyCategories, properties }) => {
                 </h4>
 
                 <div className="sidebar-property-list">
-                  <FeatureProperty />
-                  <FeatureProperty />
+                  {featureProperties.map((property, i) => (
+                    <FeatureProperty key={i} property={property} />
+                  ))}
                 </div>
               </div>
 
@@ -84,8 +102,9 @@ const Properties = ({ propertyCategories, properties }) => {
                   <span className="shape"></span>
                 </h4>
                 <div className="sidebar-agent-list">
-                  <TopAgents />
-                  <TopAgents />
+                  {agents.map((agent, i) => (
+                    <TopAgents key={i} agent={agent} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -120,6 +139,26 @@ Properties.defaultProps = {
       decision: 'For Rent',
       image: require('../../assets/images/property/property-1.jpg'),
       id: '466928bc-d210-46ea-93b5-2269e9682dca'
+    })
+  ],
+  agents: [
+    ...new Array(2).fill({
+      image: require('../../assets/images/agent/agent-1.jpg'),
+      name: 'Donald Palmer',
+      phone: '(756) 447 5779',
+      noOfProperties: 7
+    })
+  ],
+
+  featureProperties: [
+    ...new Array(2).fill({
+      propertyTitle: 'Friuli-Venezia Giulia',
+      locationName: '568 E 1st Ave, Miami',
+      amount: '$550',
+      figure: 'Month',
+      decision: 'For Sale',
+      id: '466928bc-d210-46ea-93b5-2269e9682dca',
+      image: require('../../assets/images/property/sidebar-property-1.jpg')
     })
   ]
 };
