@@ -39,15 +39,3 @@ const FeatureProperty = ({ property }) => {
 };
 
 export default FeatureProperty;
-
-FeatureProperty.defaultProps = {
-  property: {
-    propertyTitle: 'Friuli-Venezia Giulia',
-    locationName: '568 E 1st Ave, Miami',
-    amount: '$550',
-    figure: 'Month',
-    decision: 'For Sale',
-    id: '466928bc-d210-46ea-93b5-2269e9682dca',
-    image: require('../../assets/images/property/sidebar-property-1.jpg')
-  }
-};
