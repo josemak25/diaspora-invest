@@ -12,7 +12,7 @@ const Footer = ({ socialLinks, widgetLinks }) => {
         <div className="container">
           <div className="row row-25">
             <div className="footer-widget col-lg-3 col-md-6 col-12 mb-40">
-              <img src={require('../../assets/images/logo-footer.png')} alt="footer" />
+              <img src={require('../../assets/images/footer-logo.png')} alt="footer" />
               <p>
                 Disapora Invest - Real Estate Management App. elit, sed do to eiumod tempor dolor
                 sit amet, ctetur adipiscing elit seddo dolor sit amet.

@@ -23,12 +23,12 @@ const FeatureProperty = ({ property }) => {
               state: property
             }}
           >
-            {property.propertyTitle}
+            {property.name}
           </Link>
         </h5>
         <span className="location">
           <img src={require('../../assets/images/icons/marker.png')} alt="property_icon" />
-          {property.locationName}
+          {property.location}
         </span>
         <span className="price">
           {property.amount} <span>{property.figure}</span>
