@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Property = ({ property, propertyFeatures }) => {
+const Property = ({ property, cardSize }) => {
   return (
-    <div className="property-item col-md-6 col-12 mb-40">
+    <div className={cardSize}>
       <div className="property-inner">
         <div className="image">
           <Link
@@ -14,19 +14,6 @@ const Property = ({ property, propertyFeatures }) => {
           >
             <img src={property.image} alt="property_banner" />
           </Link>
-          <ul className="property-feature">
-            {propertyFeatures.map((feature, index) => (
-              <li key={index}>
-                <span className="area">
-                  <img
-                    src={require(`../../assets/images/icons/${feature.icon}`)}
-                    alt="feature_icon"
-                  />
-                  {feature.name}
-                </span>
-              </li>
-            ))}
-          </ul>
         </div>
         <div className="content">
           <div className="left">
@@ -37,12 +24,12 @@ const Property = ({ property, propertyFeatures }) => {
                   state: property
                 }}
               >
-                {property.propertyTitle}
+                {property.name}
               </Link>
             </h3>
             <span className="location">
-              <img src={require('../../assets/images/icons/marker.png')} alt="location_icon" />
-              {property.locationName}
+              <img src={require('../assets/images/icons/marker.png')} alt="location_icon" />
+              {property.location}
             </span>
           </div>
           <div className="right">
@@ -61,24 +48,3 @@ const Property = ({ property, propertyFeatures }) => {
 };
 
 export default Property;
-
-Property.defaultProps = {
-  propertyFeatures: [
-    {
-      icon: 'area.png',
-      name: '550 SqFt'
-    },
-    {
-      icon: 'bed.png',
-      name: 6
-    },
-    {
-      icon: 'bath.png',
-      name: 4
-    },
-    {
-      icon: 'parking.png',
-      name: 3
-    }
-  ]
-};

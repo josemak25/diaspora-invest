@@ -4,10 +4,12 @@ import Jumbotron from '../../common/jumbotron/Jumbotron';
 import Footer from '../../common/footer/Footer';
 import TopAgents from './TopAgents';
 import FeatureProperty from './FeatureProperty';
-import Property from './Property';
+import Property from '../../components/Property';
 import { Input } from '../../components/Input';
+import PriceRange from '../../components/PriceRange';
+import PropertyCategory from '../../components/PropertyOptions';
 
-const Properties = ({ propertyCategories, properties, agents, featureProperties }) => {
+const Properties = ({ properties, agents, featureProperties, propertyCategories }) => {
   return (
     <>
       <Header />
@@ -19,7 +21,11 @@ const Properties = ({ propertyCategories, properties, agents, featureProperties 
             <div className="col-lg-8 col-12 order-1 order-lg-2 mb-sm-50 mb-xs-50">
               <div className="row">
                 {properties.map((property, index) => (
-                  <Property property={property} key={index} />
+                  <Property
+                    property={property}
+                    key={index}
+                    cardSize="property-item col-md-6 col-12 mb-40"
+                  />
                 ))}
               </div>
             </div>
@@ -39,43 +45,10 @@ const Properties = ({ propertyCategories, properties, agents, featureProperties 
                       <Input type="text" placeholder="Property Name" />
                     </div>
 
-                    <div>
-                      <select className="nice-select">
-                        {propertyCategories.map((category, index) => (
-                          <option key={index}>{category}</option>
-                        ))}
-                      </select>
-                    </div>
+                    <PropertyCategory options={propertyCategories} placeholder="Select Category" />
 
                     <div />
-                    <div>
-                      <div>
-                        <div
-                          id="search-price-range"
-                          className="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                        >
-                          <div
-                            className="ui-slider-range ui-corner-all ui-widget-header"
-                            style={{ left: '12.5%', width: '42.43%' }}
-                          ></div>
-                          <span
-                            tabIndex="0"
-                            className="ui-slider-handle ui-corner-all ui-state-default"
-                            style={{ left: '12.5%' }}
-                          >
-                            <span>$12500</span>
-                          </span>
-                          <span
-                            tabIndex="0"
-                            className="ui-slider-handle ui-corner-all ui-state-default"
-                            style={{ left: '54.93%' }}
-                          >
-                            <span>$54930</span>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
+                    <PriceRange />
                     <div>
                       <button>search</button>
                     </div>
@@ -120,20 +93,10 @@ const Properties = ({ propertyCategories, properties, agents, featureProperties 
 export default Properties;
 
 Properties.defaultProps = {
-  propertyCategories: [
-    'Office',
-    'Industrial',
-    'Industrial',
-    'Retail & shopping center',
-    'Multi-family home',
-    'Healthcare',
-    'Sports & entertainment',
-    'Land and Residential units'
-  ],
   properties: [
     ...new Array(8).fill({
-      propertyTitle: 'Friuli-Venezia Giulia',
-      locationName: '568 E 1st Ave, Miami',
+      name: 'Friuli-Venezia Giulia',
+      location: '568 E 1st Ave, Miami',
       amount: '$550',
       figure: 'M',
       decision: 'For Rent',
@@ -152,13 +115,22 @@ Properties.defaultProps = {
 
   featureProperties: [
     ...new Array(2).fill({
-      propertyTitle: 'Friuli-Venezia Giulia',
-      locationName: '568 E 1st Ave, Miami',
+      name: 'Friuli-Venezia Giulia',
+      location: '568 E 1st Ave, Miami',
       amount: '$550',
       figure: 'Month',
       decision: 'For Sale',
       id: '466928bc-d210-46ea-93b5-2269e9682dca',
       image: require('../../assets/images/property/sidebar-property-1.jpg')
     })
+  ],
+  propertyCategories: [
+    'Office',
+    'Industrial',
+    'Retail & shopping center',
+    'Multi-family home',
+    'Healthcare',
+    'Sports & entertainment',
+    'Land and Residential units'
   ]
 };

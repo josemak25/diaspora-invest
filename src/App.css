@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------------
 
-    Template Name: Khonike - Real Estate Bootstrap 4 Template
+    Name: Diaspora - Real Estate Bootstrap 4 Template
     Version: 1.0
 
 -----------------------------------------------------------------------------------
@@ -4045,7 +4045,7 @@ header.header {
       left: 100%;
       top: 10px;
       white-space: nowrap;
-      z-index: 1;
+      z-index: 0;
       margin-right: 13px;
       display: -webkit-inline-box;
       display: -ms-inline-flexbox;
