@@ -46,3 +46,11 @@ const UserProfile = ({ details }) => {
 };
 
 export default UserProfile;
+
+UserProfile.defaultProps = {
+  details: {
+    name: 'Chibueze Eziokwubundu',
+    email: 'chibueze.eziokwubundu@gmail.com',
+    phone: '08023456789'
+  }
+};
