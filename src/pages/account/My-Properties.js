@@ -19,3 +19,17 @@ const MyProperties = ({ properties }) => {
 };
 
 export default MyProperties;
+
+MyProperties.defaultProps = {
+  properties: [
+    ...new Array(4).fill({
+      name: 'Friuli-Venezia Giulia',
+      location: '568 E 1st Ave, Miami',
+      amount: '$550',
+      figure: 'M',
+      decision: 'For Rent',
+      image: require('../../assets/images/property/property-1.jpg'),
+      id: '466928bc-d210-46ea-93b5-2269e9682dca'
+    })
+  ]
+};
