@@ -9,6 +9,7 @@ import HomePage from './pages/homepage/HomePage';
 
 import './App.css';
 import './assets/css/Helper.css';
+import './assets/css/icofont.min.css';
 
 function App() {
   return (

@@ -1,12 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
-const SidebarLink = ({ linkTitle, linkTarget }) => {
+const SidebarLink = ({ text, url, icon }) => {
   return (
     <li>
-      <a href={linkTarget} data-toggle='tab'>
-        <i class='pe-7s-user'></i>
-        {linkTitle}
+      <a href={url} data-toggle='tab'>
+        <i class={icon}></i>
+        {text}
       </a>
     </li>
   );
