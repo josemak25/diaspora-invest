@@ -1,6 +1,8 @@
 import React from 'react';
+import { Input } from '../../components/Input';
+import Button from '../../components/Button';
 
-const AgencyProfile = () => {
+const AgencyProfile = ({ details }) => {
   return (
     <>
       <div id='agency-tab' class='tab-pane'>
@@ -11,133 +13,35 @@ const AgencyProfile = () => {
             </div>
             <div class='col-12 mb-30'>
               <label for='agency_name'>Agency Name</label>
-              <input type='text' id='agency_name' value='Royao Estates' />
+              <input type='text' id='agency_name' value={details.name} />
             </div>
-            <div class='col-12 mb-30'>
-              <label for='about_agency'>About Agency</label>
-              <textarea id='about_agency'></textarea>
-            </div>
+
             <div class='col-12'>
               <div class='row'>
                 <div class='col-md-6 col-12 mb-30'>
                   <label for='agency_address'>Address</label>
-                  <input
+                  <Input
                     type='text'
                     id='agency_address'
-                    value='256, 1st AVE, Manchester 125 , Noth England'
+                    value={details.address}
                   />
                 </div>
                 <div class='col-md-6 col-12 mb-30'>
                   <label for='agency_number'>Phone Number</label>
-                  <input
-                    type='text'
-                    id='agency_number'
-                    value='(756) 447 5779'
-                  />
+                  <Input type='text' id='agency_number' value={details.phone} />
                 </div>
                 <div class='col-md-6 col-12 mb-30'>
                   <label for='agency_email'>Email</label>
-                  <input
-                    type='text'
-                    id='agency_email'
-                    value='info@example.com'
-                  />
+                  <Input type='text' id='agency_email' value={details.email} />
                 </div>
                 <div class='col-md-6 col-12 mb-30'>
                   <label for='agency_web'>Website</label>
-                  <input type='text' id='agency_web' value='www.example.com' />
-                </div>
-                <div class='col-md-6 col-12 mb-30'>
-                  <label for='agency_license'>License</label>
-                  <input type='text' id='agency_license' value='AB7876A6' />
-                </div>
-              </div>
-              <h4>Social</h4>
-              <div class='row'>
-                <div class='col-md-6 col-12 mb-30'>
-                  <label for='agency_social_facebook'>
-                    <i class='fa fa-facebook-official'></i>Facebook
-                  </label>
-                  <input
-                    type='text'
-                    id='agency_social_facebook'
-                    value='www.facebook.com'
-                  />
-                </div>
-                <div class='col-md-6 col-12 mb-30'>
-                  <label for='agency_social_twitter'>
-                    <i class='fa fa-twitter'></i>Twitter
-                  </label>
-                  <input
-                    type='text'
-                    id='agency_social_twitter'
-                    value='www.twitter.com'
-                  />
-                </div>
-                <div class='col-md-6 col-12 mb-30'>
-                  <label for='agency_social_linkedin'>
-                    <i class='fa fa-linkedin'></i>Linkedin
-                  </label>
-                  <input
-                    type='text'
-                    id='agency_social_linkedin'
-                    value='www.linkedin.com'
-                  />
-                </div>
-                <div class='col-md-6 col-12 mb-30'>
-                  <label for='agency_social_google'>
-                    <i class='fa fa-google'></i>Google Plus
-                  </label>
-                  <input
-                    type='text'
-                    id='agency_social_google'
-                    value='www.google.com'
-                  />
-                </div>
-                <div class='col-md-6 col-12 mb-30'>
-                  <label for='agency_social_instagram'>
-                    <i class='fa fa-instagram'></i>Instagram
-                  </label>
-                  <input
-                    type='text'
-                    id='agency_social_instagram'
-                    value='www.instagram.com'
-                  />
-                </div>
-                <div class='col-md-6 col-12 mb-30'>
-                  <label for='agency_social_pinterest'>
-                    <i class='fa fa-pinterest'></i>Pinterest
-                  </label>
-                  <input
-                    type='text'
-                    id='agency_social_pinterest'
-                    value='www.pinterest.com'
-                  />
-                </div>
-                <div class='col-md-6 col-12 mb-30'>
-                  <label for='agency_social_skype'>
-                    <i class='fa fa-skype'></i>Skype
-                  </label>
-                  <input
-                    type='text'
-                    id='agency_social_skype'
-                    value='www.skype.com'
-                  />
-                </div>
-                <div class='col-md-6 col-12 mb-30'>
-                  <label for='agency_social_tumblr'>
-                    <i class='fa fa-tumblr'></i>Tumblr
-                  </label>
-                  <input
-                    type='text'
-                    id='agency_social_tumblr'
-                    value='www.tumblr.com'
-                  />
+                  <Input type='text' id='agency_web' value={details.website} />
                 </div>
               </div>
             </div>
             <div class='col-12 mb-30'>
-              <button class='btn'>Save Change</button>
+              <Button textContent='Save Changes' submit='submit' />
             </div>
           </div>
         </form>
@@ -147,3 +51,13 @@ const AgencyProfile = () => {
 };
 
 export default AgencyProfile;
+
+AgencyProfile.defaultProps = {
+  details: {
+    name: 'Brains & Hammers',
+    email: 'customerservice@brainsandhammers.com',
+    address: '112A Olabode George, Off Ajose Adeogun, Victoria Island, Lagos',
+    phone: '08023456789',
+    website: 'www.brainsandhammers.com'
+  }
+};
