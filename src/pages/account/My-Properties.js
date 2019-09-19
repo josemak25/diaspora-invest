@@ -11,8 +11,8 @@ const MyProperties = ({ properties }) => {
   ));
   return (
     <>
-      <div id='properties-tab' class='tab-pane'>
-        <div class='row'>{PropertyCards}</div>
+      <div id='properties-tab' className='tab-pane'>
+        <div className='row'>{PropertyCards}</div>
       </div>
     </>
   );

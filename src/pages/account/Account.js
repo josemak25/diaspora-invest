@@ -18,14 +18,14 @@ const Account = () => {
         path='/'
         pathTitle='My Account'
       />
-      <div class='login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20'>
-        <div class='container'>
-          <div class='row row-25'>
+      <div className='login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-70 pb-lg-50 pb-md-40 pb-sm-30 pb-xs-20'>
+        <div className='container'>
+          <div className='row row-25'>
             <div className='col-lg-4 col-12 mb-sm-50 mb-xs-50'>
               <Sidebar />
             </div>
-            <div class='col-lg-8 col-12'>
-              <div class='tab-content'>
+            <div className='col-lg-8 col-12'>
+              <div className='tab-content'>
                 <UserProfile />
                 <AgencyProfile />
                 <MyProperties />

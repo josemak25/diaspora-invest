@@ -4,7 +4,7 @@ const SidebarLink = ({ text, url, icon }) => {
   return (
     <li>
       <a href={url} data-toggle='tab'>
-        <i class={icon}></i>
+        <i className={icon}></i>
         {text}
       </a>
     </li>

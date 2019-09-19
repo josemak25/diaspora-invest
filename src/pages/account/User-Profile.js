@@ -5,19 +5,19 @@ import Button from '../../components/Button';
 const UserProfile = ({ details }) => {
   return (
     <>
-      <div id='profile-tab' class='tab-pane show active'>
+      <div id='profile-tab' className='tab-pane show active'>
         <form action='#'>
-          <div class='row'>
-            <div class='col-12 mb-30'>
-              <h3 class='mb-0'>Personal Profile</h3>
+          <div className='row'>
+            <div className='col-12 mb-30'>
+              <h3 className='mb-0'>Personal Profile</h3>
             </div>
-            <div class='col-12 mb-30'>
+            <div className='col-12 mb-30'>
               <label for='name'>Name</label>
               <Input type='text' id='name' value={details.name} />
             </div>
-            <div class='col-12'>
-              <div class='row'>
-                <div class='col-md-6 col-12 mb-30'>
+            <div className='col-12'>
+              <div className='row'>
+                <div className='col-md-6 col-12 mb-30'>
                   <label for='personal_email'>Email Address</label>
                   <Input
                     type='text'
@@ -25,7 +25,7 @@ const UserProfile = ({ details }) => {
                     value={details.email}
                   />
                 </div>
-                <div class='col-md-6 col-12 mb-30'>
+                <div className='col-md-6 col-12 mb-30'>
                   <label for='personal_number'>Phone Number</label>
                   <Input
                     type='text'
@@ -35,7 +35,7 @@ const UserProfile = ({ details }) => {
                 </div>
               </div>
             </div>
-            <div class='col-12 mb-30'>
+            <div className='col-12 mb-30'>
               <Button textContent='Save Changes' submit='submit' />
             </div>
           </div>
