@@ -8,7 +8,7 @@ import MyProperties from './My-Properties';
 import ChangePassword from './Change-Password';
 import Footer from '../../common/footer/Footer';
 
-const Account = ({ sidebarLinks }) => {
+const Account = () => {
   return (
     <>
       <Header />
@@ -22,7 +22,7 @@ const Account = ({ sidebarLinks }) => {
         <div class='container'>
           <div class='row row-25'>
             <div className='col-lg-4 col-12 mb-sm-50 mb-xs-50'>
-              <Sidebar links={sidebarLinks} />
+              <Sidebar />
             </div>
             <div class='col-lg-8 col-12'>
               <div class='tab-content'>
@@ -41,14 +41,3 @@ const Account = ({ sidebarLinks }) => {
 };
 
 export default Account;
-
-Account.defaultProps = {
-  sidebarLinks: [
-    { name: 'My Profile', url: '#profile-tab' },
-    { name: 'Agency Profile', url: '#agency-tab' },
-    { name: 'My Properties', url: '#properties-tab' },
-    { name: 'Add New Property', url: '#profile' },
-    { name: 'Change Password', url: '#password-tab' },
-    { name: 'Log Out', url: '#profile' }
-  ]
-};
