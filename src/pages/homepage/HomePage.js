@@ -9,6 +9,7 @@ import PropertyOptions from '../../components/PropertyOptions';
 import Property from '../../components/Property';
 import Services from './Services';
 import ServiceSlider from './ServiceSlider';
+import AgentList from './AgentList';
 
 const HomePage = ({
   properties,
@@ -16,7 +17,8 @@ const HomePage = ({
   propertyTypes,
   featureProperties,
   packages,
-  downloads
+  downloads,
+  agents
 }) => {
   return (
     <div id="main-wrapper">
@@ -214,6 +216,11 @@ const HomePage = ({
       </div>
       {/* <!--New property section end--> */}
 
+      {/* <!--Agent Section start--> */}
+      <div className="agent-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
+        <AgentList agents={agents} />
+      </div>
+      {/* <!--Agent Section end--> */}
       <Footer />
     </div>
   );
@@ -301,5 +308,15 @@ HomePage.defaultProps = {
       title: 'Upcoming on the',
       content: 'Windows Store'
     }
+  ],
+
+  agents: [
+    ...new Array(4).fill({
+      image: require('../../assets/images/agent/agent-1.jpg'),
+      name: 'Donald Palmer',
+      phone: '(756) 447 5779',
+      noOfProperties: Math.floor(Math.random() * 10),
+      id: '466928bc-d210-46ea-93b5-2269e9682dca'
+    })
   ]
 };

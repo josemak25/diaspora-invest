@@ -9,7 +9,6 @@ const Header = ({ menuLink }) => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
-      console.log(scrollTop);
 
       if (scrollTop >= 90) {
         return setHasScrolled(!hasScrolled.move);
