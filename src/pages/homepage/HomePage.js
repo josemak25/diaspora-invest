@@ -10,6 +10,7 @@ import Property from '../../components/Property';
 import Services from './Services';
 import ServiceSlider from './ServiceSlider';
 import AgentList from './AgentList';
+import PartnersList from './PartnersList';
 
 const HomePage = ({
   properties,
@@ -127,7 +128,7 @@ const HomePage = ({
                   ))}
                 </div>
                 <div className="image">
-                  <img src={require('../../assets/images/others/app.png')} alt="" />
+                  <img src={require('../../assets/images/others/app.png')} alt="app_download" />
                 </div>
               </div>
               {/* <!--Download Content end--> */}
@@ -216,11 +217,13 @@ const HomePage = ({
       </div>
       {/* <!--New property section end--> */}
 
-      {/* <!--Agent Section start--> */}
       <div className="agent-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <AgentList agents={agents} />
       </div>
-      {/* <!--Agent Section end--> */}
+
+      <div className="brand-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
+        <PartnersList />
+      </div>
       <Footer />
     </div>
   );
