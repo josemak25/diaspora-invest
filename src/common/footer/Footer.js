@@ -99,7 +99,7 @@ const Footer = ({ socialLinks, widgetLinks }) => {
             <div className="col-12">
               <div className="copyright text-center">
                 <p>
-                  Copyright &copy;2018 <Link to="/">Disapora Invest</Link>. All rights reserved.
+                  Copyright &copy;2019 <Link to="/">Disapora Invest</Link>. All rights reserved.
                 </p>
               </div>
             </div>

@@ -6,6 +6,7 @@ import LoginSignUp from './pages/login-signup/Login-SignUp';
 import Properties from './pages/properties/Properties';
 import Account from './pages/account/Account';
 import HomePage from './pages/homepage/HomePage';
+import Property from './pages/view-property/Property';
 
 import './App.css';
 import './assets/css/Helper.css';
@@ -19,6 +20,7 @@ function App() {
         <Route exact path='/login-signup' component={LoginSignUp} />
         <Route exact path='/properties' component={Properties} />
         <Route exact path='/user/:id/profile' component={Account} />
+        <Route exact path="/property/:id" component={Property}/>
       </Router>
     </Provider>
   );

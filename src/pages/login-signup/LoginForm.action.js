@@ -12,7 +12,7 @@ export const fetchingUser = payload => {
 export const loginUser = (values, setErrors, navigateUser) => async dispatch => {
 	try {
 		dispatch(fetchingUser(true));
-		const response = await axios.post('/public/login', values);
+		const response = await axios.post('auth/login', values);
 		dispatch({
 			type: SET_CURRENT_USER,
 			payload: response.data,
