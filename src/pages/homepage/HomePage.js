@@ -9,7 +9,8 @@ import PropertyOptions from '../../components/PropertyOptions';
 import Property from '../../components/Property';
 import Services from './Services';
 import ServiceSlider from './ServiceSlider';
-import Properties from '../properties/Properties';
+import AgentList from './AgentList';
+import PartnersList from './PartnersList';
 
 const HomePage = ({
   properties,
@@ -17,7 +18,8 @@ const HomePage = ({
   propertyTypes,
   featureProperties,
   packages,
-  downloads
+  downloads,
+  agents
 }) => {
   return (
     <div id="main-wrapper">
@@ -31,7 +33,7 @@ const HomePage = ({
           <div className="row">
             <div className="col-md-12 mb-60 mb-xs-30">
               <div className="section-title center">
-                <h1>Find Your Home</h1>
+                <h1>Find Your Property</h1>
               </div>
             </div>
           </div>
@@ -126,7 +128,7 @@ const HomePage = ({
                   ))}
                 </div>
                 <div className="image">
-                  <img src={require('../../assets/images/others/app.png')} alt="" />
+                  <img src={require('../../assets/images/others/app.png')} alt="app_download" />
                 </div>
               </div>
               {/* <!--Download Content end--> */}
@@ -161,48 +163,48 @@ const HomePage = ({
       {/* <!--Services section end--> */}
 
       {/* <!--New property section start--> */}
-      <div class="property-section section pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
-        <div class="container">
+      <div className="property-section section pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
+        <div className="container">
           {/* <!--Section Title start--> */}
-          <div class="row">
-            <div class="col-md-12 mb-60 mb-xs-30">
-              <div class="section-title center">
+          <div className="row">
+            <div className="col-md-12 mb-60 mb-xs-30">
+              <div className="section-title center">
                 <h1>Newly Added Property</h1>
               </div>
             </div>
           </div>
           {/* <!--Section Title end--> */}
 
-          <div class="row">
+          <div className="row">
             {/* <!--Property start--> */}
 
             {Array(6)
               .fill(properties[0])
               .map((property, i) => (
-                <div class="property-item col-lg-4 col-md-6 col-12 mb-40" key={i}>
-                  <div class="property-inner">
-                    <div class="image">
+                <div className="property-item col-lg-4 col-md-6 col-12 mb-40" key={i}>
+                  <div className="property-inner">
+                    <div className="image">
                       <a href="single-properties.html">
                         <img src={property.image} alt="" />
                       </a>
                     </div>
-                    <div class="content">
-                      <div class="left">
-                        <h3 class="title">
+                    <div className="content">
+                      <div className="left">
+                        <h3 className="title">
                           <a href="single-properties.html">{property.name}</a>
                         </h3>
-                        <span class="location">
+                        <span className="location">
                           <img src="assets/images/icons/marker.png" alt="" />
                           {property.location}
                         </span>
                       </div>
-                      <div class="right">
-                        <div class="type-wrap">
-                          <span class="price">
+                      <div className="right">
+                        <div className="type-wrap">
+                          <span className="price">
                             {property.amount}
                             <span>{property.figure}</span>
                           </span>
-                          <span class="type">{property.decision}</span>
+                          <span className="type">{property.decision}</span>
                         </div>
                       </div>
                     </div>
@@ -215,7 +217,13 @@ const HomePage = ({
       </div>
       {/* <!--New property section end--> */}
 
+      <div className="agent-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
+        <AgentList agents={agents} />
+      </div>
 
+      <div className="brand-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
+        <PartnersList />
+      </div>
       <Footer />
     </div>
   );
@@ -286,7 +294,7 @@ HomePage.defaultProps = {
       content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     }
   ],
-  
+
   downloads: [
     {
       icon: 'fa fa-apple',
@@ -303,5 +311,15 @@ HomePage.defaultProps = {
       title: 'Upcoming on the',
       content: 'Windows Store'
     }
+  ],
+
+  agents: [
+    ...new Array(4).fill({
+      image: require('../../assets/images/agent/agent-1.jpg'),
+      name: 'Donald Palmer',
+      phone: '(756) 447 5779',
+      noOfProperties: Math.floor(Math.random() * 10),
+      id: '466928bc-d210-46ea-93b5-2269e9682dca'
+    })
   ]
 };

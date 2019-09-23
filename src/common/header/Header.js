@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import '../../App.css';
 
 const Header = ({ menuLink }) => {
+  const [hasScrolled, setHasScrolled] = useState({ move: false });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+
+      if (scrollTop >= 90) {
+        return setHasScrolled(!hasScrolled.move);
+      }
+
+      return setHasScrolled(!hasScrolled.move);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+  }, [hasScrolled.move]);
+
   return (
-    <header className="header header-sticky">
+    <header
+      className={`${hasScrolled ? 'header header-sticky is-sticky' : 'header header-sticky'}`}
+    >
       <div className="header-bottom menu-center">
         <div className="container">
           <div className="row justify-content-between">
@@ -71,10 +89,6 @@ Header.defaultProps = {
     {
       name: 'Agencies',
       path: '/agencies'
-    },
-    {
-      name: 'News',
-      path: '/news'
     },
     {
       name: 'Contact Us',
