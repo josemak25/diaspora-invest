@@ -20,9 +20,6 @@ function App() {
         <Route exact path='/login-signup' component={LoginSignUp} />
         <Route exact path='/properties' component={Properties} />
         <Route exact path='/user/:id/profile' component={Account} />
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/login-signup" component={LoginSignUp} />
-        <Route exact path="/properties" component={Properties} />
         <Route exact path="/property/:id" component={Property}/>
       </Router>
     </Provider>
