@@ -43,7 +43,7 @@ export default function SignUpForm({ history, ...props }) {
 		}
 
 		axios
-			.post('/public/signup', values)
+			.post('auth/signup', values)
 			.then(res => {
 				if (res.data.statusCode !== 200) {
 					setErrors(res.data.errors);
