@@ -2,14 +2,13 @@ import React from 'react';
 
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
-import Header from '../../common/header/Header';
+// import Header from '../../common/header/Header';
 import Footer from '../../common/footer/Footer';
 import Jumbotron from '../../common/jumbotron/Jumbotron';
 
 export default function LoginSignUp() {
 	return (
 		<div id='main-wrapper'>
-			<Header />
 			<Jumbotron origin='Login or Register' originTitle='Home' path='/' pathTitle='Login or Register' />
 			<div className='login-register-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50'>
 				<div className='container'>
@@ -23,17 +22,17 @@ export default function LoginSignUp() {
 								</li>
 								<li>or</li>
 								<li>
-									<a className='active' href='#signup-tab' data-toggle='tab'>
+									<a className='active' href='#register-tab' data-toggle='tab'>
 										Sign Up
 									</a>
 								</li>
 							</ul>
 
 							<div className='tab-content'>
-								<div id='login-tab' className='tab-pane show '>
+								<div id='login-tab' className='tab-pane'>
 									<LoginForm />
 								</div>
-								<div id='signup-tab' className='tab-pane show active'>
+								<div id='register-tab' className='tab-pane show active'>
 									<SignUpForm />
 								</div>
 							</div>

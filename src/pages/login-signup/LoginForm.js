@@ -23,11 +23,11 @@ function LoginForm(props) {
 	};
 
 	const navigateUser = () => {
-		props.history.push('/');
+		props.history.push('/properties');
 	};
-	const onSubmit = event => {
-		event.preventDefault();
 
+	const onSubmit = async event => {
+		event.preventDefault();
 		const errorFields = loginValidator(values);
 
 		if (Object.keys(errorFields).length > 0) {
@@ -35,60 +35,87 @@ function LoginForm(props) {
 			return;
 		}
 
-		props.login(values, setErrors, navigateUser);
+		const res= await props.login(values, setErrors, navigateUser);
+
+		if(res && res.response.data.errors) {
+			setErrors({ ...errors, resError: res.response.data.errors.error });
+		}
 	};
 
 	return (
-		<form onSubmit={onSubmit}>
-			<div className='row'>
-				<div className='col-12 mb-30'>
-					<Input
-						name='email'
-						value={values.email}
-						type='text'
-						placeholder='you@example.com'
-						id='login-email'
-						onChange={onChange}
-					/>
-					{errors.email ? (
-						<Label useFor='validation_error' className='list-group-item-danger' htmlFor='login-email'>
-							{errors.email}
-						</Label>
-					) : null}
-				</div>
-				<div className='col-12 mb-30'>
-					<Input
-						name='password'
-						value={values.password}
-						type='password'
-						placeholder='Password'
-						id='login-password'
-						onChange={onChange}
-					/>
-					{errors.password ? (
-						<Label useFor='validation_error' className='list-group-item-danger' htmlFor='login-password'>
-							{errors.password}
-						</Label>
-					) : null}
-				</div>
-				<div className='col-12 mb-30'>
-					<Button testId='login-button' textContent={loading ? 'Loading' : 'Login'} submit={true} />
-				</div>
+    <form onSubmit={onSubmit}>
+      <div className="row">
+        <div className="col-12 mb-30">
+          {errors.resError ? (
+            <Label
+              useFor="validation_error"
+              className="list-group-item-danger"
+              htmlFor="login-button"
+            >
+              {errors.resError}
+            </Label>
+          ) : null}
+        </div>
+        <div className="col-12 mb-30">
+          <Input
+            name="email"
+            value={values.email}
+            type="text"
+            placeholder="you@example.com"
+            id="login-email"
+            onChange={onChange}
+          />
+          {errors.email ? (
+            <Label
+              useFor="validation_error"
+              className="list-group-item-danger"
+              htmlFor="login-email"
+            >
+              {errors.email}
+            </Label>
+          ) : null}
+        </div>
+        <div className="col-12 mb-30">
+          <Input
+            name="password"
+            value={values.password}
+            type="password"
+            placeholder="Password"
+            id="login-password"
+            onChange={onChange}
+          />
+          {errors.password ? (
+            <Label
+              useFor="validation_error"
+              className="list-group-item-danger"
+              htmlFor="login-password"
+            >
+              {errors.password}
+            </Label>
+          ) : null}
+        </div>
+        <div className="col-12 mb-30">
+          <Button
+            testId="login-button"
+            textContent={loading ? "Loading" : "Login"}
+            submit={true}
+          />
+        </div>
 
-				<div className='col-12 d-flex justify-content-between'>
-					<span>
-						New User to Diaspora Invest?&nbsp;
-						<a className='register-toggle' href='#signup-tab'>
-							Sign Up!
-						</a>
-					</span>
-					<span>
-						<a href='forgot-password.html'>Forgot Password ?</a>
-					</span>
-				</div>
-			</div>
-		</form>
-	);
+        <div className="col-12 d-flex justify-content-between">
+          <span>
+            New User to Diaspora Invest?&nbsp;
+            <a className="register-toggle" href="#signup-tab">
+              Sign Up!
+            </a>
+          </span>
+          <span>
+            <a href="forgot-password.html">Forgot Password ?</a>
+          </span>
+        </div>
+      </div>
+    </form>
+  );
 }
 
 const mapDispatchToProps = {
@@ -96,6 +123,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-	null,
-	mapDispatchToProps
+  null,
+  mapDispatchToProps
 )(withRouter(LoginForm));

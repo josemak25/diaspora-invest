@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../common/header/Header';
+// import Header from '../../common/header/Header';
 import Jumbotron from '../../common/jumbotron/Jumbotron';
 import Footer from '../../common/footer/Footer';
 import TopAgents from './TopAgents';
@@ -12,7 +12,6 @@ import PropertyCategory from '../../components/PropertyOptions';
 const Properties = ({ properties, agents, featureProperties, propertyCategories }) => {
   return (
     <>
-      <Header />
       <Jumbotron origin="Properties" originTitle="Home" path="/" pathTitle="Properties Listing" />
 
       <div className="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
@@ -99,7 +98,7 @@ Properties.defaultProps = {
       location: '568 E 1st Ave, Miami',
       amount: '$550',
       figure: 'M',
-      decision: 'For Rent',
+      decision: 'For Sale',
       image: require('../../assets/images/property/property-1.jpg'),
       id: '466928bc-d210-46ea-93b5-2269e9682dca'
     })

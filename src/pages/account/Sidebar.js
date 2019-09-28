@@ -2,8 +2,8 @@ import React from 'react';
 import SidebarLink from './Sidebar-Link';
 
 const Sidebar = ({ links }) => {
-  const ListItems = links.map(link => (
-    <SidebarLink text={link.name} url={link.url} icon={link.icon} />
+  const ListItems = links.map((link, index) => (
+    <SidebarLink key={index} text={link.name} url={link.url} icon={link.icon} />
   ));
   return (
     <>

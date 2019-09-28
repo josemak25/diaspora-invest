@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../common/header/Header';
+// import Header from '../../common/header/Header';
 import Footer from '../../common/footer/Footer';
 import HeroSlider from './HeroSlider';
 import PriceRange from '../../components/PriceRange';
@@ -23,7 +23,6 @@ const HomePage = ({
 }) => {
   return (
     <div id="main-wrapper">
-      <Header />
       <div className="hero-section section position-relative">
         <HeroSlider properties={properties} />
       </div>

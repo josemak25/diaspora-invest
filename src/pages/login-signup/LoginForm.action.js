@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './constants/types';
+import { SET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './constants/types';
+import { createCookie } from '../../utils/cookie';
 // User loading
 export const fetchingUser = payload => {
 	return {
@@ -12,20 +13,24 @@ export const fetchingUser = payload => {
 export const loginUser = (values, setErrors, navigateUser) => async dispatch => {
 	try {
 		dispatch(fetchingUser(true));
-		const response = await axios.post('auth/login', values);
+		const res = await axios.post('auth/login', values);
+		if(!res.data.token) throw new Error('Server is Down');
+		createCookie(process.env.REACT_APP_COOKIE_NAME, res.data.token, 1);
+		sessionStorage.setItem(`user`, JSON.stringify(res.data.payload));
 		dispatch({
 			type: SET_CURRENT_USER,
-			payload: response.data,
+			payload: res.data,
 		});
 		dispatch(fetchingUser(false));
 		navigateUser && navigateUser();
 	} catch (err) {
 		setErrors(err);
 		dispatch({
-			type: GET_ERRORS,
+			type: SET_ERRORS,
 			payload: err,
 		});
 		dispatch(fetchingUser(false));
+		return err;
 	}
 };
 

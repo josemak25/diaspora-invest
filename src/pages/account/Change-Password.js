@@ -10,7 +10,7 @@ const ChangePassword = () => {
               <h3 className='mb-0'>Change Password</h3>
             </div>
             <div className='col-12 mb-30'>
-              <label for='current_password'>Current Password</label>
+              <label htmlFor='current_password'>Current Password</label>
               <input
                 type='password'
                 id='current_password'
@@ -18,11 +18,11 @@ const ChangePassword = () => {
               />
             </div>
             <div className='col-12 mb-30'>
-              <label for='new_password'>New Password</label>
+              <label htmlFor='new_password'>New Password</label>
               <input type='password' id='new_password' />
             </div>
             <div className='col-12 mb-30'>
-              <label for='confirm_new_password'>Confirm New Password</label>
+              <label htmlFor='confirm_new_password'>Confirm New Password</label>
               <input type='password' id='confirm_new_password' />
             </div>
             <div className='col-12 mb-30'>
