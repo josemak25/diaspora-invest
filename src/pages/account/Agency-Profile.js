@@ -12,14 +12,14 @@ const AgencyProfile = ({ details }) => {
               <h3 className='mb-0'>Agency Profile</h3>
             </div>
             <div className='col-12 mb-30'>
-              <label for='agency_name'>Agency Name</label>
+              <label htmlFor='agency_name'>Agency Name</label>
               <input type='text' id='agency_name' value={details.name} />
             </div>
 
             <div className='col-12'>
               <div className='row'>
                 <div className='col-md-6 col-12 mb-30'>
-                  <label for='agency_address'>Address</label>
+                  <label htmlFor='agency_address'>Address</label>
                   <Input
                     type='text'
                     id='agency_address'
@@ -27,15 +27,15 @@ const AgencyProfile = ({ details }) => {
                   />
                 </div>
                 <div className='col-md-6 col-12 mb-30'>
-                  <label for='agency_number'>Phone Number</label>
+                  <label htmlFor='agency_number'>Phone Number</label>
                   <Input type='text' id='agency_number' value={details.phone} />
                 </div>
                 <div className='col-md-6 col-12 mb-30'>
-                  <label for='agency_email'>Email</label>
+                  <label htmlFor='agency_email'>Email</label>
                   <Input type='text' id='agency_email' value={details.email} />
                 </div>
                 <div className='col-md-6 col-12 mb-30'>
-                  <label for='agency_web'>Website</label>
+                  <label htmlFor='agency_web'>Website</label>
                   <Input type='text' id='agency_web' value={details.website} />
                 </div>
               </div>

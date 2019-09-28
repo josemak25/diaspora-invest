@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, USER_LOADING, GET_ERRORS } from '../pages/login-signup/constants/types';
+import { SET_CURRENT_USER, USER_LOADING,SET_ERRORS } from '../pages/login-signup/constants/types';
 import isEmpty from 'is-empty';
 const initialState = {
   isAuthenticated: false,
@@ -20,10 +20,10 @@ export default function(state = initialState, action) {
         ...state,
         loading: action.payload
       };
-    case GET_ERRORS:
+    case SET_ERRORS:
       return {
         ...state,
-        error: action.payload
+        error: action.payload.response.data.message
       };
     default:
       return state;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../common/header/Header';
+// import Header from '../../common/header/Header';
 import Jumbotron from '../../common/jumbotron/Jumbotron';
 import Sidebar from './Sidebar';
 import UserProfile from './User-Profile';
@@ -11,7 +11,6 @@ import Footer from '../../common/footer/Footer';
 const Account = () => {
   return (
     <>
-      <Header />
       <Jumbotron
         origin='My Account'
         originTitle='Home'

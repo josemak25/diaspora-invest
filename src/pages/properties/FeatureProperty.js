@@ -8,7 +8,7 @@ const FeatureProperty = ({ property }) => {
         <span className="type">For Sale</span>
         <Link
           to={{
-            pathname: `/properties/${property.id}`,
+            pathname: `/property/${property.id}`,
             state: property
           }}
         >
@@ -19,7 +19,7 @@ const FeatureProperty = ({ property }) => {
         <h5 className="title">
           <Link
             to={{
-              pathname: `/properties/${property.id}`,
+              pathname: `/property/${property.id}`,
               state: property
             }}
           >

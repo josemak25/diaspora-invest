@@ -1,0 +1,3 @@
+export const SET_ERRORS = "SET_ERRORS";
+export const PROPERTY_LOADING = "PROPERTY_LOADING";
+export const SET_PROPERTIES = "SET_PROPERTIES";
