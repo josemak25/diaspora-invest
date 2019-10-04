@@ -1,11 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 
-import { getSessionCookie } from "../../utils/cookie";
+//Redux Stuff
+import {connect} from 'react-redux';
 
 import "../../App.css";
 
-const Header = ({ auth, menuLink }) => {
+
+const menuLink = [
+  {
+    name: "Home",
+    path: "/"
+  },
+  {
+    name: "Properties",
+    path: "/properties"
+  },
+  {
+    name: "Agent",
+    path: "/agent"
+  },
+  {
+    name: "Agencies",
+    path: "/agencies"
+  },
+  {
+    name: "Contact Us",
+    path: "/contact-us"
+  }
+];
+
+const Header = (authenticated) => {
   const [hasScrolled, setHasScrolled] = useState({ move: false });
 
   useEffect(() => {
@@ -46,6 +71,7 @@ const Header = ({ auth, menuLink }) => {
               <nav className="main-menu">
                 <ul>
                   {menuLink.map((link, index) => (
+                    (!authenticated && link.name === 'Properties') ? null :
                     <li key={index}>
                       <NavLink to={link.path} activeClassName="activeLink">
                         {link.name}
@@ -58,7 +84,7 @@ const Header = ({ auth, menuLink }) => {
 
             <div className="col mr-sm-50 mr-xs-50">
               <div className="header-user">
-                {auth ? (
+                {authenticated ? (
                   <NavLink to="/user/:id/profile">
                     <i className="pe-7s-user"></i>
                     <span>Account</span>
@@ -84,29 +110,11 @@ const Header = ({ auth, menuLink }) => {
   );
 };
 
-export default Header;
 
-Header.defaultProps = {
-  menuLink: [
-    {
-      name: "Home",
-      path: "/"
-    },
-    {
-      name: "Properties",
-      path: "/properties"
-    },
-    {
-      name: "Agent",
-      path: "/agent"
-    },
-    {
-      name: "Agencies",
-      path: "/agencies"
-    },
-    {
-      name: "Contact Us",
-      path: "/contact-us"
-    }
-  ]
-};
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps)(Header);
+
+

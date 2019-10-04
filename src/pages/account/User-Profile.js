@@ -1,37 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+
+import { useSelector, connect } from 'react-redux';
+
 import { Input } from '../../components/Input';
 import Button from '../../components/Button';
 
-const UserProfile = ({ details }) => {
-	const [values, setValues] = useState({
-    name: "",
-    phone: ""
-  });
+import { editUserDetails } from "../../redux/actions/account.action";
 
-  const handleChange = ({ target: { name, value } }) => {
+const UserProfile = (props) => {
+  const { id, name, email, phone, email_verified } = useSelector(({ auth }) => auth.user);
+
+  const [values, setValues] = useState({ name, phone });
+
+  useEffect(() => {
+    setValues({ ...values, name: name });
+    setValues({ ...values, phone: phone });
+  }, [name, phone]);
+
+  const onChange = ({ target: { name, value } }) => {
     setValues({ ...values, [name]: value });
   };
+
+  const navigateUser = () => {
+    props.history.push("/user/:id/profile");
+  };
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    await props.editUserDetails({ newUserDetails: values, id , navigateUser});
+  }
 
   return (
     <>
       <div id="profile-tab" className="tab-pane show active">
-        <form action="#">
+        <form action={onSubmit}>
           <div className="row">
             <div className="col-12 mb-30">
               <h3 className="mb-0">Personal Profile</h3>
             </div>
             <div className="col-12 mb-30">
               <label htmlFor="name">Name</label>
-              <Input name="name" type="text" id="name" value={details.name} onChange={handleChange}/>
+              <Input
+                name="name"
+                type="text"
+                id="name"
+                value={values.name}
+                onChange={onChange}
+              />
             </div>
             <div className="col-12">
               <div className="row">
                 <div className="col-md-6 col-12 mb-30">
                   <label htmlFor="personal_email">Email Address</label>
                   <Input
+                    name="email"
                     type="text"
                     id="personal_email"
-                    value={details.email}
+                    value={email}
                     readOnly
                   />
                 </div>
@@ -41,7 +67,8 @@ const UserProfile = ({ details }) => {
                     name="phone"
                     type="text"
                     id="personal_number"
-                    value={details.phone}
+                    value={values.phone}
+                    onChange={onChange}
                   />
                 </div>
               </div>
@@ -56,12 +83,8 @@ const UserProfile = ({ details }) => {
   );
 };
 
-export default UserProfile;
+const mapActionsToProps = {
+  editUserDetails
+}
 
-UserProfile.defaultProps = {
-  details: {
-    name: 'Chibueze Eziokwubundu',
-    email: 'chibueze.eziokwubundu@gmail.com',
-    phone: '08023456789'
-  }
-};
+export default connect(null, mapActionsToProps)(withRouter(UserProfile));

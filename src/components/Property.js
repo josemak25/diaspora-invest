@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Property = ({ property, cardSize }) => {
   return (
@@ -12,7 +12,7 @@ const Property = ({ property, cardSize }) => {
               state: property
             }}
           >
-            <img src={property.image} alt="property_banner" />
+            <img src={property.images[0]} alt="property_banner" />
           </Link>
         </div>
         <div className="content">
@@ -28,17 +28,23 @@ const Property = ({ property, cardSize }) => {
               </Link>
             </h3>
             <span className="location">
-              <img src={require('../assets/images/icons/marker.png')} alt="location_icon" />
+              <img
+                src={require("../assets/images/icons/marker.png")}
+                alt="location_icon"
+              />
               {property.location}
             </span>
           </div>
           <div className="right">
             <div className="type-wrap">
               <span className="price">
-                {property.amount}
-                <span>{property.figure}</span>
+                {/* {property.amount} */}
+                2000
+                <span>{`${property.payment_duration} ${
+                  +property.payment_duration > 2 ? "Yrs" : "Year"
+                }`}</span>
               </span>
-              <span className="type">{property.decision}</span>
+              <span className="type">For Sale</span>
             </div>
           </div>
         </div>

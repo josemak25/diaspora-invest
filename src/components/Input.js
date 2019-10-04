@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Input = ({ name, value, type, placeholder, id, onChange, checked }) => {
+export const Input = ({ name, defaultValue, value, type, placeholder, id, onChange, checked }) => {
   return (
     <SimpleInput
       name={name}
@@ -9,6 +9,7 @@ export const Input = ({ name, value, type, placeholder, id, onChange, checked })
       type={type}
       placeholder={placeholder}
       id={id}
+      defaultValue={defaultValue}
       onChange={onChange}
       checked={checked}
     />

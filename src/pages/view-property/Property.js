@@ -9,7 +9,7 @@ const Property = ({ property, featureProperties }) => {
     name,
     location,
     address,
-    image,
+    images,
     price,
     description,
     user_id,
@@ -52,7 +52,7 @@ const Property = ({ property, featureProperties }) => {
                     </div>
 
                     <div className="image mb-30">
-                      <img src={image} alt="" />
+                      <img src={images[0]} alt="" />
                     </div>
 
                     <div className="content">
@@ -114,7 +114,9 @@ Property.defaultProps = {
                   "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced 
                   below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact 
                   original form, accompanied by English versions from the 1914 translation by H. Rackham.`,
-    image: require("../../assets/images/property/property-1.jpg"),
+    images: [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0"
+    ],
     payment_duration: 10,
     avg_monthly_payment: 300000,
     has_C_of_O: true,
@@ -128,7 +130,9 @@ Property.defaultProps = {
       figure: "Month",
       decision: "For Sale",
       id: "466928bc-d210-46ea-93b5-2269e9682dca",
-      image: require("../../assets/images/property/sidebar-property-1.jpg")
+      images: [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0"
+      ]
     })
   ]
 };

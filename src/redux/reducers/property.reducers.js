@@ -1,6 +1,4 @@
-import { SET_ERRORS, SET_PROPERTIES, PROPERTY_LOADING } from '../pages/properties/property-types';
-import isEmpty from 'is-empty';
-import { tsRestType } from '@babel/types';
+import { SET_ERRORS, SET_PROPERTIES, PROPERTY_LOADING } from '../types';
 
 const initialState = {
   properties: [],
@@ -9,7 +7,7 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-  switch (action.types) {
+  switch (action.type) {
     case SET_PROPERTIES:
       return {
         ...state, 

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch
 } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "../store";
+
+import { connect } from 'react-redux';
+
 import { isUserType } from "../utils/roles";
-import { getSessionCookie } from "../utils/cookie";
 import Header from "../common/header/Header";
 import HomePage from "../pages/homepage/HomePage";
 import Account from "../pages/account/Account";
@@ -17,13 +17,14 @@ import Properties from "../pages/properties/Properties";
 import LoginSignup from "../pages/login-signup/Login-SignUp";
 
 function PrivateRoute({ component: Component, hasValidAccess, ...rest }) {
+  console.log('hi', hasValidAccess);
   return (
     <Route
       {...rest}
       render={props =>
         hasValidAccess ? (
           <>
-            <Component {...props}></Component>
+            <Component {...props} />
           </>
         ) : (
           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
@@ -40,7 +41,7 @@ function PublicRoute({ component: Component, hasValidAccess, ...rest }) {
       render={props =>
         !hasValidAccess || Component.name === "HomePage" ? (
           <>
-            <Component {...props}></Component>
+            <Component {...props} />
           </>
         ) : (
           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
@@ -57,8 +58,7 @@ function AdminRoute({ component: Component, hasValidAccess, ...rest }) {
       render={props =>
         hasValidAccess && isUserType("admin") ? (
           <>
-            <Header></Header>
-            <Component {...props}></Component>
+            <Component {...props} />
           </>
         ) : (
           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
@@ -69,14 +69,13 @@ function AdminRoute({ component: Component, hasValidAccess, ...rest }) {
 }
 
 function Main(props) {
-  // const { auth } = store.getState()
-  // render() {
-    const { auth: authenticated } = props;
+    const authenticated = props;
+    console.log(authenticated);
+
     return (
       <main>
-        <Provider store={store}>
           <Router>
-            <Header auth={authenticated}></Header>
+            <Header />
             <Switch>
               <PublicRoute
                 hasValidAccess={authenticated}
@@ -110,10 +109,12 @@ function Main(props) {
               />
             </Switch>
           </Router>
-        </Provider>
       </main>
     );
   }
-// }
 
-export default Main;
+const mapStateToProps = state => ({
+  authenticated: state.auth.isAuthenticated
+})
+  
+export default connect(mapStateToProps)(Main);

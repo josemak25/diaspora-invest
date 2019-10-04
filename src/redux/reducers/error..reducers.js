@@ -1,4 +1,4 @@
-import { SET_ERRORS } from '../pages/login-signup/constants/types';
+import { SET_ERRORS } from '../types';
 const initialState = {};
 export default function(state = initialState, action) {
   switch (action.type) {
