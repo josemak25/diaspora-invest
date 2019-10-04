@@ -1,8 +1,8 @@
-import { getSessionCookie } from "../utils/cookie";
+import { readToken } from "./token";
 
 const SupportHeader = (extraMetadata) => {
   let header = {};
-  const token = getSessionCookie();
+  const token = readToken();
   if (token) {
     header = {
       headers: {

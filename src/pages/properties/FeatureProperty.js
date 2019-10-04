@@ -12,7 +12,7 @@ const FeatureProperty = ({ property }) => {
             state: property
           }}
         >
-          <img src={property.image} alt="property_image" />
+          <img src={property.images[0]} alt="property_image" />
         </Link>
       </div>
       <div className="content">

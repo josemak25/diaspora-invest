@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
-import { getSessionCookie } from './cookie';
+import { readToken } from './token';
 
-const token = getSessionCookie();
+const token = readToken();
 
 export const isUserType = (userType) => {
   if(!token){

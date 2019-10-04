@@ -1,0 +1,12 @@
+//User Types
+export const USER_LOADING = "USER_LOADING";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const SET_AUTHENTICATED = "SET_AUTHENTICATED";
+export const SET_UNAUTHENTICATED = "SET_UNAUTHENTICATED";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const SET_NEW_USER = "SET_NEW_USER";
+
+//Property TYpes
+export const SET_ERRORS = "SET_ERRORS";
+export const PROPERTY_LOADING = "PROPERTY_LOADING";
+export const SET_PROPERTIES = "SET_PROPERTIES";
