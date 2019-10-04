@@ -30,7 +30,7 @@ export default function AdminDashboard({ user, sidebarLinks }) {
         <Route exact path="/dashboard" component={Agents} />
         <Route exact path="/dashboard/users" component={Users} />
         <Route exact path="/dashboard/properties" component={Properties} />
-        <Route exact path="/dashboard/agent/:id" component={AgentDetails} />
+        <Route path="/dashboard/agent/:id" component={AgentDetails} />
       </div>
     </div>
   );
