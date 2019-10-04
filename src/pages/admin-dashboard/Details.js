@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatAgentDetailsDate } from '../../utils/formatDate';
 
 export default function Details({ details, user }) {
   const {
@@ -9,7 +10,8 @@ export default function Details({ details, user }) {
     isApproved,
     noOfProperties,
     phone,
-    website
+    website,
+    createdAt
   } = details;
   return (
     <>
@@ -17,7 +19,7 @@ export default function Details({ details, user }) {
         <div className="agent-details-status">
           <div>
             <span>
-              <p>Created: {new Date().toJSON()}</p>
+              <p>Created: {formatAgentDetailsDate(createdAt)}</p>
               <p>Email: {email}</p>
             </span>
             <span className="agent-account-approval-status">
@@ -60,7 +62,7 @@ export default function Details({ details, user }) {
             </div>
             <div>
               <span>created:</span>
-              <span>{user.createdAt}</span>
+              <span>{formatAgentDetailsDate(user.createdAt)}</span>
             </div>
           </div>
           <div className="agent-details-record-container">
@@ -83,14 +85,14 @@ export default function Details({ details, user }) {
             </div>
             <div>
               <span>approved date:</span>
-              <span>{approvedAt}</span>
+              <span>{formatAgentDetailsDate(approvedAt)}</span>
             </div>
           </div>
           <div className="agent-details-record-container">
             <h3>property details</h3>
             <div>
-              <span> uploaded properties:</span>
-              <span> {noOfProperties}</span>
+              <span>uploaded properties:</span>
+              <span>{noOfProperties}</span>
             </div>
             <div>
               <span>sold properties:</span> <span>{noOfProperties}</span>

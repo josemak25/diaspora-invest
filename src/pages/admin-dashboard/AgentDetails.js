@@ -12,7 +12,7 @@ export default function AgentDetails({ location: { state }, detailsLinks, user }
 
   return (
     <>
-      <DashboardHeader placeholder="search users by name" name="user" value={user} />
+      <DashboardHeader placeholder="search users by name" name="user" />
       <main className="agent-details-container">
         <div className="agent-approve-action">
           <div className="agent-approve-header">

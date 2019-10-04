@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DashboardHeader from './DashboardHeader';
 import Select from '../../components/select';
 import AgentCard from '../../components/AgentCard';
-import formatDate from '../../utils/formatDate';
+import { formatAgentListsDate } from '../../utils/formatDate';
 
 export default function Agents({ options, agency_profiles }) {
   const [agent, setAgent] = useState('');
@@ -28,7 +28,7 @@ export default function Agents({ options, agency_profiles }) {
           <Select options={options} placeholder="Filter Agents" />
         </div>
         <div className="current-time-date">
-          <span>{formatDate()}</span>
+          <span>{formatAgentListsDate()}</span>
           <div />
         </div>
         <div className="main-body-agent-list">
@@ -69,7 +69,8 @@ Agents.defaultProps = {
         user_id: '315cda29-69ba-4dc8-bf1e-f3a99948f55e',
         website: 'https://webster.io',
         avater: `https://randomuser.me/api/portraits/men/${Math.ceil(Math.random() * 100)}.jpg`,
-        noOfProperties: Math.ceil(Math.random() * 1000)
+        noOfProperties: Math.ceil(Math.random() * 1000),
+        createdAt: '2019-09-28 13:52:22'
       }))
   ]
 };

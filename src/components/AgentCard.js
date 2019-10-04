@@ -11,7 +11,7 @@ export default function AgentCard({ agent }) {
       className="agent-card-container"
     >
       <div className="agent-card-header">
-        <img src={require('../assets/images/icons/agent-logo.svg')} />
+        <img src={require('../assets/images/icons/agent-logo.svg')} alt="agent-company-logo" />
         <div>
           <h1>{agent.noOfProperties}</h1>
           <p>number of properties</p>
