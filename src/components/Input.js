@@ -34,24 +34,6 @@ export const Label = ({ htmlFor, children, className, useFor }) => {
 
 const SimpleLabel = styled.label``;
 
-const SimpleInput = styled.input`
-  /* color: inherit;
-	display: inline-block;
-	line-height: inherit;
-	text-decoration: none;
-	cursor: pointer;
-	-webkit-transition: all 0.3s ease 0s;
-	-o-transition: all 0.3s ease 0s;
-	transition: all 0.3s ease 0s; */
-`;
+const SimpleInput = styled.input``;
 
-const SimpleTextArea = styled.textarea`
-  /* color: inherit;
-	display: inline-block;
-	line-height: inherit;
-	text-decoration: none;
-	cursor: pointer;
-	-webkit-transition: all 0.3s ease 0s;
-	-o-transition: all 0.3s ease 0s;
-	transition: all 0.3s ease 0s; */
-`;
+const SimpleTextArea = styled.textarea``;
