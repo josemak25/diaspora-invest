@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState } from "react";
 
 import { useSelector, connect } from 'react-redux';
 
@@ -9,32 +8,29 @@ import Button from '../../components/Button';
 import { editUserDetails } from "../../redux/actions/account.action";
 
 const UserProfile = (props) => {
-  const { id, name, email, phone, email_verified } = useSelector(({ auth }) => auth.user);
+  const { id, name, email, phone } = useSelector(({ auth }) => auth.user);
 
-  const [values, setValues] = useState({ name, phone });
-
-  useEffect(() => {
-    setValues({ ...values, name: name });
-    setValues({ ...values, phone: phone });
-  }, [name, phone]);
+  const [values, setValues] = useState(() => {
+    if ( localStorage.getItem('user') ) {
+      const { id, name, phone, email } = JSON.parse(localStorage.getItem('user'));
+      return { name, phone, email, id }; 
+    }
+    return { name, phone, id }
+  });
 
   const onChange = ({ target: { name, value } }) => {
     setValues({ ...values, [name]: value });
   };
 
-  const navigateUser = () => {
-    props.history.push("/user/:id/profile");
+  const onSubmit = event => {
+    event.preventDefault();
+    props.editUserDetails({ values });
   };
-
-  const onSubmit = async e => {
-    e.preventDefault();
-    await props.editUserDetails({ newUserDetails: values, id , navigateUser});
-  }
 
   return (
     <>
       <div id="profile-tab" className="tab-pane show active">
-        <form action={onSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="row">
             <div className="col-12 mb-30">
               <h3 className="mb-0">Personal Profile</h3>
@@ -57,7 +53,7 @@ const UserProfile = (props) => {
                     name="email"
                     type="text"
                     id="personal_email"
-                    value={email}
+                    value={email || values.email}
                     readOnly
                   />
                 </div>
@@ -87,4 +83,4 @@ const mapActionsToProps = {
   editUserDetails
 }
 
-export default connect(null, mapActionsToProps)(withRouter(UserProfile));
+export default connect(null, mapActionsToProps)(UserProfile);

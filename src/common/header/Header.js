@@ -30,7 +30,7 @@ const menuLink = [
   }
 ];
 
-const Header = (authenticated) => {
+const Header = ({authenticated}) => {
   const [hasScrolled, setHasScrolled] = useState({ move: false });
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const Header = (authenticated) => {
             <div className="col mr-sm-50 mr-xs-50">
               <div className="header-user">
                 {authenticated ? (
-                  <NavLink to="/user/:id/profile">
+                  <NavLink to="/user/profile">
                     <i className="pe-7s-user"></i>
                     <span>Account</span>
                   </NavLink>

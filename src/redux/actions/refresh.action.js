@@ -6,7 +6,6 @@ export const setUser = () => {
   const token = readToken();
   if (token) {
     const decodedToken = jwtDecode(token);
-    console.log(decodedToken);
     if (decodedToken.exp * 1000 < Date.now()) {
       return false;
     } else {

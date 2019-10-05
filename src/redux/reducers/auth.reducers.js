@@ -1,5 +1,6 @@
 import { SET_CURRENT_USER, USER_LOADING, SET_ERRORS, SET_AUTHENTICATED, SET_NEW_USER, SET_UNAUTHENTICATED, CLEAR_ERRORS } from '../types';
-import isEmpty from 'is-empty';
+// import isEmpty from 'is-empty';
+
 const initialState = {
   isAuthenticated: false,
   user: {},
@@ -8,20 +9,18 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  console.log(action.type);
   switch (action.type) {
     case SET_AUTHENTICATED:
-      console.log(action.type);
       return {
         ...state,
-        isAuthenticated: action.payload
+        isAuthenticated: true
       };
     case SET_UNAUTHENTICATED:
       return initialState;
     case SET_CURRENT_USER:
       return {
         ...state,
-        isAuthenticated: !isEmpty(action.payload),
+        isAuthenticated: true,
         user: action.payload.payload
       };
     case SET_NEW_USER:

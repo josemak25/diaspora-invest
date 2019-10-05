@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { connect, useSelector } from "react-redux";
 
@@ -13,7 +13,6 @@ import PropertyCategory from "../../components/PropertyOptions";
 import getProperties from "../../redux/actions/property.action";
 
 const Properties = ({
-  defaultProperties,
   agents,
   featureProperties,
   propertyCategories,

@@ -17,7 +17,6 @@ import Properties from "../pages/properties/Properties";
 import LoginSignup from "../pages/login-signup/Login-SignUp";
 
 function PrivateRoute({ component: Component, hasValidAccess, ...rest }) {
-  console.log('hi', hasValidAccess);
   return (
     <Route
       {...rest}
@@ -68,53 +67,50 @@ function AdminRoute({ component: Component, hasValidAccess, ...rest }) {
   );
 }
 
-function Main(props) {
-    const authenticated = props;
-    console.log(authenticated);
-
-    return (
-      <main>
-          <Router>
-            <Header />
-            <Switch>
-              <PublicRoute
-                hasValidAccess={authenticated}
-                exact
-                path="/"
-                component={HomePage}
-              />
-              <PublicRoute
-                hasValidAccess={authenticated}
-                exact
-                path="/login-signup"
-                component={LoginSignup}
-              />
-              <PrivateRoute
-                hasValidAccess={authenticated}
-                exact
-                path="/user/:id/profile"
-                component={Account}
-              />
-              <PrivateRoute
-                hasValidAccess={authenticated}
-                exact
-                path="/property/:id"
-                component={Property}
-              />
-              <PrivateRoute
-                hasValidAccess={authenticated}
-                exact
-                path="/properties"
-                component={Properties}
-              />
-            </Switch>
-          </Router>
-      </main>
-    );
-  }
+function Main({ authenticated }) {
+  return (
+    <main>
+      <Router>
+        <Header />
+        <Switch>
+          <PublicRoute
+            hasValidAccess={authenticated}
+            exact
+            path="/"
+            component={HomePage}
+          />
+          <PublicRoute
+            hasValidAccess={authenticated}
+            exact
+            path="/login-signup"
+            component={LoginSignup}
+          />
+          <PrivateRoute
+            hasValidAccess={authenticated}
+            exact
+            path="/user/profile"
+            component={Account}
+          />
+          <PrivateRoute
+            hasValidAccess={authenticated}
+            exact
+            path="/property/:id"
+            component={Property}
+          />
+          <PrivateRoute
+            hasValidAccess={authenticated}
+            exact
+            path="/properties"
+            component={Properties}
+          />
+        </Switch>
+      </Router>
+    </main>
+  );
+}
 
 const mapStateToProps = state => ({
   authenticated: state.auth.isAuthenticated
-})
+});
   
 export default connect(mapStateToProps)(Main);

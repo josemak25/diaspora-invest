@@ -20,6 +20,6 @@ export const readToken = () => {
 
 export const eraseToken = () => {
   localStorage.removeItem(key);
-  sessionStorage.removeItem("user");
+  localStorage.removeItem("user");
   return;
 };

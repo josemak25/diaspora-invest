@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_ERRORS, SET_CURRENT_USER, USER_LOADING, CLEAR_ERRORS, SET_UNAUTHENTICATED } from '../types';
+import { SET_ERRORS, SET_CURRENT_USER, USER_LOADING, CLEAR_ERRORS, SET_UNAUTHENTICATED, SET_AUTHENTICATED } from '../types';
 import { createToken, eraseToken } from '../../utils/token';
 import SupportHeader from '../../utils/SupportHeader';
 
@@ -18,7 +18,7 @@ export const loginUser = (values, navigateUser) => async dispatch => {
 		const res = await axios.post('auth/login', values);
 		if(!res.data.token) throw new Error('Server is Down');
 		createToken(res.data.token, 1);
-		sessionStorage.setItem(`user`, JSON.stringify(res.data.payload.id));
+		localStorage.setItem(`user`, JSON.stringify(res.data.payload));
 		delete res.data.token
 		dispatch({
 			type: SET_CURRENT_USER,
@@ -37,7 +37,7 @@ export const loginUser = (values, navigateUser) => async dispatch => {
 };
 
 export const getUser = () => async dispatch => {
-  const userId = JSON.parse(sessionStorage.getItem("user"));
+  const userId = JSON.parse(localStorage.getItem("user"));
   if (userId) {
 		const res = await axios.get(`users/${userId}`, SupportHeader());
 		createToken(res.data.token);

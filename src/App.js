@@ -5,6 +5,7 @@ import store from "./redux/store";
 
 import Main from './containers/Main';
 import { setUser } from './redux/actions/refresh.action';
+import { SET_AUTHENTICATED } from './redux/types';
 
 import "./App.css";
 import "./assets/css/Helper.css";
@@ -13,11 +14,13 @@ import { getUser, logout } from "./redux/actions/login.action";
 
 const currentSession = setUser();
 
-if(currentSession) {
+if (currentSession) {
+  store.dispatch({ type: SET_AUTHENTICATED });
   store.dispatch(getUser());
 } else {
   store.dispatch(logout());
 }
+
 
 function App() {
   return (
