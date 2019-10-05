@@ -206,7 +206,7 @@ a:focus {
 
 a:hover {
   text-decoration: none;
-  color: #1caf5e; }
+  color: #008e87; }
 
 button,
 input[type="submit"] {
@@ -321,7 +321,7 @@ textarea:-ms-input-placeholder {
 }
 
 .bg-theme {
-  background-color: #1caf5e !important; }
+  background-color: #008e87 !important; }
 
 /*-- 
     - Tab Content & Pane Fix
@@ -505,11 +505,11 @@ textarea:-ms-input-placeholder {
       .page-pagination li a i {
         line-height: 24px; }
     .page-pagination li:hover a {
-      color: #1caf5e;
+      color: #008e87;
       background-color: #f9c322; }
     .page-pagination li.active a {
       color: #ffffff;
-      background-color: #1caf5e; }
+      background-color: #008e87; }
     .page-pagination li:first-child a {
       color: #222222;
       width: auto;
@@ -518,7 +518,7 @@ textarea:-ms-input-placeholder {
         margin-right: 10px;
         float: left; }
       .page-pagination li:first-child a:hover {
-        color: #1caf5e; }
+        color: #008e87; }
     .page-pagination li:last-child a {
       color: #222222;
       width: auto;
@@ -527,14 +527,14 @@ textarea:-ms-input-placeholder {
         margin-left: 10px;
         float: right; }
       .page-pagination li:last-child a:hover {
-        color: #1caf5e; }
+        color: #008e87; }
 
 /*-- 
     - Button
 ------------------------------------------*/
 .btn {
   padding: 10px 40px;
-  background-color: #1caf5e;
+  background-color: #008e87;
   color: #ffffff;
   font-size: 16px;
   font-weight: 600;
@@ -547,7 +547,7 @@ textarea:-ms-input-placeholder {
   transition: all 0.3s ease 0s; }
   .btn:hover {
     background-color: #f9c322;
-    color: #1caf5e; }
+    color: #008e87; }
 
 /*-- 
     - Scroll Up
@@ -557,12 +557,12 @@ textarea:-ms-input-placeholder {
   bottom: 20px;
   width: 44px;
   height: 44px;
-  background-color: #1caf5e;
+  background-color: #008e87;
   color: #ffffff;
   text-align: center; }
   #scrollUp:hover {
     background-color: #f9c322;
-    color: #1caf5e; }
+    color: #008e87; }
   #scrollUp i {
     display: block;
     line-height: 44px;
@@ -593,7 +593,7 @@ form label {
   margin-bottom: 10px; }
   form label i {
     margin-right: 10px;
-    color: #1caf5e; }
+    color: #008e87; }
   form label span {
     font-size: 12px; }
 
@@ -718,12 +718,12 @@ form ul {
       content: "\f096"; }
     form ul li input[type=checkbox]:checked + label::before {
       content: "\f14a";
-      color: #1caf5e; }
+      color: #008e87; }
     form ul li input[type=radio] + label::before {
       content: "\f10c"; }
     form ul li input[type=radio]:checked + label::before {
       content: "\f192";
-      color: #1caf5e; }
+      color: #008e87; }
 
 form .dropzone {
   border: none;
@@ -946,10 +946,10 @@ header.header.is-sticky {
       line-height: 30px;
       margin-left: 3px; }
     .main-menu > ul > li.active > a, .main-menu > ul > li:hover > a {
-      color: #1caf5e; }
+      color: #008e87; }
       .main-menu > ul > li.active > a::before, .main-menu > ul > li:hover > a::before {
         width: 100%;
-        background-color: #1caf5e; }
+        background-color: #008e87; }
     .main-menu > ul > li:hover > .sub-menu {
       margin-top: 0;
       opacity: 1;
@@ -997,13 +997,13 @@ header.header.is-sticky {
       line-height: 30px;
       float: right; }
     .sub-menu li.active > a {
-      color: #1caf5e; }
+      color: #008e87; }
     .sub-menu li .sub-menu {
       left: 100%;
       top: 0;
       margin-left: 0; }
     .sub-menu li:hover > a {
-      color: #1caf5e;
+      color: #008e87;
       padding-left: 25px; }
     .sub-menu li:hover .sub-menu {
       margin-top: -10px;
@@ -1233,10 +1233,10 @@ header.header.is-sticky {
             .mobile-menu .mean-bar .mean-nav > ul li a::after {
               display: none; }
             .mobile-menu .mean-bar .mean-nav > ul li a:hover {
-              color: #1caf5e;
+              color: #008e87;
               padding-left: 25px; }
             .mobile-menu .mean-bar .mean-nav > ul li a.active {
-              color: #1caf5e; }
+              color: #008e87; }
             .mobile-menu .mean-bar .mean-nav > ul li a.mean-expand {
               border-width: 0 1px;
               border-style: solid;
@@ -1351,7 +1351,7 @@ header.header.is-sticky {
   z-index: 9;
   border: none;
   background-color: #ffffff;
-  color: #1caf5e;
+  color: #008e87;
   padding: 15px 10px;
   width: 60px;
   height: 60px;
@@ -1368,7 +1368,7 @@ header.header.is-sticky {
   .hero-slider .slick-arrow.slick-next {
     right: 15px; }
   .hero-slider .slick-arrow:hover {
-    background-color: #1caf5e;
+    background-color: #008e87;
     color: #ffffff; }
 
 .hero-slider .slick-dots {
@@ -2074,7 +2074,7 @@ header.header.is-sticky {
           -ms-flex: 1 0 100%;
           flex: 1 0 100%; } }
       .hero-search form > div h4 {
-        background-color: #1caf5e;
+        background-color: #008e87;
         color: #ffffff;
         margin: 0;
         padding: 10px 15px;
@@ -2127,7 +2127,7 @@ header.header.is-sticky {
           width: 100%;
           background-color: #ffffff;
           border: none;
-          color: #1caf5e;
+          color: #008e87;
           text-transform: uppercase;
           font-size: 18px;
           font-weight: 600;
@@ -2135,7 +2135,7 @@ header.header.is-sticky {
           padding: 15px; }
           .hero-search form > div .submit button:hover {
             background-color: #f9c322;
-            color: #1caf5e; }
+            color: #008e87; }
 
 /*-- Default Property Search --*/
 .property-search.sidebar-property-search form {
@@ -5519,7 +5519,7 @@ header.header.is-sticky {
       text-indent: -9999px;
       border-radius: 50px; }
     .brand-carousel .slick-dots li.slick-active button {
-      background-color: #1caf5e; }
+      background-color: #008e87; }
 
 /*-- Brand --*/
 .brand {
@@ -6055,7 +6055,7 @@ header.header.is-sticky {
       letter-spacing: 0.75px;
       font-weight: 500;
       padding: 1px 10px 0;
-      background-color: #1caf5e;
+      background-color: #008e87;
       color: #ffffff;
       text-transform: uppercase;
       border-radius: 3px;
@@ -6073,7 +6073,7 @@ header.header.is-sticky {
         position: absolute;
         right: 100%;
         top: 3px;
-        background-color: #1caf5e;
+        background-color: #008e87;
         width: 19px;
         height: 19px;
         -webkit-transform: rotate(45deg);

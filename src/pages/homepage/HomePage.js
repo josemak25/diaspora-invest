@@ -243,24 +243,6 @@ const HomePage = ({
 
 export default HomePage;
 
-// const testProp =  {
-//   address: "747 Fair Street, Galesville, Alaska"
-// avg_monthly_payment: "208,333"
-// category_id: "00d2fc39-d508-4f24-a56e-82dab479488b"
-// createdAt: "2019-09-28 18:46:42"
-// description: "Dolor duis aliquip ex sint adipisicing nisi ut sint fugiat irure. Est ea eu nulla irure veniam voluptate amet minim nulla tempor cupidatat nisi culpa. Ex sunt tempor occaecat tempor quis id quis. Ut proident eu veniam aliqua aute sint est nulla cillum exercitation laboris minim voluptate. Laborum velit Lorem laboris ipsum. Culpa non mollit sint incididunt adipisicing quis magna commodo. Duis id irure nostrud ullamco laboris elit ut cillum ipsum minim.↵↵Nisi in cupidatat esse anim elit consectetur eu fugiat. Non nulla cillum nisi ex. Sint commodo aute nisi et velit irure eu mollit commodo deserunt tempor magna proident sunt. Voluptate consequat ad tempor irure minim proident nulla. Cillum eiusmod excepteur proident aliqua proident exercitation ullamco velit. Id elit excepteur ad occaecat do adipisicing excepteur ullamco aute officia qui incididunt ea et. Id tempor qui do occaecat."
-// has_C_of_O: 0
-// id: "406c7a66-cb94-465d-8686-e3eebfa2b040"
-// images: (15) ["https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…LWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…cFCHvZ81jW4wIenDPrjv34YBAljWhqByRc1q0RZqO7w4SRfU2", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…f5oxiWCfhYO1LjJx0bW00zaQnOPhAP6keBPJhRaVkhllPpm8V", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…WJkTKkvAtrAphZi5KvnvLbeJwLgnQUrphiZarQkC-7SKkHkAV", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…lGft87dnhSyIz6HJ8pjXHsl6vcmxgr9cEAFBPJfLJ9yTFFwP7", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…5L5xzPtOkEVFkXFJeeU5ZX8PcFuuwy1YiTLfEHd8psZ56jW97", "http://middlearth.co/wp-content/uploads/2019/04/mo…omes-modern-double-wide-mobile-homes-for-sale.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…oAlZAOe_73qzSO18-x7v2G-Wh40CMs9vtg1MnaijPLJ56XgGv", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…uVMIGq8KtbNgSdTGgqqKjxQX-MHN5qmHpq2ZkL2GQHfJARBSY", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…ucFffgooHOkyepqUrQdFnOTF__ovUL5YguxeCWggjp0zaLtpn", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…r4t5eldIvYl7FqKXjdhrx8ETKB4ImH19xEhwhPMNs_XvK4IxA", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…F7ihf4EfcUVclLywD2Acj8HfOjuGMDqeM8E4CDtkMzFbA3e_L", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…f5oxiWCfhYO1LjJx0bW00zaQnOPhAP6keBPJhRaVkhllPpm8V", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…WJkTKkvAtrAphZi5KvnvLbeJwLgnQUrphiZarQkC-7SKkHkAV", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…lGft87dnhSyIz6HJ8pjXHsl6vcmxgr9cEAFBPJfLJ9yTFFwP7"]
-// location: " Alaska"
-// name: "fugiat voluptate est"
-// payment_duration: "4"
-// price: "10,000,000"
-// status: "non_active"
-// updatedAt: "2019-09-28 18:46:42"
-// user_id: "8f12bdfd-f67b-4fa8-82be-032185cc1481"
-// }
-
 HomePage.defaultProps = {
   properties: [
     ...Array(1).fill({
