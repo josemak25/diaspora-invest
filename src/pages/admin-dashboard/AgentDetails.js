@@ -7,8 +7,8 @@ import DashboardHeader from './DashboardHeader';
 import AgentLogo from '../../components/AgentLogo';
 import Details from './Details';
 
-export default function AgentDetails({ location: { state }, detailsLinks, user }) {
-  const { business_name } = state;
+export default function AgentDetails({ location, detailsLinks, user }) {
+  const { state } = location;
 
   return (
     <>
@@ -20,11 +20,19 @@ export default function AgentDetails({ location: { state }, detailsLinks, user }
               <span>
                 <AgentLogo color="#333333" />
               </span>
-              <span>{business_name}</span>
+              <span>{state.business_name}</span>
             </div>
             <div className="agent-details-links">
               {detailsLinks.map((link, i) => (
-                <NavLink to={link.path} key={i} activeClassName="active-agent-details-tab">
+                <NavLink
+                  exact
+                  to={{
+                    pathname: link.path,
+                    state
+                  }}
+                  key={i}
+                  activeClassName="active-agent-details-tab"
+                >
                   <span>{link.name}</span>
                 </NavLink>
               ))}
@@ -50,7 +58,17 @@ export default function AgentDetails({ location: { state }, detailsLinks, user }
         <div className="agent-details-body">
           <Route
             exact
-            path="/dashboard/agent/:id"
+            path={`/dashboard/agent/${state.id}`}
+            render={props => <Details {...props} user={user} details={state} />}
+          />
+          <Route
+            exact
+            path={`/dashboard/agent/${state.id}/payments`}
+            render={props => <Details {...props} user={user} details={state} />}
+          />
+          <Route
+            exact
+            path={`/dashboard/agent/${state.id}/properties`}
             render={props => <Details {...props} user={user} details={state} />}
           />
         </div>
