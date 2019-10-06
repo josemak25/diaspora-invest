@@ -28,7 +28,7 @@ const Account = () => {
                 <UserProfile />
                 <AgencyProfile />
                 <MyProperties />
-                <ChangePassword />
+                {/* <ChangePassword /> */}
               </div>
             </div>
           </div>

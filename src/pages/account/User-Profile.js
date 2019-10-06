@@ -15,7 +15,7 @@ const UserProfile = (props) => {
       const { id, name, phone, email } = JSON.parse(localStorage.getItem('user'));
       return { name, phone, email, id }; 
     }
-    return { name, phone, id }
+    return { name, phone, id, email }
   });
 
   const onChange = ({ target: { name, value } }) => {

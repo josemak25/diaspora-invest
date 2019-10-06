@@ -1,7 +1,12 @@
 import axios from 'axios';
-import { SET_ERRORS, SET_CURRENT_USER, USER_LOADING, CLEAR_ERRORS, SET_UNAUTHENTICATED, SET_AUTHENTICATED } from '../types';
+
+import store from '../../redux/store';
+ 
+import { SET_ERRORS, SET_CURRENT_USER, USER_LOADING, CLEAR_ERRORS, SET_UNAUTHENTICATED, AGENCY_LOADING, SET_AGENCY } from '../types';
 import { createToken, eraseToken } from '../../utils/token';
 import SupportHeader from '../../utils/SupportHeader';
+
+import { getAgencyProfileDetails } from './account.action';
 
 // User loading
 export const fetchingUser = payload => {
@@ -24,6 +29,15 @@ export const loginUser = (values, navigateUser) => async dispatch => {
 			type: SET_CURRENT_USER,
 			payload: res.data,
 		});
+		
+		dispatch({ type: AGENCY_LOADING, payload: true });
+		
+		const res2 = await axios.get(`${process.env.REACT_APP_ENDPOINT_URL}/agency-profile/${res.data.payload.id}`, SupportHeader());
+    localStorage.setItem(`agency`, JSON.stringify(res2.data.payload));
+    dispatch({ type: SET_AGENCY, payload: res.data});
+    dispatch({ type: AGENCY_LOADING, payload: false });
+
+
 		dispatch(fetchingUser(false));
 		dispatch({ type: CLEAR_ERRORS });
 		navigateUser && navigateUser();
@@ -46,8 +60,11 @@ export const getUser = () => async dispatch => {
 			type: SET_CURRENT_USER,
 			payload: res.data,
 		});
+
+		store.dispatch(getAgencyProfileDetails(userId));
   }
 };
+
 
 export const logout = () => dispatch => {
 	eraseToken();

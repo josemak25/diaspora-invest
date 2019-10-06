@@ -15,6 +15,7 @@ import Account from "../pages/account/Account";
 import Property from "../pages/view-property/Property";
 import Properties from "../pages/properties/Properties";
 import LoginSignup from "../pages/login-signup/Login-SignUp";
+import AddProperties from "../pages/add-property/AddProperty";
 
 function PrivateRoute({ component: Component, hasValidAccess, ...rest }) {
   return (
@@ -38,7 +39,7 @@ function PublicRoute({ component: Component, hasValidAccess, ...rest }) {
     <Route
       {...rest}
       render={props =>
-        !hasValidAccess || Component.name === "HomePage" ? (
+        hasValidAccess || Component.name === "HomePage" ? (
           <>
             <Component {...props} />
           </>
@@ -102,6 +103,12 @@ function Main({ authenticated }) {
             exact
             path="/properties"
             component={Properties}
+          />
+          <PublicRoute
+            hasValidAccess={authenticated}
+            exact
+            path="/add-properties"
+            component={AddProperties}
           />
         </Switch>
       </Router>

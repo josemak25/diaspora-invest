@@ -6,7 +6,14 @@ export const SET_UNAUTHENTICATED = "SET_UNAUTHENTICATED";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const SET_NEW_USER = "SET_NEW_USER";
 
-//Property TYpes
+//Property Types
 export const SET_ERRORS = "SET_ERRORS";
 export const PROPERTY_LOADING = "PROPERTY_LOADING";
 export const SET_PROPERTIES = "SET_PROPERTIES";
+
+//Agency Types
+export const SET_AGENCY = "SET_AGENCY";
+export const AGENCY_LOADING = "AGENCY_LOADING";
+export const SET_AGENCY_ERRORS = "SET_ERRORS";
+export const CLEAR_AGENCY_ERRORS = "CLEAR_AGENCY_ERRORS";
+

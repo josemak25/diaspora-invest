@@ -21,5 +21,6 @@ export const readToken = () => {
 export const eraseToken = () => {
   localStorage.removeItem(key);
   localStorage.removeItem("user");
+  localStorage.removeItem("agency");
   return;
 };
