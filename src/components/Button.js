@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Button({ textContent, testId, submit }) {
+export default function Button({ textContent, testId, submit, disabled=false, moreStyle='' }) {
 	return (
-		<SimpleButton className='btn' data-testid={testId} type={submit ? 'submit' : null}>
+		<SimpleButton className={'btn'+' ' + moreStyle} data-testid={testId} type={submit ? 'submit' : null} disabled={disabled}>
 			{textContent}
 		</SimpleButton>
 	);

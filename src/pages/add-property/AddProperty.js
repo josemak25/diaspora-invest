@@ -2,62 +2,55 @@ import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 
-import { useSelector, connect } from 'react-redux';
+import { useSelector, connect } from "react-redux";
 
 import Jumbotron from "../../common/jumbotron/Jumbotron";
 import { Input, TextArea, Label } from "../../components/Input";
 import Select from "../../components/select";
+import Button from "../../components/Button";
+import { uploaders } from "../../utils/image-uploader";
 
-import {  uploadProperty } from '../../redux/actions/add-properties.action';
+import { uploadProperty } from "../../redux/actions/add-properties.action";
+import { validatePropertyFields } from "../../utils/validatePropertyFields";
+
+
+const initialFormState = {
+  name: "",
+  description: "",
+  address: "",
+  location: "",
+  category_id: "",
+  price: "",
+  has_C_of_O: ""
+};
+
+const initialImageState = {
+  images: [],
+  imageUpload: false
+};
+
 
 function AddProperty(props) {
   const { categories } = useSelector(({ category }) => category);
+  const { loading } = useSelector(({ addProperty }) => addProperty);
 
-  const [images, setImages] = useState([]);
-  const [fields, setFields] = useState({
-    name: "",
-    description: "",
-    address: "",
-    location: "",
-    category_id: "",
-    price: "",
-    has_C_of_O: ""
-  });
-
-  useEffect(() => {
-    return () => {};
-  }, [images]);
+  const [imageState, setImages] = useState(initialImageState);
+  const [fields, setFields] = useState(initialFormState);
+  const [errors, setErrors] = useState({});
 
   const onDrop = files => {
-    // Push all the axios request promise into a single array
-    const uploaders = files.map(async file => {
-      // Initial FormData
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "diaspora"); // Replace the preset name with your own
-      formData.append("api_key", "539545174591145"); // Replace API key with your own Cloudinary key
-      formData.append("timestamp", Date.now() / 1000 || 0);
+    const { images, imageUpload } = imageState;
 
-      try {
-        // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
-        const {
-          data: { secure_url }
-        } = await axios.post(
-          "https://api.cloudinary.com/v1_1/eoverse/image/upload",
-          formData,
-          {
-            headers: { "X-Requested-With": "XMLHttpRequest" }
-          }
-        );
-        return secure_url;
-      } catch (err) {
-        console.log(err);
-      }
-    });
+    setImages({ ...imageState, imageUpload: true });
+    setErrors({ ...errors, images: false });
 
     // Once all the files are uploaded
-    axios.all(uploaders).then(data => {
-      setImages([...data]);
+    axios.all(uploaders(files)).then(data => {
+      setImages({
+        ...imageState,
+        images: [...images, ...data],
+        imageUpload: false
+      });
     });
   };
 
@@ -70,28 +63,48 @@ function AddProperty(props) {
   const handleImageDelete = e => {
     e.preventDefault();
     const imageIndex = e.currentTarget.getAttribute("data-key");
-    const newImages = images.filter((image, index) => index !== +imageIndex);
+    const newImages = imageState.images.filter(
+      (image, index) => index !== +imageIndex
+    );
     setImages(newImages);
   };
 
   const handleOnChange = ({ target }) => {
     const name = target.name;
     fields[name] = target.value;
+    if (errors[name]) {
+      errors[name] = false;
+      setErrors({ ...errors });
+    }
     setFields({ ...fields });
   };
 
   const handleOnSelect = ({ label, value, id }) => {
-    (id || id === 0) ? (fields[value] = id) : (fields[value] = label);
+    id || id === false ? (fields[value] = id) : (fields[value] = label);
+    if (errors[value]) {
+      errors[value] = false;
+      setErrors({ ...errors });
+    }
     setFields({ ...fields });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    const { images } = imageState;
+    const formIsValid = validatePropertyFields({ ...fields, images });
+
+    if (Object.keys(formIsValid).length) {
+      setErrors(formIsValid);
+      return;
+    }
+
     const propertyValues = { ...fields, images };
 
     props.uploadProperty(propertyValues);
 
-  }
+    setFields({ ...fields, ...initialFormState, name: "", location: "", category_id: "", has_C_of_O: ""});
+    setImages(initialImageState);
+  };
 
   return (
     <div id="main-wrapper">
@@ -109,7 +122,7 @@ function AddProperty(props) {
               <div className="add-property-form tab-content">
                 <div className="tab-pane show active" id="basic_info">
                   <div className="tab-body">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="switch">
                       <div className="row">
                         <div className="col-12 mb-30">
                           <Label
@@ -122,16 +135,19 @@ function AddProperty(props) {
                             value={fields.name}
                             id="property_title"
                             onChange={handleOnChange}
+                            error={errors.name}
                           />
                         </div>
 
                         <div className="col-md-4 col-12 mb-30">
                           <Label htmlFor="property_title" children="Location" />
                           <Select
+                            title="location"
                             options={props.states}
                             placeholder="Select the state"
                             value={fields.location}
                             onChange={handleOnSelect}
+                            error={errors.location}
                           />
                         </div>
 
@@ -146,6 +162,7 @@ function AddProperty(props) {
                             value={fields.address}
                             id="property_address"
                             onChange={handleOnChange}
+                            error={errors.address}
                           />
                         </div>
 
@@ -155,10 +172,12 @@ function AddProperty(props) {
                             children="Category"
                           />
                           <Select
+                            title="category"
                             options={categories}
                             placeholder="Select Property Category"
                             value={fields.category_id}
                             onChange={handleOnSelect}
+                            error={errors.category_id}
                           />
                         </div>
 
@@ -173,19 +192,22 @@ function AddProperty(props) {
                             value={fields.price}
                             id="property_address"
                             onChange={handleOnChange}
+                            error={errors.price}
                           />
                         </div>
 
                         <div className="col-md-4 col-12 mb-30">
                           <Label
                             htmlFor="property_area"
-                            children="Has Certificate of Ownership"
+                            children="Certificate of Ownership"
                           />
                           <Select
+                            title="certificate of Ownership"
                             options={props.cOfO}
                             placeholder="Select the status"
                             value={fields.has_C_of_O}
                             onChange={handleOnSelect}
+                            error={errors.has_C_of_O}
                           />
                         </div>
 
@@ -199,6 +221,7 @@ function AddProperty(props) {
                             name="description"
                             value={fields.description}
                             onChange={handleOnChange}
+                            error={errors.description}
                           />
                         </div>
                       </div>
@@ -212,18 +235,24 @@ function AddProperty(props) {
                                 {...getRootProps()}
                                 className="property-upload"
                               >
-                                <input {...getInputProps()} />
+                                {!imageState.imageUpload ? (
+                                  <input {...getInputProps()} />
+                                ) : null}
                                 {!isDragActive && (
                                   <>
                                     <i className="pe-7s-cloud-upload" />
-                                    <p>Click here or drop files to upload!</p>
+                                    {!imageState.imageUpload ? (
+                                      <p>Click here or drop files to upload!</p>
+                                    ) : (
+                                      <p>Uploading...</p>
+                                    )}
                                   </>
                                 )}
                               </div>
                             </div>
-                            {images.length > 0 && (
+                            {imageState.images.length > 0 && (
                               <div className="text-danger mt-2 property-upload-preview">
-                                {images.map((url, index) => (
+                                {imageState.images.map((url, index) => (
                                   <div
                                     key={index}
                                     data-key={index}
@@ -241,13 +270,30 @@ function AddProperty(props) {
                                 ))}
                               </div>
                             )}
+                            {errors.images && (
+                              <span className="error-message">
+                                Upload atleast one image*
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
                       <div className="nav d-flex justify-content-end col-12 mb-30 pl-15 pr-15">
-                        <button className="property-submit btn">
-                          Add Property
-                        </button>
+                        <Button
+                          textContent={
+                            loading || imageState.imageUpload ? (
+                              <div
+                                className="spinner-border text-success"
+                                role="status"
+                              >
+                                <span className="sr-only">Loading...</span>
+                              </div>
+                            ) : (
+                              "Add Property"
+                            )
+                          }
+                          moreStyle="property-submit"
+                        />
                       </div>
                     </form>
                   </div>
@@ -265,8 +311,12 @@ const mapActionsToProps = {
   uploadProperty
 };
 
+export default connect(
+  null,
+  mapActionsToProps
+)(AddProperty);
 
-export default connect(null, mapActionsToProps)(AddProperty);
+
 
 AddProperty.defaultProps = {
   states: [

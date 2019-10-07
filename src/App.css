@@ -6684,3 +6684,12 @@ header.header.is-sticky {
 .adjust {
   margin: 0;
 }
+
+.error-message {
+  color: red;
+  font-size: 70%;
+}
+/* 
+.switch {
+  position: 'absolute';
+} */
