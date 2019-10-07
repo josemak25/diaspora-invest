@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import store from '../../redux/store';
  
-import { SET_ERRORS, SET_CURRENT_USER, USER_LOADING, CLEAR_ERRORS, SET_UNAUTHENTICATED, AGENCY_LOADING, SET_AGENCY } from '../types';
+import { SET_ERRORS, SET_CURRENT_USER, USER_LOADING, CLEAR_ERRORS, SET_UNAUTHENTICATED, AGENCY_LOADING, SET_AGENCY, SET_CATEGORY } from '../types';
 import { createToken, eraseToken } from '../../utils/token';
 import SupportHeader from '../../utils/SupportHeader';
 

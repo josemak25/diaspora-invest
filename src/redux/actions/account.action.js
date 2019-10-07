@@ -32,7 +32,6 @@ export const editAgencyProfileDetails = ({ values: { business_name, phone, websi
 
 export const getAgencyProfileDetails = id => async dispatch => {
   try {
-    console.log('hiiiiiii');
     dispatch({ type: AGENCY_LOADING, payload: true });
     const res = await axios.get(`${process.env.REACT_APP_ENDPOINT_URL}/agency-profile/${id}`, SupportHeader());
     localStorage.setItem(`agency`, JSON.stringify(res.data.payload));
