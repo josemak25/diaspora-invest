@@ -6638,3 +6638,49 @@ header.header.is-sticky {
   font-size: 50px;
   margin-bottom: 10px;
 }
+
+.property-upload-container {
+  padding: 0;
+
+}
+
+.property-upload-preview {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.property-upload-preview div {
+  padding: 10px;
+  width: 130px;
+  border: 1px solid #eeeeee;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: center;
+  margin-left: 10px
+}
+
+.property-upload-preview span {
+  height: 100px;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: cover;
+}
+
+.property-upload-preview span img {
+  height: 50px;
+  width: 80px;
+}
+
+.property-upload-preview div:hover {}
+
+.adjust {
+  margin: 0;
+}

@@ -39,7 +39,7 @@ function PublicRoute({ component: Component, hasValidAccess, ...rest }) {
     <Route
       {...rest}
       render={props =>
-        hasValidAccess || Component.name === "HomePage" ? (
+        !hasValidAccess || Component.name === "HomePage" ? (
           <>
             <Component {...props} />
           </>
@@ -104,7 +104,7 @@ function Main({ authenticated }) {
             path="/properties"
             component={Properties}
           />
-          <PublicRoute
+          <PrivateRoute
             hasValidAccess={authenticated}
             exact
             path="/add-properties"

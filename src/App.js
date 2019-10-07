@@ -11,12 +11,14 @@ import "./App.css";
 import "./assets/css/Helper.css";
 import "./assets/css/icofont.min.css";
 import { getUser, logout } from "./redux/actions/login.action";
+import { getPropertyCategories } from './redux/actions/add-properties.action';
 
 const currentSession = setUser();
 
 if (currentSession) {
   store.dispatch({ type: SET_AUTHENTICATED });
   store.dispatch(getUser());
+  store.dispatch(getPropertyCategories());
 } else {
   store.dispatch(logout());
 }

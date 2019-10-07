@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from "react-router-dom";
 
 import SidebarLink from './Sidebar-Link';
 
@@ -19,9 +20,15 @@ const Sidebar = ({ links, logout }) => {
       <ul className="myaccount-tab-list nav">
         {ListItems}
         <li>
-          <a href='#logout' data-toggle="tab" onClick={handleClick}>
+          <NavLink to="/add-properties">
+              <i className="pe-7s-home adjust"></i>
+              {"Add New Property"}
+          </NavLink>
+        </li>
+        <li>
+          <a href="#logout" data-toggle="tab" onClick={handleClick}>
             <i className="pe-7s-power"></i>
-            {'Logout'}
+            {"Logout"}
           </a>
         </li>
       </ul>
@@ -42,7 +49,5 @@ Sidebar.defaultProps = {
     { name: "Personal Profile", url: "#profile-tab", icon: "pe-7s-user" },
     { name: "Agency Profile", url: "#agency-tab", icon: "pe-7s-note2" },
     { name: "My Properties", url: "#properties-tab", icon: "pe-7s-photo" },
-    { name: "Add New Property", url: "#profile", icon: "pe-7s-home" },
-    // { name: "Change Password", url: "#password-tab", icon: "pe-7s-lock" },
   ]
 };
