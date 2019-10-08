@@ -6689,7 +6689,8 @@ header.header.is-sticky {
   color: red;
   font-size: 70%;
 }
-/* 
-.switch {
-  position: 'absolute';
-} */
+#update-message {
+  color: 'red'!important;
+  font-size: 70%;
+  margin: 0;
+}

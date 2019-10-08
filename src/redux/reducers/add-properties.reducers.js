@@ -1,7 +1,6 @@
 import {
   ADD_PROPERTY,
-  PROPERTY_LOADING,
-  PROPERTY_SERVER_UPLOAD,
+  PROPERTY_UPLOADING,
   PROPERTY_SERVER_UPLOAD_ERROR
 } from "../types";
 
@@ -19,10 +18,10 @@ export default function(state = initialState, action) {
         new_properties: action.payload
       };
     }
-    case PROPERTY_LOADING: {
+    case PROPERTY_UPLOADING: {
       return {
         ...state,
-        new_properties: action.payload
+        loading: action.payload
       };
     }
     case PROPERTY_SERVER_UPLOAD_ERROR: {

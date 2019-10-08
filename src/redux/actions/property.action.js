@@ -7,7 +7,7 @@ import SupportHeader from '../../utils/SupportHeader';
 export const getProperties = () => async dispatch => {
   try {
     dispatch({ type: PROPERTY_LOADING, payload: true });
-    const res = await axios.get('property/search', SupportHeader());
+    const res = await axios.get(`${process.env.REACT_APP_ENDPOINT_URL}/property/search`, SupportHeader());
     dispatch({ type: SET_PROPERTIES, payload: res.data.payload });
     dispatch({ type: PROPERTY_LOADING, payload: false });
   } catch (err) {

@@ -20,7 +20,7 @@ export const fetchingUser = payload => {
 export const loginUser = (values, navigateUser) => async dispatch => {
 	try {
 		dispatch(fetchingUser(true));
-		const res = await axios.post('auth/login', values);
+		const res = await axios.post(`${process.env.REACT_APP_ENDPOINT_URL}/auth/login`, values);
 		if(!res.data.token) throw new Error('Server is Down');
 		createToken(res.data.token, 1);
 		localStorage.setItem(`user`, JSON.stringify(res.data.payload));
@@ -51,9 +51,12 @@ export const loginUser = (values, navigateUser) => async dispatch => {
 };
 
 export const getUser = () => async dispatch => {
-  const userId = JSON.parse(localStorage.getItem("user"));
+  const { id: userId} = JSON.parse(localStorage.getItem("user"));
   if (userId) {
-		const res = await axios.get(`users/${userId}`, SupportHeader());
+		const res = await axios.get(
+      `${process.env.REACT_APP_ENDPOINT_URL}/users/${userId}`,
+      SupportHeader()
+    );
 		createToken(res.data.token);
 		delete res.data.token
 		dispatch({

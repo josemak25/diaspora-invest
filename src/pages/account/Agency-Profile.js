@@ -3,11 +3,13 @@ import { connect, useSelector } from "react-redux";
 
 import { editAgencyProfileDetails } from '../../redux/actions/account.action';
 
+import { validateAgencyProfileFields } from '../../utils/editProfile';
+
 import { Input } from '../../components/Input';
 import Button from '../../components/Button';
 
 const AgencyProfile = ({ editAgency }) => {
-  const { business_name, phone, website, business_address, id, email } = useSelector(
+  const { agencyProfile: { business_name, phone, website, business_address, id, email }, loading } = useSelector(
     ({ account }) => account
   );
 
@@ -21,12 +23,22 @@ const AgencyProfile = ({ editAgency }) => {
     return { business_name, phone, website, business_address, id, email };
   });
 
+  const [errors, setErrors] = useState({});
+
   const onChange = ({ target: { name, value } }) => {
+    setErrors({ ...errors, [name]: "" });
     setValues({ ...values, [name]: value });
   };
 
   const onSubmit = e => {
     e.preventDefault();
+
+    const formIsValid = validateAgencyProfileFields(values);
+    if (Object.keys(formIsValid).length) {
+      setErrors(formIsValid);
+      return;
+    }
+
     editAgency({ values });
   };
 
@@ -46,6 +58,7 @@ const AgencyProfile = ({ editAgency }) => {
                 id="agency_name"
                 value={values.business_name}
                 onChange={onChange}
+                error={errors.business_name}
               />
             </div>
 
@@ -59,6 +72,7 @@ const AgencyProfile = ({ editAgency }) => {
                     id="agency_address"
                     value={values.business_address}
                     onChange={onChange}
+                    error={errors.business_address}
                   />
                 </div>
                 <div className="col-md-6 col-12 mb-30">
@@ -69,6 +83,8 @@ const AgencyProfile = ({ editAgency }) => {
                     id="agency_number"
                     value={values.phone}
                     onChange={onChange}
+                    error={errors.phone}
+                    errorMessage="Phone number must be valid"
                   />
                 </div>
                 <div className="col-md-6 col-12 mb-30">
@@ -89,12 +105,32 @@ const AgencyProfile = ({ editAgency }) => {
                     id="agency_web"
                     value={values.website}
                     onChange={onChange}
+                    error={errors.website}
                   />
                 </div>
               </div>
             </div>
+            {loading && (
+              <div className="col-12 mb-15 mt-0">
+                <div className="alert alert-success pb-0 pt-0" role="alert">
+                  Update Successful !!!
+                </div>
+              </div>
+            )}
             <div className="col-12 mb-30">
-              <Button textContent="Save Changes" submit="submit" />
+              <Button
+                submit="submit"
+                textContent={
+                  loading ? (
+                    <div className="spinner-border text-success" role="status">
+                      <span className="sr-only">Loading...</span>
+                    </div>
+                  ) : (
+                    "Save Changes"
+                  )
+                }
+                moreStyle="property-submit"
+              />
             </div>
           </div>
         </form>

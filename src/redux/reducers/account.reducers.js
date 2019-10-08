@@ -1,4 +1,4 @@
-import { SET_AGENCY, AGENCY_LOADING, SET_AGENCY_ERRORS, CLEAR_AGENCY_ERRORS } from '../types';
+import { SET_AGENCY, AGENCY_LOADING, SET_AGENCY_ERRORS } from '../types';
 
 const initialState = {
   agencyProfile: {},
