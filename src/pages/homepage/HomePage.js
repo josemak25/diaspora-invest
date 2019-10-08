@@ -1,16 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-// import Header from '../../common/header/Header';
-import Footer from "../../common/footer/Footer";
-import HeroSlider from "./HeroSlider";
-import PriceRange from "../../components/PriceRange";
-import { Input } from "../../components/Input";
-import PropertyOptions from "../../components/PropertyOptions";
-import Property from "../../components/Property";
-import Services from "./Services";
-import ServiceSlider from "./ServiceSlider";
-import AgentList from "./AgentList";
-import PartnersList from "./PartnersList";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Footer from '../../common/footer/Footer';
+import HeroSlider from './HeroSlider';
+import PriceRange from '../../components/PriceRange';
+import { Input } from '../../components/Input';
+import PropertyOptions from '../../components/PropertyOptions';
+import Property from '../../components/Property';
+import Services from './Services';
+import ServiceSlider from './ServiceSlider';
+import AgentList from './AgentList';
+import PartnersList from './PartnersList';
 
 const HomePage = ({
   properties,
@@ -47,10 +46,7 @@ const HomePage = ({
                   <div>
                     <Input type="text" placeholder="Property Name" />
                   </div>
-                  <PropertyOptions
-                    options={propertyCategories}
-                    placeholder="Select Category"
-                  />
+                  <PropertyOptions options={propertyCategories} placeholder="Select Category" />
                   <PropertyOptions options={propertyTypes} placeholder="Type" />
                   <div />
                   <PriceRange />
@@ -109,7 +105,7 @@ const HomePage = ({
       <div
         className="download-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50"
         style={{
-          backgroundImage: `url(${require("../../assets/images/bg/download-bg.jpg")})`
+          backgroundImage: `url(${require('../../assets/images/bg/download-bg.jpg')})`
         }}
       >
         <div className="container">
@@ -132,10 +128,7 @@ const HomePage = ({
                   ))}
                 </div>
                 <div className="image">
-                  <img
-                    src={require("../../assets/images/others/app.png")}
-                    alt="app_download"
-                  />
+                  <img src={require('../../assets/images/others/app.png')} alt="app_download" />
                 </div>
               </div>
               {/* <!--Download Content end--> */}
@@ -188,10 +181,7 @@ const HomePage = ({
             {Array(6)
               .fill(properties[0])
               .map((property, i) => (
-                <div
-                  className="property-item col-lg-4 col-md-6 col-12 mb-40"
-                  key={i}
-                >
+                <div className="property-item col-lg-4 col-md-6 col-12 mb-40" key={i}>
                   <div className="property-inner">
                     <div className="image">
                       <a href="single-properties.html">
@@ -213,7 +203,7 @@ const HomePage = ({
                           <span className="price">
                             {property.amount}
                             <span>{`${property.payment_duration} ${
-                              +property.payment_duration > 2 ? "Yrs" : "Yr"
+                              +property.payment_duration > 2 ? 'Yrs' : 'Yr'
                             }`}</span>
                           </span>
                           <span className="type">For Sale</span>
@@ -246,101 +236,96 @@ export default HomePage;
 HomePage.defaultProps = {
   properties: [
     ...Array(1).fill({
-      name: "Friuli-Venezia Giulia",
-      location: "568 E 1st Ave, Miami",
-      amount: "$550",
-      payment_duration: "2",
-      decision: "For Rent",
+      name: 'Friuli-Venezia Giulia',
+      location: '568 E 1st Ave, Miami',
+      amount: '$550',
+      payment_duration: '2',
+      decision: 'For Rent',
       images: [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0"
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0'
       ],
-      id: "466928bc-d210-46ea-93b5-2269e9682dca"
+      id: '466928bc-d210-46ea-93b5-2269e9682dca'
     })
   ],
   propertyCategories: [
-    "Office",
-    "Industrial",
-    "Retail & shopping center",
-    "Multi-family home",
-    "Healthcare",
-    "Sports & entertainment",
-    "Land and Residential units"
+    'Office',
+    'Industrial',
+    'Retail & shopping center',
+    'Multi-family home',
+    'Healthcare',
+    'Sports & entertainment',
+    'Land and Residential units'
   ],
 
-  propertyTypes: ["Apartment", "Cafe", "House", "Restaurant", "Store", "Villa"],
+  propertyTypes: ['Apartment', 'Cafe', 'House', 'Restaurant', 'Store', 'Villa'],
 
   featureProperties: [
     ...new Array(3).fill({
-      name: "Friuli-Venezia Giulia",
-      location: "568 E 1st Ave, Miami",
-      amount: "$550",
-      payment_duration: "4",
-      decision: "For Sale",
-      id: "466928bc-d210-46ea-93b5-2269e9682dca",
+      name: 'Friuli-Venezia Giulia',
+      location: '568 E 1st Ave, Miami',
+      amount: '$550',
+      payment_duration: '4',
+      decision: 'For Sale',
+      id: '466928bc-d210-46ea-93b5-2269e9682dca',
       images: [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0"
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0'
       ]
     })
   ],
 
   packages: [
     {
-      icon: "pe-7s-piggy",
-      title: "Low Cost",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-piggy',
+      title: 'Low Cost',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     },
     {
-      icon: "pe-7s-science",
-      title: "Modern Design",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-science',
+      title: 'Modern Design',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     },
     {
-      icon: "pe-7s-display1",
-      title: "Good Marketing",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-display1',
+      title: 'Good Marketing',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     },
     {
-      icon: "pe-7s-map",
-      title: "Easy to Find",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-map',
+      title: 'Easy to Find',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     },
     {
-      icon: "pe-7s-shield",
-      title: "Reliable",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-shield',
+      title: 'Reliable',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     }
   ],
 
   downloads: [
     {
-      icon: "fa fa-apple",
-      title: "Upcoming on the",
-      content: "Apple Store"
+      icon: 'fa fa-apple',
+      title: 'Upcoming on the',
+      content: 'Apple Store'
     },
     {
-      icon: "fa fa-android",
-      title: "Upcoming on",
-      content: "Google Play"
+      icon: 'fa fa-android',
+      title: 'Upcoming on',
+      content: 'Google Play'
     },
     {
-      icon: "fa fa-windows",
-      title: "Upcoming on the",
-      content: "Windows Store"
+      icon: 'fa fa-windows',
+      title: 'Upcoming on the',
+      content: 'Windows Store'
     }
   ],
 
   agents: [
     ...new Array(4).fill({
-      image: require("../../assets/images/agent/agent-1.jpg"),
-      name: "Donald Palmer",
-      phone: "(756) 447 5779",
+      image: require('../../assets/images/agent/agent-1.jpg'),
+      name: 'Donald Palmer',
+      phone: '(756) 447 5779',
       noOfProperties: Math.floor(Math.random() * 10),
-      id: "466928bc-d210-46ea-93b5-2269e9682dca"
+      id: '466928bc-d210-46ea-93b5-2269e9682dca'
     })
   ]
 };
