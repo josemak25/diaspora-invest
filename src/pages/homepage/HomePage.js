@@ -1,16 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-// import Header from '../../common/header/Header';
-import Footer from "../../common/footer/Footer";
-import HeroSlider from "./HeroSlider";
-import PriceRange from "../../components/PriceRange";
-import { Input } from "../../components/Input";
-import PropertyOptions from "../../components/PropertyOptions";
-import Property from "../../components/Property";
-import Services from "./Services";
-import ServiceSlider from "./ServiceSlider";
-import AgentList from "./AgentList";
-import PartnersList from "./PartnersList";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Footer from '../../common/footer/Footer';
+import HeroSlider from './HeroSlider';
+import PriceRange from '../../components/PriceRange';
+import { Input } from '../../components/Input';
+import PropertyOptions from '../../components/PropertyOptions';
+import Property from '../../components/Property';
+import Services from './Services';
+import ServiceSlider from './ServiceSlider';
+import AgentList from './AgentList';
+import PartnersList from './PartnersList';
 
 const HomePage = ({
   properties,
@@ -47,10 +46,7 @@ const HomePage = ({
                   <div>
                     <Input type="text" placeholder="Property Name" />
                   </div>
-                  <PropertyOptions
-                    options={propertyCategories}
-                    placeholder="Select Category"
-                  />
+                  <PropertyOptions options={propertyCategories} placeholder="Select Category" />
                   <PropertyOptions options={propertyTypes} placeholder="Type" />
                   <div />
                   <PriceRange />
@@ -109,7 +105,7 @@ const HomePage = ({
       <div
         className="download-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50"
         style={{
-          backgroundImage: `url(${require("../../assets/images/bg/download-bg.jpg")})`
+          backgroundImage: `url(${require('../../assets/images/bg/download-bg.jpg')})`
         }}
       >
         <div className="container">
@@ -132,10 +128,7 @@ const HomePage = ({
                   ))}
                 </div>
                 <div className="image">
-                  <img
-                    src={require("../../assets/images/others/app.png")}
-                    alt="app_download"
-                  />
+                  <img src={require('../../assets/images/others/app.png')} alt="app_download" />
                 </div>
               </div>
               {/* <!--Download Content end--> */}
@@ -188,10 +181,7 @@ const HomePage = ({
             {Array(6)
               .fill(properties[0])
               .map((property, i) => (
-                <div
-                  className="property-item col-lg-4 col-md-6 col-12 mb-40"
-                  key={i}
-                >
+                <div className="property-item col-lg-4 col-md-6 col-12 mb-40" key={i}>
                   <div className="property-inner">
                     <div className="image">
                       <a href="single-properties.html">
@@ -213,7 +203,7 @@ const HomePage = ({
                           <span className="price">
                             {property.amount}
                             <span>{`${property.payment_duration} ${
-                              +property.payment_duration > 2 ? "Yrs" : "Yr"
+                              +property.payment_duration > 2 ? 'Yrs' : 'Yr'
                             }`}</span>
                           </span>
                           <span className="type">For Sale</span>
@@ -243,122 +233,99 @@ const HomePage = ({
 
 export default HomePage;
 
-// const testProp =  {
-//   address: "747 Fair Street, Galesville, Alaska"
-// avg_monthly_payment: "208,333"
-// category_id: "00d2fc39-d508-4f24-a56e-82dab479488b"
-// createdAt: "2019-09-28 18:46:42"
-// description: "Dolor duis aliquip ex sint adipisicing nisi ut sint fugiat irure. Est ea eu nulla irure veniam voluptate amet minim nulla tempor cupidatat nisi culpa. Ex sunt tempor occaecat tempor quis id quis. Ut proident eu veniam aliqua aute sint est nulla cillum exercitation laboris minim voluptate. Laborum velit Lorem laboris ipsum. Culpa non mollit sint incididunt adipisicing quis magna commodo. Duis id irure nostrud ullamco laboris elit ut cillum ipsum minim.↵↵Nisi in cupidatat esse anim elit consectetur eu fugiat. Non nulla cillum nisi ex. Sint commodo aute nisi et velit irure eu mollit commodo deserunt tempor magna proident sunt. Voluptate consequat ad tempor irure minim proident nulla. Cillum eiusmod excepteur proident aliqua proident exercitation ullamco velit. Id elit excepteur ad occaecat do adipisicing excepteur ullamco aute officia qui incididunt ea et. Id tempor qui do occaecat."
-// has_C_of_O: 0
-// id: "406c7a66-cb94-465d-8686-e3eebfa2b040"
-// images: (15) ["https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…LWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…cFCHvZ81jW4wIenDPrjv34YBAljWhqByRc1q0RZqO7w4SRfU2", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…f5oxiWCfhYO1LjJx0bW00zaQnOPhAP6keBPJhRaVkhllPpm8V", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…WJkTKkvAtrAphZi5KvnvLbeJwLgnQUrphiZarQkC-7SKkHkAV", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…lGft87dnhSyIz6HJ8pjXHsl6vcmxgr9cEAFBPJfLJ9yTFFwP7", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…5L5xzPtOkEVFkXFJeeU5ZX8PcFuuwy1YiTLfEHd8psZ56jW97", "http://middlearth.co/wp-content/uploads/2019/04/mo…omes-modern-double-wide-mobile-homes-for-sale.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…oAlZAOe_73qzSO18-x7v2G-Wh40CMs9vtg1MnaijPLJ56XgGv", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…uVMIGq8KtbNgSdTGgqqKjxQX-MHN5qmHpq2ZkL2GQHfJARBSY", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…ucFffgooHOkyepqUrQdFnOTF__ovUL5YguxeCWggjp0zaLtpn", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…r4t5eldIvYl7FqKXjdhrx8ETKB4ImH19xEhwhPMNs_XvK4IxA", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…F7ihf4EfcUVclLywD2Acj8HfOjuGMDqeM8E4CDtkMzFbA3e_L", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…f5oxiWCfhYO1LjJx0bW00zaQnOPhAP6keBPJhRaVkhllPpm8V", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…WJkTKkvAtrAphZi5KvnvLbeJwLgnQUrphiZarQkC-7SKkHkAV", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3A…lGft87dnhSyIz6HJ8pjXHsl6vcmxgr9cEAFBPJfLJ9yTFFwP7"]
-// location: " Alaska"
-// name: "fugiat voluptate est"
-// payment_duration: "4"
-// price: "10,000,000"
-// status: "non_active"
-// updatedAt: "2019-09-28 18:46:42"
-// user_id: "8f12bdfd-f67b-4fa8-82be-032185cc1481"
-// }
-
 HomePage.defaultProps = {
   properties: [
     ...Array(1).fill({
-      name: "Friuli-Venezia Giulia",
-      location: "568 E 1st Ave, Miami",
-      amount: "$550",
-      payment_duration: "2",
-      decision: "For Rent",
+      name: 'Friuli-Venezia Giulia',
+      location: '568 E 1st Ave, Miami',
+      amount: '$550',
+      payment_duration: '2',
+      decision: 'For Rent',
       images: [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0"
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0'
       ],
-      id: "466928bc-d210-46ea-93b5-2269e9682dca"
+      id: '466928bc-d210-46ea-93b5-2269e9682dca'
     })
   ],
   propertyCategories: [
-    "Office",
-    "Industrial",
-    "Retail & shopping center",
-    "Multi-family home",
-    "Healthcare",
-    "Sports & entertainment",
-    "Land and Residential units"
+    'Office',
+    'Industrial',
+    'Retail & shopping center',
+    'Multi-family home',
+    'Healthcare',
+    'Sports & entertainment',
+    'Land and Residential units'
   ],
 
-  propertyTypes: ["Apartment", "Cafe", "House", "Restaurant", "Store", "Villa"],
+  propertyTypes: ['Apartment', 'Cafe', 'House', 'Restaurant', 'Store', 'Villa'],
 
   featureProperties: [
     ...new Array(3).fill({
-      name: "Friuli-Venezia Giulia",
-      location: "568 E 1st Ave, Miami",
-      amount: "$550",
-      payment_duration: "4",
-      decision: "For Sale",
-      id: "466928bc-d210-46ea-93b5-2269e9682dca",
+      name: 'Friuli-Venezia Giulia',
+      location: '568 E 1st Ave, Miami',
+      amount: '$550',
+      payment_duration: '4',
+      decision: 'For Sale',
+      id: '466928bc-d210-46ea-93b5-2269e9682dca',
       images: [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0"
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0'
       ]
     })
   ],
 
   packages: [
     {
-      icon: "pe-7s-piggy",
-      title: "Low Cost",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-piggy',
+      title: 'Low Cost',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     },
     {
-      icon: "pe-7s-science",
-      title: "Modern Design",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-science',
+      title: 'Modern Design',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     },
     {
-      icon: "pe-7s-display1",
-      title: "Good Marketing",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-display1',
+      title: 'Good Marketing',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     },
     {
-      icon: "pe-7s-map",
-      title: "Easy to Find",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-map',
+      title: 'Easy to Find',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     },
     {
-      icon: "pe-7s-shield",
-      title: "Reliable",
-      content:
-        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
+      icon: 'pe-7s-shield',
+      title: 'Reliable',
+      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
     }
   ],
 
   downloads: [
     {
-      icon: "fa fa-apple",
-      title: "Upcoming on the",
-      content: "Apple Store"
+      icon: 'fa fa-apple',
+      title: 'Upcoming on the',
+      content: 'Apple Store'
     },
     {
-      icon: "fa fa-android",
-      title: "Upcoming on",
-      content: "Google Play"
+      icon: 'fa fa-android',
+      title: 'Upcoming on',
+      content: 'Google Play'
     },
     {
-      icon: "fa fa-windows",
-      title: "Upcoming on the",
-      content: "Windows Store"
+      icon: 'fa fa-windows',
+      title: 'Upcoming on the',
+      content: 'Windows Store'
     }
   ],
 
   agents: [
     ...new Array(4).fill({
-      image: require("../../assets/images/agent/agent-1.jpg"),
-      name: "Donald Palmer",
-      phone: "(756) 447 5779",
+      image: require('../../assets/images/agent/agent-1.jpg'),
+      name: 'Donald Palmer',
+      phone: '(756) 447 5779',
       noOfProperties: Math.floor(Math.random() * 10),
-      id: "466928bc-d210-46ea-93b5-2269e9682dca"
+      id: '466928bc-d210-46ea-93b5-2269e9682dca'
     })
   ]
 };
