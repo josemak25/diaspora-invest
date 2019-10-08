@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 
 import { connect, useSelector } from "react-redux";
 
@@ -11,6 +11,7 @@ import { Input } from "../../components/Input";
 import PriceRange from "../../components/PriceRange";
 import PropertyCategory from "../../components/PropertyOptions";
 import getProperties from "../../redux/actions/property.action";
+import Pagination from "../../common/pagination/Pagination";
 
 const Properties = ({
   agents,
@@ -20,9 +21,46 @@ const Properties = ({
 }) => {
   const { loading, properties } = useSelector(state => state.properties);
 
+  const reducer = (state, action) => {
+    switch (action) {
+      case "next":
+        return {
+          ...state,
+          paginate: state.paginate + 1,
+          properties: properties.slice(
+            state.paginate * 20,
+            state.paginate * 20 + 20
+          )
+        };
+      case "prev":
+        return state.paginate === 0
+          ? state
+          : {
+              ...state,
+              paginate: state.paginate - 1,
+              properties: properties.slice(
+                state.paginate * 20,
+                state.paginate * 20 - 20
+              )
+            };
+      default:
+        return state.paginate;
+    }
+  };
+
+  const [pagination, dispatch] = useReducer(reducer, {
+    paginate: 0,
+    properties
+  });
+
   useEffect(() => {
-    getProperties();
-  }, []);
+    getProperties(pagination.paginate);
+  }, [pagination]);
+
+  const handlePagination = e => {
+    console.log(e);
+    // setPagenation()
+  };
 
   return (
     <>
@@ -46,6 +84,7 @@ const Properties = ({
                   />
                 ))}
               </div>
+              <Pagination pagination={pagination} dispatch={dispatch} />
             </div>
             <div className="col-lg-4 col-12 order-2 order-lg-1 pr-30 pr-sm-15 pr-xs-15">
               <div className="sidebar">

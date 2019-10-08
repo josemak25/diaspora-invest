@@ -501,7 +501,7 @@ textarea:-ms-input-placeholder {
   margin: 5px 10px;
 }
 
-.page-pagination li a {
+.page-pagination li button {
   color: #222222;
   background-color: #f8f8f8;
   padding: 10px;
@@ -510,47 +510,47 @@ textarea:-ms-input-placeholder {
   height: 44px;
 }
 
-.page-pagination li a i {
+.page-pagination li button i {
   line-height: 24px;
 }
 
-.page-pagination li:hover a {
+.page-pagination li:hover button {
   color: #004395;
   background-color: #f9c322;
 }
 
-.page-pagination li.active a {
+.page-pagination li.active button {
   color: #ffffff;
   background-color: #004395;
 }
 
-.page-pagination li:first-child a {
+.page-pagination li:first-child button {
   color: #222222;
   width: auto;
   padding: 10px 20px;
 }
 
-.page-pagination li:first-child a i {
+.page-pagination li:first-child button i {
   margin-right: 10px;
   float: left;
 }
 
-.page-pagination li:first-child a:hover {
+.page-pagination li:first-child button:hover {
   color: #004395;
 }
 
-.page-pagination li:last-child a {
+.page-pagination li:last-child button {
   color: #222222;
   width: auto;
   padding: 10px 20px;
 }
 
-.page-pagination li:last-child a i {
+.page-pagination li:last-child button i {
   margin-left: 10px;
   float: right;
 }
 
-.page-pagination li:last-child a:hover {
+.page-pagination li:last-child button:hover {
   color: #004395;
 }
 
@@ -6689,8 +6689,9 @@ header.header.is-sticky {
   color: red;
   font-size: 70%;
 }
+
 #update-message {
-  color: 'red'!important;
+  color: 'red' !important;
   font-size: 70%;
   margin: 0;
 }
