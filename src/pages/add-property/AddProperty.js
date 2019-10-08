@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 
@@ -13,22 +13,20 @@ import { uploaders } from "../../utils/image-uploader";
 import { uploadProperty } from "../../redux/actions/add-properties.action";
 import { validatePropertyFields } from "../../utils/validatePropertyFields";
 
-
 const initialFormState = {
   name: "",
   description: "",
   address: "",
-  location: "",
-  category_id: "",
+  location: null,
+  category_id: null,
   price: "",
-  has_C_of_O: ""
+  has_C_of_O: null
 };
 
 const initialImageState = {
   images: [],
   imageUpload: false
 };
-
 
 function AddProperty(props) {
   const { categories } = useSelector(({ category }) => category);
@@ -39,7 +37,7 @@ function AddProperty(props) {
   const [errors, setErrors] = useState({});
 
   const onDrop = files => {
-    const { images, imageUpload } = imageState;
+    const { images } = imageState;
 
     setImages({ ...imageState, imageUpload: true });
     setErrors({ ...errors, images: false });
@@ -102,7 +100,14 @@ function AddProperty(props) {
 
     props.uploadProperty(propertyValues);
 
-    setFields({ ...fields, ...initialFormState, name: "", location: "", category_id: "", has_C_of_O: ""});
+    setFields({
+      ...fields,
+      ...initialFormState,
+      name: "",
+      location: null,
+      category_id: null,
+      has_C_of_O: null
+    });
     setImages(initialImageState);
   };
 
@@ -262,7 +267,7 @@ function AddProperty(props) {
                                       style={{ backgroundImage: `url(${url})` }}
                                     >
                                       <img
-                                        alt="canel-image"
+                                        alt="canel-icon"
                                         src={require("../../assets/images/icons/cancel-image.svg")}
                                       />
                                     </span>
@@ -278,6 +283,16 @@ function AddProperty(props) {
                           </div>
                         </div>
                       </div>
+                      {loading && (
+                        <div className="nav d-flex justify-content-end col-12 mb-0 pl-15 pr-15">
+                          <div
+                            className="alert alert-success pb-0 pt-0"
+                            role="alert"
+                          >
+                            Property Upload Successful !!!
+                          </div>
+                        </div>
+                      )}
                       <div className="nav d-flex justify-content-end col-12 mb-30 pl-15 pr-15">
                         <Button
                           textContent={
@@ -316,47 +331,10 @@ export default connect(
   mapActionsToProps
 )(AddProperty);
 
-
-
 AddProperty.defaultProps = {
   states: [
-    { value: "location", label: "Abia" },
-    { value: "location", label: "Adamawa" },
-    { value: "location", label: "Anambra" },
-    { value: "location", label: "Akwa Ibom" },
-    { value: "location", label: "Bauchi" },
-    { value: "location", label: "Bayelsa" },
-    { value: "location", label: "Benue" },
-    { value: "location", label: "Borno" },
-    { value: "location", label: "Cross River" },
-    { value: "location", label: "Delta" },
-    { value: "location", label: "Ebonyi" },
-    { value: "location", label: "Enugu" },
-    { value: "location", label: "Edo" },
-    { value: "location", label: "Ekiti" },
-    { value: "location", label: "FCT - Abuja" },
-    { value: "location", label: "Gombe" },
-    { value: "location", label: "Imo" },
-    { value: "location", label: "Jigawa" },
-    { value: "location", label: "Kaduna" },
-    { value: "location", label: "Kano" },
-    { value: "location", label: "Katsina" },
-    { value: "location", label: "Kebbi" },
-    { value: "location", label: "Kogi" },
-    { value: "location", label: "Kwara" },
+    { value: "location", label: "Abuja" },
     { value: "location", label: "Lagos" },
-    { value: "location", label: "Nasarawa" },
-    { value: "location", label: "Niger" },
-    { value: "location", label: "Ogun" },
-    { value: "location", label: "Ondo" },
-    { value: "location", label: "Osun" },
-    { value: "location", label: "Oyo" },
-    { value: "location", label: "Plateau" },
-    { value: "location", label: "Rivers" },
-    { value: "location", label: "Sokoto" },
-    { value: "location", label: "Taraba" },
-    { value: "location", label: "Yobe" },
-    { value: "location", label: "Zamfara" }
   ],
   cOfO: [
     { value: "has_C_of_O", label: "Yes", id: true },

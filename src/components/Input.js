@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Input = ({ name, defaultValue, value, type, placeholder, id, onChange, checked, error }) => {
+export const Input = ({ name, defaultValue, value, type, placeholder, id, onChange, checked, error, readOnly=false, errorMessage=false }) => {
   return (
     <>
       <SimpleInput
@@ -13,8 +13,9 @@ export const Input = ({ name, defaultValue, value, type, placeholder, id, onChan
         defaultValue={defaultValue}
         onChange={onChange}
         checked={checked}
+        readOnly={readOnly}
       />
-      {error && <span className='error-message'>{name} is required*</span>}
+      {error && (<span className="error-message">{errorMessage ? errorMessage : (`${name} is required*`)}</span>)}
     </>
   );
 };

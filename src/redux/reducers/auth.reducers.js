@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, USER_LOADING, SET_ERRORS, SET_AUTHENTICATED, SET_NEW_USER, SET_UNAUTHENTICATED, CLEAR_ERRORS } from '../types';
+import { SET_CURRENT_USER, USER_LOADING, SET_ERRORS, SET_AUTHENTICATED, SET_NEW_USER, SET_UNAUTHENTICATED, CLEAR_ERRORS, RESET } from '../types';
 // import isEmpty from 'is-empty';
 
 const initialState = {
@@ -43,6 +43,9 @@ export default function(state = initialState, action) {
         ...state,
         error: ""
       };
+    case RESET:
+      return initialState;
+
     default:
       return state;
   }

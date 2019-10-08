@@ -25,7 +25,7 @@ MyProperties.defaultProps = {
     ...new Array(4).fill({
       name: "Friuli-Venezia Giulia",
       location: "568 E 1st Ave, Miami",
-      amount: "$550",
+      price: "500000000",
       figure: "M",
       decision: "For Rent",
       images: [

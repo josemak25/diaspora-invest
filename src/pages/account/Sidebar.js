@@ -3,13 +3,22 @@ import { connect } from 'react-redux';
 import { NavLink } from "react-router-dom";
 
 import SidebarLink from './Sidebar-Link';
+import { useSelector } from 'react-redux';
 
+import { isUserType } from "../../utils/roles";
 import { logout } from '../../redux/actions/login.action';
 
+const isSeller = isUserType("seller");
+
 const Sidebar = ({ links, logout }) => {
-  const ListItems = links.map((link, index) => (
-    <SidebarLink key={index} text={link.name} url={link.url} icon={link.icon} />
-  ));
+  const { user_type } = useSelector(({auth}) => auth.user );
+
+  const ListItems = links.map((link, index) => {
+    if ( (user_type !== 'seller') && (link.name === "Agency Profile")) {
+      return null;
+    };
+    return <SidebarLink key={index} text={link.name} url={link.url} icon={link.icon} />
+  });
 
   const handleClick = e => {
     e.preventDefault();
@@ -19,12 +28,14 @@ const Sidebar = ({ links, logout }) => {
     <>
       <ul className="myaccount-tab-list nav">
         {ListItems}
-        <li>
-          <NavLink to="/add-properties">
+        {user_type === "seller" && (
+          <li>
+            <NavLink to="/add-properties">
               <i className="pe-7s-home adjust"></i>
               {"Add New Property"}
-          </NavLink>
-        </li>
+            </NavLink>
+          </li>
+        )}
         <li>
           <a href="#logout" data-toggle="tab" onClick={handleClick}>
             <i className="pe-7s-power"></i>

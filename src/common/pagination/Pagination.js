@@ -1,25 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
 
-const Pagination = ({ handlePagination }) => {
+const Pagination = ({ pagination, dispatch }) => {
   return (
     <div class="row mt-20">
       <div class="col">
         <ul class="page-pagination">
           <li>
-            <Link onClick={handlePagination}>
-              <i class="fa fa-angle-left"></i> Prev
-            </Link>
+            <button onClick={() => dispatch("prev")}>
+              <i className="fa fa-angle-left"></i> Prev
+            </button>
           </li>
-          {[...new Array(5)].map((link, index) => (
-            <li class="active">
-              <Link onClick={handlePagination}>0{++index}</Link>
-            </li>
-          ))}
           <li>
-            <Link onClick={handlePagination}>
-              <i class="fa fa-angle-right"></i> Next
-            </Link>
+            <button onClick={() => dispatch("next")}>
+              <i className="fa fa-angle-right"></i>
+              Next
+            </button>
           </li>
         </ul>
       </div>
