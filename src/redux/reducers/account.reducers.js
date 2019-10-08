@@ -1,4 +1,4 @@
-import { SET_AGENCY, AGENCY_LOADING, SET_AGENCY_ERRORS } from '../types';
+import { SET_AGENCY, AGENCY_LOADING, SET_AGENCY_ERRORS, RESET } from '../types';
 
 const initialState = {
   agencyProfile: {},
@@ -16,13 +16,15 @@ export default function(state = initialState, action) {
     case AGENCY_LOADING:
       return {
         ...state,
-        loading: action.payload,
+        loading: action.payload
       };
     case SET_AGENCY_ERRORS:
       return {
         ...state,
         error: action.payload.response.data.message
       };
+    case RESET:
+      return initialState;
     default:
       return state;
   }

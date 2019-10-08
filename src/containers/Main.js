@@ -89,7 +89,7 @@ function Main({ authenticated }) {
           <PrivateRoute
             hasValidAccess={authenticated}
             exact
-            path="/user/profile"
+            path="/profile"
             component={Account}
           />
           <PrivateRoute

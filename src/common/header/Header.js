@@ -85,7 +85,7 @@ const Header = ({authenticated}) => {
             <div className="col mr-sm-50 mr-xs-50">
               <div className="header-user">
                 {authenticated ? (
-                  <NavLink to="/user/profile">
+                  <NavLink to="/profile">
                     <i className="pe-7s-user"></i>
                     <span>Account</span>
                   </NavLink>

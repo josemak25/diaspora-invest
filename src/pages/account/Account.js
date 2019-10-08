@@ -1,14 +1,16 @@
 import React from 'react';
-// import Header from '../../common/header/Header';
+import { useSelector } from 'react-redux';
+
 import Jumbotron from '../../common/jumbotron/Jumbotron';
 import Sidebar from './Sidebar';
 import UserProfile from './User-Profile';
 import AgencyProfile from './Agency-Profile';
 import MyProperties from './My-Properties';
-import ChangePassword from './Change-Password';
+import { isUserType } from "../../utils/roles";
 import Footer from '../../common/footer/Footer';
 
 const Account = () => {
+  const { user_type } = useSelector(({auth}) => auth.user )
   return (
     <>
       <Jumbotron
@@ -26,9 +28,8 @@ const Account = () => {
             <div className='col-lg-8 col-12'>
               <div className='tab-content'>
                 <UserProfile />
-                <AgencyProfile />
+                { user_type === 'seller' && <AgencyProfile />}
                 <MyProperties />
-                {/* <ChangePassword /> */}
               </div>
             </div>
           </div>

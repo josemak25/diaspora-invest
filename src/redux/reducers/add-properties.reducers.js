@@ -1,7 +1,8 @@
 import {
   ADD_PROPERTY,
   PROPERTY_UPLOADING,
-  PROPERTY_SERVER_UPLOAD_ERROR
+  PROPERTY_SERVER_UPLOAD_ERROR,
+  RESET
 } from "../types";
 
 const initialState = {
@@ -30,6 +31,8 @@ export default function(state = initialState, action) {
         error: action.payload
       };
     }
+    case RESET:
+      return initialState;
     default:
       return state;
   }

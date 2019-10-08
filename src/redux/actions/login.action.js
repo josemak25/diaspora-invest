@@ -2,7 +2,15 @@ import axios from 'axios';
 
 import store from '../../redux/store';
  
-import { SET_ERRORS, SET_CURRENT_USER, USER_LOADING, CLEAR_ERRORS, SET_UNAUTHENTICATED, AGENCY_LOADING, SET_AGENCY, SET_CATEGORY } from '../types';
+import {
+  SET_ERRORS,
+  SET_CURRENT_USER,
+  USER_LOADING,
+  CLEAR_ERRORS,
+  AGENCY_LOADING,
+  SET_AGENCY,
+  RESET
+} from "../types";
 import { createToken, eraseToken } from '../../utils/token';
 import SupportHeader from '../../utils/SupportHeader';
 
@@ -30,13 +38,13 @@ export const loginUser = (values, navigateUser) => async dispatch => {
 			payload: res.data,
 		});
 		
-		dispatch({ type: AGENCY_LOADING, payload: true });
-		
-		const res2 = await axios.get(`${process.env.REACT_APP_ENDPOINT_URL}/agency-profile/${res.data.payload.id}`, SupportHeader());
-    localStorage.setItem(`agency`, JSON.stringify(res2.data.payload));
-    dispatch({ type: SET_AGENCY, payload: res.data});
-    dispatch({ type: AGENCY_LOADING, payload: false });
-
+		if( res.data.payload.user_type === 'seller') {
+			dispatch({ type: AGENCY_LOADING, payload: true });
+			const res2 = await axios.get(`${process.env.REACT_APP_ENDPOINT_URL}/agency-profile/${res.data.payload.id}`, SupportHeader());
+			localStorage.setItem(`agency`, JSON.stringify(res2.data.payload));
+			dispatch({ type: SET_AGENCY, payload: res2.data});
+			dispatch({ type: AGENCY_LOADING, payload: false });
+		}
 
 		dispatch(fetchingUser(false));
 		dispatch({ type: CLEAR_ERRORS });
@@ -64,14 +72,16 @@ export const getUser = () => async dispatch => {
 			payload: res.data,
 		});
 
-		store.dispatch(getAgencyProfileDetails(userId));
+		if( res.data.payload.user_type === 'seller') {
+			store.dispatch(getAgencyProfileDetails(userId));
+		};
   }
 };
 
 
 export const logout = () => dispatch => {
 	eraseToken();
-	dispatch({ type: SET_UNAUTHENTICATED });
+	dispatch({ type: RESET });
 }
 
 export default loginUser;

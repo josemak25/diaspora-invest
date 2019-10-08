@@ -1,15 +1,17 @@
-import React from 'react';
-import Select from 'react-select';
+import React from "react";
+import Select from "react-select";
+import { useSelector } from "react-redux";
 
-function PropertyOptions({ options, selectedOption, handleSelected, placeholder }) {
-  const selections = [...options.map(category => ({ value: category, label: category }))];
+function PropertyOptions({ value, handleChange, placeholder }) {
+  const { categories } = useSelector(({ category }) => category);
 
   return (
     <Select
-      options={selections}
-      value={selectedOption}
-      onChange={handleSelected}
-      defaultValue={{ value: '', label: `${placeholder}` }}
+      options={categories}
+      defaultValue={value}
+      className="custom-filter-selector fill"
+      onChange={handleChange}
+      placeholder={placeholder}
     />
   );
 }

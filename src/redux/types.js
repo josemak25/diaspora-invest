@@ -26,3 +26,6 @@ export const UPLOAD_SUCCESS = "UPLOAD_SUCCESS";
 
 //Add Properties
 export const SET_CATEGORY = "SET_CATEGORY";
+
+//Reset redux state
+export const RESET = "RESET";

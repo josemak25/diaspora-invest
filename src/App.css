@@ -2293,8 +2293,8 @@ header.header.is-sticky {
 
 .property-search.sidebar-property-search form>div {
   -webkit-box-flex: 1;
-  -ms-flex: 1 0 50%;
-  flex: 1 0 50%;
+  -ms-flex: 1 0 100%;
+  flex: 1 0 100%;
   padding: 0 10px 20px;
 }
 
@@ -2350,8 +2350,8 @@ header.header.is-sticky {
 
 .property-search form>div {
   -webkit-box-flex: 1;
-  -ms-flex: 1 0 25%;
-  flex: 1 0 25%;
+  -ms-flex: 1 0 50%;
+  flex: 1 0 50%;
   padding: 0 15px 30px;
 }
 
@@ -2480,8 +2480,13 @@ header.header.is-sticky {
   margin-left: -16px;
 }
 
+.property-search form>div:last-child {
+  margin-top: 20px;
+  text-align: center;
+}
+
 .property-search form>div button {
-  width: auto;
+  width: 50%;
   background-color: #004395;
   border: none;
   color: #f9c322;
@@ -2495,6 +2500,16 @@ header.header.is-sticky {
 .property-search form>div button:hover {
   background-color: #f9c322;
   color: #004395;
+}
+
+.property-section-pagination {
+  display: flex;
+  justify-content: center
+}
+
+.property-section-pagination ul {
+  display: flex;
+  justify-content: space-evenly
 }
 
 /*----------------------------------------*/
@@ -2757,6 +2772,11 @@ header.header.is-sticky {
   margin-bottom: 25px;
   position: relative;
   overflow: hidden;
+}
+
+.property-inner-image {
+  height: 247px;
+  width: 370px
 }
 
 .property-item .property-inner .image .label {
