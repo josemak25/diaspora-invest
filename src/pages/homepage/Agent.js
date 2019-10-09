@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Agent = ({ agent }) => {
   return (
@@ -26,12 +26,8 @@ const Agent = ({ agent }) => {
               {agent.name}
             </Link>
           </h4>
-          <div href="#" className="phone">
-            {agent.phone}
-          </div>
-          <div href="#" className="email">
-            {agent.email}
-          </div>
+          <div className="phone">{agent.phone}</div>
+          <div className="email">{agent.email}</div>
           <span className="properties">{agent.noOfProperties}</span>
         </div>
       </div>

@@ -1,86 +1,90 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Footer from '../../common/footer/Footer';
-import HeroSlider from './HeroSlider';
-import PriceRange from '../../components/PriceRange';
-import { Input } from '../../components/Input';
-import PropertyOptions from '../../components/PropertyOptions';
-import Property from '../../components/Property';
-import Services from './Services';
-import ServiceSlider from './ServiceSlider';
-import AgentList from './AgentList';
-import PartnersList from './PartnersList';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const HomePage = ({
-  properties,
-  propertyCategories,
-  propertyTypes,
-  featureProperties,
-  packages,
-  downloads,
-  agents
-}) => {
+import Footer from "../../common/footer/Footer";
+import HeroSlider from "./HeroSlider";
+import Services from "./Services";
+import ServiceSlider from "./ServiceSlider";
+import AgentList from "./AgentList";
+import PartnersList from "./PartnersList";
+
+import formatPrice from "../../utils/formatPrice";
+
+const HomePage = ({ heroProperty, packages, downloads, agents }) => {
+  const { properties } = useSelector(({ properties }) => properties);
+
   return (
     <div id="main-wrapper">
       <div className="hero-section section position-relative">
-        <HeroSlider properties={properties} />
+        <HeroSlider properties={heroProperty} />
       </div>
 
-      <div className="search-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
+      {/* <!--New property section start--> */}
+      <div className="property-section section pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
         <div className="container">
+          {/* <!--Section Title start--> */}
           <div className="row">
             <div className="col-md-12 mb-60 mb-xs-30">
               <div className="section-title center">
-                <h1>Find Your Property</h1>
+                <h1>Newly Added Property</h1>
               </div>
             </div>
           </div>
+          {/* <!--Section Title end--> */}
 
           <div className="row">
-            <div className="col">
-              <div className="property-search">
-                <form>
-                  <div>
-                    <Input type="text" placeholder="Location" />
-                  </div>
-                  <div>
-                    <Input type="text" placeholder="Property Name" />
-                  </div>
-                  <PropertyOptions options={propertyCategories} placeholder="Select Category" />
-                  <PropertyOptions options={propertyTypes} placeholder="Type" />
-                  <div />
-                  <PriceRange />
-                  <div>
-                    <button>search</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <!--Search Section section end--> */}
+            {/* <!--Property start--> */}
 
-      {/* <!--Feature property section start--> */}
-      <div className="property-section section bg-gray pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12 mb-60 mb-xs-30">
-              <div className="section-title center">
-                <h1>Feature Property</h1>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            {featureProperties.map((property, i) => (
-              <div className="col-sm-4" key={i}>
-                <Property property={property} cardSize="property-item col" />
+            {properties.slice(0, 6).map((property, i) => (
+              <div
+                className="property-item col-lg-4 col-md-6 col-12 mb-40"
+                key={i}
+              >
+                <div className="property-inner">
+                  <div className="image">
+                    <a href="single-properties.html">
+                      <img
+                        src={
+                          property.images[
+                            Math.floor(Math.random() * property.images.length)
+                          ]
+                        }
+                        alt="property_image"
+                        className="property-inner-image"
+                      />
+                    </a>
+                  </div>
+                  <div className="content">
+                    <div className="left">
+                      <h3 className="title">
+                        <a href="single-properties.html">
+                          {property.name.substr(0, 20)}...
+                        </a>
+                      </h3>
+                      <span className="location">
+                        <img
+                          src={require("../../assets/images/icons/marker.png")}
+                          alt="property-location"
+                        />
+                        {property.location}
+                      </span>
+                    </div>
+                    <div className="right">
+                      <div className="type-wrap">
+                        <span className="price">{formatPrice(property)}</span>
+                        <span className="type">For Sale</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
+            {/* <!--Property end--> */}
           </div>
         </div>
       </div>
-      {/* <!--Feature property section end--> */}
+      {/* <!--New property section end--> */}
 
       <div className="feature-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div className="container">
@@ -105,7 +109,7 @@ const HomePage = ({
       <div
         className="download-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50"
         style={{
-          backgroundImage: `url(${require('../../assets/images/bg/download-bg.jpg')})`
+          backgroundImage: `url(${require("../../assets/images/hero/hero-1.jpg")})`
         }}
       >
         <div className="container">
@@ -128,7 +132,10 @@ const HomePage = ({
                   ))}
                 </div>
                 <div className="image">
-                  <img src={require('../../assets/images/others/app.png')} alt="app_download" />
+                  <img
+                    src={require("../../assets/images/others/app.png")}
+                    alt="app_download"
+                  />
                 </div>
               </div>
               {/* <!--Download Content end--> */}
@@ -162,63 +169,6 @@ const HomePage = ({
       </div>
       {/* <!--Services section end--> */}
 
-      {/* <!--New property section start--> */}
-      <div className="property-section section pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
-        <div className="container">
-          {/* <!--Section Title start--> */}
-          <div className="row">
-            <div className="col-md-12 mb-60 mb-xs-30">
-              <div className="section-title center">
-                <h1>Newly Added Property</h1>
-              </div>
-            </div>
-          </div>
-          {/* <!--Section Title end--> */}
-
-          <div className="row">
-            {/* <!--Property start--> */}
-
-            {Array(6)
-              .fill(properties[0])
-              .map((property, i) => (
-                <div className="property-item col-lg-4 col-md-6 col-12 mb-40" key={i}>
-                  <div className="property-inner">
-                    <div className="image">
-                      <a href="single-properties.html">
-                        <img src={property.images[0]} alt="" />
-                      </a>
-                    </div>
-                    <div className="content">
-                      <div className="left">
-                        <h3 className="title">
-                          <a href="single-properties.html">{property.name}</a>
-                        </h3>
-                        <span className="location">
-                          <img src="assets/images/icons/marker.png" alt="" />
-                          {property.location}
-                        </span>
-                      </div>
-                      <div className="right">
-                        <div className="type-wrap">
-                          <span className="price">
-                            {property.amount}
-                            <span>{`${property.payment_duration} ${
-                              +property.payment_duration > 2 ? 'Yrs' : 'Yr'
-                            }`}</span>
-                          </span>
-                          <span className="type">For Sale</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            {/* <!--Property end--> */}
-          </div>
-        </div>
-      </div>
-      {/* <!--New property section end--> */}
-
       <div className="agent-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <AgentList agents={agents} />
       </div>
@@ -234,98 +184,71 @@ const HomePage = ({
 export default HomePage;
 
 HomePage.defaultProps = {
-  properties: [
-    ...Array(1).fill({
-      name: 'Friuli-Venezia Giulia',
-      location: '568 E 1st Ave, Miami',
-      amount: '$550',
-      payment_duration: '2',
-      decision: 'For Rent',
-      images: [
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0'
-      ],
-      id: '466928bc-d210-46ea-93b5-2269e9682dca'
-    })
-  ],
-  propertyCategories: [
-    'Office',
-    'Industrial',
-    'Retail & shopping center',
-    'Multi-family home',
-    'Healthcare',
-    'Sports & entertainment',
-    'Land and Residential units'
-  ],
-
-  propertyTypes: ['Apartment', 'Cafe', 'House', 'Restaurant', 'Store', 'Villa'],
-
-  featureProperties: [
-    ...new Array(3).fill({
-      name: 'Friuli-Venezia Giulia',
-      location: '568 E 1st Ave, Miami',
-      amount: '$550',
-      payment_duration: '4',
-      decision: 'For Sale',
-      id: '466928bc-d210-46ea-93b5-2269e9682dca',
-      images: [
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0'
-      ]
-    })
+  heroProperty: [
+    {
+      name: "Friuli-Venezia Giulia",
+      location: "568 E 1st Ave, Miami",
+      price: "5,500,000",
+      payment_duration: "4",
+      decision: "For Sale",
+      id: "466928bc-d210-46ea-93b5-2269e9682dca",
+      images: [require("../../assets/images/hero/hero-3.jpg")]
+    }
   ],
 
   packages: [
     {
-      icon: 'pe-7s-piggy',
-      title: 'Low Cost',
-      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
+      icon: "pe-7s-piggy",
+      title: "Low Cost",
+      content:
+        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
     },
     {
-      icon: 'pe-7s-science',
-      title: 'Modern Design',
-      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
+      icon: "pe-7s-science",
+      title: "Modern Design",
+      content:
+        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
     },
     {
-      icon: 'pe-7s-display1',
-      title: 'Good Marketing',
-      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
+      icon: "pe-7s-display1",
+      title: "Good Marketing",
+      content:
+        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
     },
     {
-      icon: 'pe-7s-map',
-      title: 'Easy to Find',
-      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
+      icon: "pe-7s-map",
+      title: "Easy to Find",
+      content:
+        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
     },
     {
-      icon: 'pe-7s-shield',
-      title: 'Reliable',
-      content: 'ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor'
+      icon: "pe-7s-shield",
+      title: "Reliable",
+      content:
+        "ed do eiusmod tempor dolor sit amet, conse elit ctetur sed tempor"
     }
   ],
 
   downloads: [
     {
-      icon: 'fa fa-apple',
-      title: 'Upcoming on the',
-      content: 'Apple Store'
+      icon: "fa fa-apple",
+      title: "Upcoming on the",
+      content: "Apple Store"
     },
     {
-      icon: 'fa fa-android',
-      title: 'Upcoming on',
-      content: 'Google Play'
-    },
-    {
-      icon: 'fa fa-windows',
-      title: 'Upcoming on the',
-      content: 'Windows Store'
+      icon: "fa fa-android",
+      title: "Upcoming on",
+      content: "Google Play"
     }
   ],
 
   agents: [
     ...new Array(4).fill({
-      image: require('../../assets/images/agent/agent-1.jpg'),
-      name: 'Donald Palmer',
-      phone: '(756) 447 5779',
+      image: require("../../assets/images/agent/agent-1.jpg"),
+      name: "Donald Palmer",
+      phone: "(756) 447 5779",
       noOfProperties: Math.floor(Math.random() * 10),
-      id: '466928bc-d210-46ea-93b5-2269e9682dca'
+      id: "466928bc-d210-46ea-93b5-2269e9682dca"
     })
   ]
 };

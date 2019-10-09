@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import formatPrice from '../utils/formatPrice';
+import React from "react";
+import { Link } from "react-router-dom";
+import formatPrice from "../utils/formatPrice";
 
 const Property = ({ property, cardSize }) => {
   return (
@@ -13,7 +13,15 @@ const Property = ({ property, cardSize }) => {
               state: property
             }}
           >
-            <img src={property.images[0]} alt="property_banner" className="property-inner-image" />
+            <img
+              src={
+                property.images[
+                  Math.floor(Math.random() * property.images.length)
+                ]
+              }
+              alt="property_banner"
+              className="property-inner-image"
+            />
           </Link>
         </div>
         <div className="content">
@@ -29,7 +37,10 @@ const Property = ({ property, cardSize }) => {
               </Link>
             </h3>
             <span className="location">
-              <img src={require('../assets/images/icons/marker.png')} alt="location_icon" />
+              <img
+                src={require("../assets/images/icons/marker.png")}
+                alt="location_icon"
+              />
               {property.location}
             </span>
           </div>

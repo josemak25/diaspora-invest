@@ -1,12 +1,12 @@
-import React from 'react';
-import Property from '../../components/Property';
+import React from "react";
+import Property from "../../components/Property";
 
 const ServiceSlider = ({ properties }) => {
+  if(properties.length < 1) return null;
+  const property = properties[Math.floor(Math.random() * properties.length)];
   return (
     <div className="property-slider-2">
-      {properties.map((property, index) => (
-        <Property property={property} key={index} cardSize="property-2" />
-      ))}
+      <Property property={property} cardSize="property-2" />
     </div>
   );
 };

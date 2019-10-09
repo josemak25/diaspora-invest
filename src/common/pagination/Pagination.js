@@ -12,8 +12,8 @@ const Pagination = ({ pagination, dispatch }) => {
           </li>
           <li>
             <button onClick={() => dispatch("next")}>
-              <i className="fa fa-angle-right"></i>
               Next
+              <i className="fa fa-angle-right"></i>
             </button>
           </li>
         </ul>
