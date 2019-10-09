@@ -2,9 +2,18 @@ import axios from "axios";
 import { SET_ERRORS, SET_PROPERTIES, PROPERTY_LOADING } from "../types";
 import SupportHeader from "../../utils/SupportHeader";
 
+  const initialState = {
+    name: "",
+    location: "",
+    category_id: "",
+    price: "",
+    minPrice: "",
+    maxPrice: ""
+  };
+
 export const getProperties = ({
-  page,
-  queryParams
+  page = 0,
+  queryParams = initialState
 }) => async dispatch => {
   try {
     const { location, category_id, minPrice, maxPrice, name } = queryParams;
