@@ -1,9 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import formatPrice from "../../utils/formatPrice";
 
 const HeroSliderItem = ({ property, propertyFeatures }) => {
   return (
-    <div className="hero-item" style={{ backgroundImage: `url(${property.image})` }}>
+    <div
+      className="hero-item"
+      style={{ backgroundImage: `url(${property.images})` }}
+    >
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -19,14 +23,14 @@ const HeroSliderItem = ({ property, propertyFeatures }) => {
                 </Link>
               </h1>
               <span className="location">
-                <img src={require('../../assets/images/icons/hero-marker.png')} alt="" />
-                {property.locationName}
+                <img
+                  src={require("../../assets/images/icons/hero-marker.png")}
+                  alt=""
+                />
+                {property.location}
               </span>
               <div className="type-wrap">
-                <span className="type">{property.decision}</span>
-                <span className="price">
-                  {property.amount} <span>{property.figure}</span>
-                </span>
+                <span className="price">{formatPrice(property)}</span>
               </div>
               <ul className="property-feature">
                 {propertyFeatures.map((feature, index) => (
@@ -52,20 +56,20 @@ export default HeroSliderItem;
 HeroSliderItem.defaultProps = {
   propertyFeatures: [
     {
-      icon: 'hero-area.png',
-      name: '550 SqFt'
+      icon: "hero-area.png",
+      name: "550 SqFt"
     },
     {
-      icon: 'hero-bed.png',
-      name: '6 Bed'
+      icon: "hero-bed.png",
+      name: "6 Bed"
     },
     {
-      icon: 'hero-bath.png',
-      name: '4 Bath'
+      icon: "hero-bath.png",
+      name: "4 Bath"
     },
     {
-      icon: 'hero-parking.png',
-      name: '3 Garage'
+      icon: "hero-parking.png",
+      name: "3 Garage"
     }
   ]
 };
