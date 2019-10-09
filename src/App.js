@@ -10,6 +10,7 @@ import "./App.css";
 import "./assets/css/Helper.css";
 import "./assets/css/icofont.min.css";
 import { getUser, logout } from "./redux/actions/login.action";
+import { getProperties } from './redux/actions/property.action';
 import { getPropertyCategories } from './redux/actions/add-properties.action';
 
 const currentSession = setUser();
@@ -21,6 +22,8 @@ if (currentSession) {
 } else {
   store.dispatch(logout());
 }
+
+store.dispatch(getProperties({ page: 0, initialState: {} }));
 
 
 function App() {
