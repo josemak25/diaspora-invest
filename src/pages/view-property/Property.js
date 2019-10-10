@@ -1,10 +1,15 @@
 import React from "react";
-// import Header from "../../common/header/Header";
+
+import { useSelector } from 'react-redux';
+
 import Footer from "../../common/footer/Footer";
 import FeatureProperty from "../../pages/properties/FeatureProperty";
 import Jumbotron from "../../common/jumbotron/Jumbotron";
 
-const Property = ({ property, featureProperties }) => {
+const Property = props => {
+  const { properties } = useSelector(({properties}) => properties);
+  const property = props.location.state
+
   const {
     name,
     location,
@@ -12,8 +17,8 @@ const Property = ({ property, featureProperties }) => {
     images,
     price,
     description,
-    // user_id,
-    // category_id,
+    user_id,
+    category_id,
     has_C_of_O,
     status,
     payment_duration,
@@ -37,10 +42,13 @@ const Property = ({ property, featureProperties }) => {
                   <div className="property-inner">
                     <div className="head">
                       <div className="left">
-                        <h1 className="title">Friuli-Venezia Giulia</h1>
+                        <h1 className="title">{name}</h1>
                         <span className="location">
-                          <img src="assets/images/icons/marker.png" alt="" />
-                          568 E 1st Ave, Miami
+                          <img
+                            src={require('../../assets/images/icons/marker.png')}
+                            alt=""
+                          />
+                          {address}, <b style={{marginLeft: '10px'}}>{location}</b>
                         </span>
                       </div>
                       <div className="right">
@@ -52,7 +60,33 @@ const Property = ({ property, featureProperties }) => {
                     </div>
 
                     <div className="image mb-30">
-                      <img src={images[0]} alt="" />
+                      <div className="single-property-gallery">
+                        <div className="item">
+                          <img src={images[0]} alt="" />
+                        </div>
+                      </div>
+                      <div className="single-property-thumb">
+                        {images[1] && (
+                          <div className="item">
+                            <img src={images[1]} alt="" />
+                          </div>
+                        )}
+                        {images[2] && (
+                          <div className="item">
+                            <img src={images[2]} alt="" />
+                          </div>
+                        )}
+                        {images[3] && (
+                          <div className="item">
+                            <img src={images[3]} alt="" />
+                          </div>
+                        )}
+                        {images[4] && (
+                          <div className="item">
+                            <img src={images[4]} alt="" />
+                          </div>
+                        )}
+                      </div>
                     </div>
 
                     <div className="content">
@@ -65,7 +99,10 @@ const Property = ({ property, featureProperties }) => {
                           <h3>Other informations</h3>
                           <ul className="amenities-list">
                             <li>Payment duration: {payment_duration} years</li>
-                            <li>Average Monthly Payment: &#8358; {avg_monthly_payment}</li>
+                            <li>
+                              Average Monthly Payment: &#8358;
+                              {avg_monthly_payment}
+                            </li>
                             <li>C of O: {has_C_of_O ? "Yes" : "No"}</li>
                           </ul>
                         </div>
@@ -75,15 +112,15 @@ const Property = ({ property, featureProperties }) => {
                 </div>
               </div>
             </div>
-            <div classNameName="col-lg-4 col-12 order-2 order-lg-1 pr-30 pr-sm-15 pr-xs-15">
-              <div classNameName="sidebar">
-                <h4 classNameName="sidebar-title">
-                  <span classNameName="text">Feature Property</span>
-                  <span classNameName="shape"></span>
+            <div className="col-lg-4 col-12 order-2 order-lg-1 pr-30 pr-sm-15 pr-xs-15">
+              <div className="sidebar">
+                <h4 className="sidebar-title">
+                  <span className="text">Feature Property</span>
+                  <span className="shape"></span>
                 </h4>
 
-                <div classNameName="sidebar-property-list">
-                  {featureProperties.map((property, i) => (
+                <div className="sidebar-property-list">
+                  {properties.map((property, i) => (
                     <FeatureProperty key={i} property={property} />
                   ))}
                 </div>

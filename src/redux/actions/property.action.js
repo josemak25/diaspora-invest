@@ -22,7 +22,7 @@ export const getProperties = ({
       `${process.env.REACT_APP_ENDPOINT_URL}/property/search?skip=${page}&location=${location}&category_id=${category_id}&minPrice=${minPrice}&maxPrice=${maxPrice}&name=${name}`,
       SupportHeader()
     );
-
+      console.log(res);
     dispatch({ type: SET_PROPERTIES, payload: res.data.payload });
     dispatch({ type: PROPERTY_LOADING, payload: false });
   } catch (err) {

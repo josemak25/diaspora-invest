@@ -18,12 +18,12 @@ const currentSession = setUser();
 if (currentSession) {
   store.dispatch({ type: SET_AUTHENTICATED });
   store.dispatch(getUser());
-  store.dispatch(getPropertyCategories());
 } else {
   store.dispatch(logout());
 }
 
 store.dispatch(getProperties({ page: 0, initialState: {} }));
+store.dispatch(getPropertyCategories());
 
 
 function App() {

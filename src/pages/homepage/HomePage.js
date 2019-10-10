@@ -72,7 +72,9 @@ const HomePage = ({ heroProperty, packages, downloads, agents }) => {
                     </div>
                     <div className="right">
                       <div className="type-wrap">
-                        <span className="price">{formatPrice(property)}</span>
+                        <span className="price">
+                          &#8358;{formatPrice(property)}
+                        </span>
                         <span className="type">For Sale</span>
                       </div>
                     </div>

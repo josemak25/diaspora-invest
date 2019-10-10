@@ -30,7 +30,7 @@ const HeroSliderItem = ({ property, propertyFeatures }) => {
                 {property.location}
               </span>
               <div className="type-wrap">
-                <span className="price">{formatPrice(property)}</span>
+                <span className="price">&#8358; {formatPrice(property)}</span>
               </div>
               <ul className="property-feature">
                 {propertyFeatures.map((feature, index) => (
