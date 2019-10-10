@@ -16,6 +16,7 @@ import Property from "../pages/view-property/Property";
 import Properties from "../pages/properties/Properties";
 import LoginSignup from "../pages/login-signup/Login-SignUp";
 import AddProperties from "../pages/add-property/AddProperty";
+import AdminDashboard from "../pages/admin-dashboard/AdminDashboard";
 
 function PrivateRoute({ component: Component, hasValidAccess, ...rest }) {
   return (
@@ -24,6 +25,7 @@ function PrivateRoute({ component: Component, hasValidAccess, ...rest }) {
       render={props =>
         hasValidAccess ? (
           <>
+            <Header />
             <Component {...props} />
           </>
         ) : (
@@ -41,6 +43,7 @@ function PublicRoute({ component: Component, hasValidAccess, ...rest }) {
       render={props =>
         !hasValidAccess || Component.name === "HomePage" ? (
           <>
+            <Header />
             <Component {...props} />
           </>
         ) : (
@@ -72,7 +75,6 @@ function Main({ authenticated }) {
   return (
     <main>
       <Router>
-        <Header />
         <Switch>
           <PublicRoute
             hasValidAccess={authenticated}
@@ -109,6 +111,11 @@ function Main({ authenticated }) {
             exact
             path="/add-properties"
             component={AddProperties}
+          />
+          <AdminRoute
+            hasValidAccess={authenticated}
+            path="/dashboard"
+            component={AdminDashboard}
           />
         </Switch>
       </Router>

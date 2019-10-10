@@ -1,17 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function AgentCard({ agent }) {
   return (
     <Link
       to={{
-        pathname: `/dashboard/agent/${agent.id}`,
+        pathname: `/dashboard/agent/details`,
         state: agent
       }}
       className="agent-card-container"
     >
       <div className="agent-card-header">
-        <img src={require('../assets/images/icons/agent-logo.svg')} alt="agent-company-logo" />
+        <img
+          src={require("../assets/images/icons/agent-logo.svg")}
+          alt="agent-company-logo"
+        />
         <div>
           <h1>{agent.noOfProperties}</h1>
           <p>number of properties</p>
@@ -20,7 +23,9 @@ export default function AgentCard({ agent }) {
       <div className="agent-card-footer">
         <img src={agent.avater} alt="agent-avater" />
         <div>
-          <span className="agent-card-footer-business_name">{agent.business_name}</span>
+          <span className="agent-card-footer-business_name">
+            {agent.business_name}
+          </span>
           <span className="agent-card-footer-email">{agent.email}</span>
         </div>
       </div>
