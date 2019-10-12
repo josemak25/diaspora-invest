@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { connect, useSelector } from 'react-redux';
 import { NavLink, Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,9 +10,24 @@ import {
 import DashboardHeader from "./DashboardHeader";
 import AgentLogo from "../../components/AgentLogo";
 import Details from "./Details";
+import { agenciesApproval } from '../../redux/actions/dashboard.action'
 
-export default function AgentDetails({ location, detailsLinks, user }) {
+
+function AgentDetails({ location, detailsLinks, user, agenciesApproval }) {
+  const { loading } = useSelector(({ dashboard }) => dashboard);
   const { state } = location;
+  const { isApproved } = state;
+  
+  const [action, setAction] = useState("");
+
+  const handleApproval = e => {
+    const value = e.currentTarget.getAttribute("data-title");
+    setAction(value);
+  };
+
+  useEffect(() => {
+    agenciesApproval({ id: state.profile_id, action: action });
+  }, [action]);
 
   return (
     <>
@@ -30,7 +46,7 @@ export default function AgentDetails({ location, detailsLinks, user }) {
                 <NavLink
                   exact
                   to={{
-                    pathname: `${location.pathname.substr(0,16)}/${link.path}`,
+                    pathname: `${location.pathname.substr(0, 16)}/${link.path}`,
                     state
                   }}
                   key={i}
@@ -42,18 +58,15 @@ export default function AgentDetails({ location, detailsLinks, user }) {
             </div>
           </div>
           <div className="agent-action-buttons">
-            <span>
+            <span
+              onClick={handleApproval}
+              data-title={isApproved ? "unapprove" : "approve"}
+            >
               <FontAwesomeIcon
-                icon={faCheckCircle}
+                icon={isApproved ? faTimesCircle : faCheckCircle}
                 size="2x"
-                color="#008e87"
-                className="agent-action-buttons-approve"
-              />
-              <FontAwesomeIcon
-                icon={faTimesCircle}
-                size="2x"
-                color="red"
-                className="agent-action-buttons-unapproved"
+                color={isApproved ? "red" : "#008e87"}
+                className={isApproved ? 'agent-action-buttons-unapproved' : "agent-action-buttons-approve"}
               />
             </span>
           </div>
@@ -79,6 +92,14 @@ export default function AgentDetails({ location, detailsLinks, user }) {
     </>
   );
 }
+
+const mapActionToProps = {
+  agenciesApproval
+}
+
+
+export default connect(null, mapActionToProps)(AgentDetails);
+
 
 AgentDetails.defaultProps = {
   detailsLinks: [

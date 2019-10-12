@@ -1,12 +1,18 @@
 import React from "react";
 import { Route, NavLink } from "react-router-dom";
+
+import { useSelector } from 'react-redux';
+
 import "../../assets/css/admin-dashboard.css";
 import Agents from "./Agents";
 import Users from "./Users";
 import Properties from "./Properties";
 import AgentDetails from "./AgentDetails";
 
-export default function AdminDashboard({ user, sidebarLinks }) {
+
+export default function AdminDashboard({ sidebarLinks }) {
+  const { user } = useSelector(({auth}) => auth);
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-sidebar">
@@ -46,11 +52,6 @@ export default function AdminDashboard({ user, sidebarLinks }) {
 }
 
 AdminDashboard.defaultProps = {
-  user: {
-    email: "Johndoe@gmail.com",
-    name: "John Doe",
-    avatar: "https://randomuser.me/api/portraits/men/62.jpg"
-  },
   sidebarLinks: [
     {
       icon: require("../../assets/images/icons/dashboard.svg"),

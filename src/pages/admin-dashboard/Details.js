@@ -1,31 +1,42 @@
 import React from 'react';
-import { formatAgentDetailsDate } from '../../utils/formatDate';
+import moment from "moment";
 
 export default function Details({ details, user }) {
   const {
-    approvedAt,
-    business_name,
-    documents,
-    email,
-    isApproved,
+    profile_id,
     noOfProperties,
-    phone,
+    noOfPropertiesSold,
+    user_id,
+    business_name,
+    business_address,
     website,
-    createdAt
+    isApproved,
+    approvedAt,
+    profile_phone,
+    profile_email,
+    createdAt,
+    documents,
+    user_name,
+    user_type,
+    email_verified,
+    user_email,
+    user_phone,
+    avatar
   } = details;
+
   return (
     <>
       <div className="agent-details-holder">
         <div className="agent-details-status">
           <div>
             <span>
-              <p>Created: {formatAgentDetailsDate(createdAt)}</p>
-              <p>Email: {email}</p>
+              <p>Created: {moment(Date.now()).format("ll")}</p>
+              <p>Email: {profile_email}</p>
             </span>
             <span className="agent-account-approval-status">
               <p>status</p>
-              <p style={{ color: `${isApproved ? '#008e87' : 'red'}` }}>
-                {isApproved ? 'approved account' : 'unapproved account'}
+              <p style={{ color: `${isApproved ? "#008e87" : "red"}` }}>
+                {isApproved ? "approved account" : "unapproved account"}
               </p>
             </span>
           </div>
@@ -36,7 +47,7 @@ export default function Details({ details, user }) {
                 <div>90%</div>
               </span>
               <img
-                src={require('../../assets/images/icons/shield.svg')}
+                src={require("../../assets/images/icons/shield.svg")}
                 alt="account-completeness-checker"
               ></img>
             </div>
@@ -47,22 +58,23 @@ export default function Details({ details, user }) {
             <h3>agent details</h3>
             <div>
               <span>name:</span>
-              <span>{user.name}</span>
+              <span>{user_name}</span>
             </div>
             <div>
               <span>phone</span>
-              <span> {user.phone}</span>
+              <span> {user_phone}</span>
             </div>
             <div>
               <span>email:</span>
-              <span>{user.email}</span>
+              <span>{user_email}</span>
             </div>
             <div>
-              <span>email verified:</span> <span>{user.email_verified ? 'yes' : 'no'}</span>
+              <span>email verified:</span>{" "}
+              <span>{email_verified ? "yes" : "no"}</span>
             </div>
             <div>
               <span>created:</span>
-              <span>{formatAgentDetailsDate(user.createdAt)}</span>
+              <span>{moment(createdAt).format("ll")}</span>
             </div>
           </div>
           <div className="agent-details-record-container">
@@ -73,11 +85,11 @@ export default function Details({ details, user }) {
             </div>
             <div>
               <span>phone:</span>
-              <span>{phone}</span>
+              <span>{profile_phone}</span>
             </div>
             <div>
               <span>email:</span>
-              <span>{email}</span>
+              <span>{profile_email}</span>
             </div>
             <div>
               <span>website:</span>
@@ -85,7 +97,7 @@ export default function Details({ details, user }) {
             </div>
             <div>
               <span>approved date:</span>
-              <span>{formatAgentDetailsDate(approvedAt)}</span>
+              <span>{moment(approvedAt).format("ll")}</span>
             </div>
           </div>
           <div className="agent-details-record-container">
@@ -95,7 +107,7 @@ export default function Details({ details, user }) {
               <span>{noOfProperties}</span>
             </div>
             <div>
-              <span>sold properties:</span> <span>{noOfProperties}</span>
+              <span>sold properties:</span> <span>{noOfPropertiesSold}</span>
             </div>
           </div>
         </div>
