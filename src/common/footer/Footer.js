@@ -6,23 +6,25 @@ const Footer = ({ socialLinks, widgetLinks }) => {
   return (
     <footer
       className="footer-section section"
-      style={{ backgroundImage: `url${require('../../assets/images/bg/footer-bg.jpg')}` }}
+      style={{ backgroundImage: `url${require('../../assets/images/footer-logo.png')}` }}
     >
       <div className="footer-top section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
         <div className="container">
           <div className="row row-25">
             <div className="footer-widget col-lg-3 col-md-6 col-12 mb-40">
               <img src={require('../../assets/images/footer-logo.png')} alt="footer" />
-              <p>
-                Disapora Invest - Real Estate Management App. elit, sed do to eiumod tempor dolor
-                sit amet, ctetur adipiscing elit seddo dolor sit amet.
-              </p>
-              <div className="footer-social">
-                {socialLinks.map((social, index) => (
-                  <Link to={social.path} className={social.name} key={index}>
-                    <i className={social.icon}></i>
-                  </Link>
-                ))}
+              <div>
+                <p>
+                  Disapora Invest - Real Estate Management App. elit, sed do to eiumod tempor dolor
+                  sit amet, ctetur adipiscing elit seddo dolor sit amet.
+                </p>
+                <div className="footer-social">
+                  {socialLinks.map((social, index) => (
+                    <Link to={social.path} className={social.name} key={index}>
+                      <i className={social.icon}></i>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -40,6 +42,11 @@ const Footer = ({ socialLinks, widgetLinks }) => {
                   <i className="fa fa-phone"></i>
                   <span>
                     <p>+234 345 678 102</p>
+                  </span>
+                </li>
+                <li>
+                  <i className="fa fa-phone"></i>
+                  <span>
                     <p>+234 345 678 101</p>
                   </span>
                 </li>
@@ -78,16 +85,11 @@ const Footer = ({ socialLinks, widgetLinks }) => {
               </p>
 
               <form id="mc-form" className="mc-form footer-newsletter">
-                <Input id="mc-email" type="email" placeholder="Email Here.." />
+                <Input id="mc-email" type="email" placeholder="Email Here.." value="" />
                 <button id="mc-submit">
                   <i className="fa fa-paper-plane-o"></i>
                 </button>
               </form>
-              <div className="mailchimp-alerts text-centre">
-                <div className="mailchimp-submitting"></div>
-                <div className="mailchimp-success"></div>
-                <div className="mailchimp-error"></div>
-              </div>
             </div>
           </div>
         </div>

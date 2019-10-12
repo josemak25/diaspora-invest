@@ -1,36 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 //Redux Stuff
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import "../../App.css";
+import '../../App.css';
 
-
-const menuLink = [
-  {
-    name: "Home",
-    path: "/"
-  },
-  {
-    name: "Properties",
-    path: "/properties"
-  },
-  {
-    name: "Agent",
-    path: "/agent"
-  },
-  {
-    name: "Agencies",
-    path: "/agencies"
-  },
-  {
-    name: "Contact Us",
-    path: "/contact-us"
-  }
-];
-
-const Header = ({authenticated}) => {
+const Header = ({ authenticated, menuLink }) => {
   const [hasScrolled, setHasScrolled] = useState({ move: false });
 
   useEffect(() => {
@@ -44,25 +20,20 @@ const Header = ({authenticated}) => {
       return setHasScrolled(!hasScrolled.move);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
   }, [hasScrolled.move]);
 
   return (
     <header
-      className={`${
-        hasScrolled ? "header header-sticky is-sticky" : "header header-sticky"
-      }`}
+      className={`${hasScrolled ? 'header header-sticky is-sticky' : 'header header-sticky'}`}
     >
       <div className="header-bottom menu-center">
         <div className="container">
           <div className="row justify-content-between">
             <div className="col mt-10 mb-10">
-              <div className="logo">
+              <div className="header-logo">
                 <NavLink to="/">
-                  <img
-                    src={require("../../assets/images/logo.png")}
-                    alt="company-logo"
-                  />
+                  <img src={require('../../assets/images/logo.png')} alt="company-logo" />
                 </NavLink>
               </div>
             </div>
@@ -70,14 +41,15 @@ const Header = ({authenticated}) => {
             <div className="col d-none d-lg-flex">
               <nav className="main-menu">
                 <ul>
-                  {menuLink.map((link, index) => (
-                    (!authenticated && link.name === 'Properties') ? null :
-                    <li key={index}>
-                      <NavLink to={link.path} activeClassName="activeLink">
-                        {link.name}
-                      </NavLink>
-                    </li>
-                  ))}
+                  {menuLink.map((link, index) =>
+                    !authenticated && link.name === 'Properties' ? null : (
+                      <li key={index}>
+                        <NavLink to={link.path} activeClassName="activeLink">
+                          {link.name}
+                        </NavLink>
+                      </li>
+                    )
+                  )}
                 </ul>
               </nav>
             </div>
@@ -110,11 +82,33 @@ const Header = ({authenticated}) => {
   );
 };
 
+Header.defaultProps = {
+  menuLink: [
+    {
+      name: 'Home',
+      path: '/'
+    },
+    {
+      name: 'Properties',
+      path: '/properties'
+    },
+    {
+      name: 'Agent',
+      path: '/agent'
+    },
+    {
+      name: 'Agencies',
+      path: '/agencies'
+    },
+    {
+      name: 'Contact Us',
+      path: '/contact-us'
+    }
+  ]
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   authenticated: state.auth.isAuthenticated
-})
+});
 
 export default connect(mapStateToProps)(Header);
-
-
