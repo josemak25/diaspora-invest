@@ -12,6 +12,7 @@ import "./assets/css/icofont.min.css";
 import { getUser, logout } from "./redux/actions/login.action";
 import { getProperties } from './redux/actions/property.action';
 import { getPropertyCategories } from './redux/actions/add-properties.action';
+import { getAgencies } from "./redux/actions/dashboard.action";
 
 const currentSession = setUser();
 
@@ -24,6 +25,7 @@ if (currentSession) {
 
 store.dispatch(getProperties({ page: 0, initialState: {} }));
 store.dispatch(getPropertyCategories());
+store.dispatch(getAgencies());
 
 
 function App() {

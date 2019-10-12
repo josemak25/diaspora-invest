@@ -29,3 +29,8 @@ export const SET_CATEGORY = "SET_CATEGORY";
 
 //Reset redux state
 export const RESET = "RESET";
+
+//Admin Dashboard
+export const AGENCIES = "AGENCIES";
+export const AGENCIES_LOADING = "AGENCIES_LOADING";
+export const APPROVAL_PROCESSING = "APPROVAL_PROCESSING";

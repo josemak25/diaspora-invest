@@ -21,14 +21,23 @@ export default function AgentCard({ agent }) {
         </div>
       </div>
       <div className="agent-card-footer">
-        <img src={agent.avater} alt="agent-avater" />
+        <img src={agent.avatar} alt="agent-avater" />
         <div>
           <span className="agent-card-footer-business_name">
-            {agent.business_name}
+            {formatString(agent.business_name)}
           </span>
-          <span className="agent-card-footer-email">{agent.email}</span>
+          <span className="agent-card-footer-email">{formatString(agent.user_email)}</span>
         </div>
       </div>
     </Link>
   );
+}
+
+function formatString(str) {
+  const len = str.length;
+  if (len > 20) {
+    return `${str.substr(0, 20)}...`;
+  } else {
+    return str;
+  }
 }

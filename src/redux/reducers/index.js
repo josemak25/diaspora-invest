@@ -5,6 +5,7 @@ import propertyReducers from "./property.reducers";
 import accountReducers from './account.reducers';
 import addPropertyReducers from './add-properties.reducers';
 import categoryReducers from './category.reducer';
+import dashboardReducers from '../reducers/dashboard.reducers';
 
 export default combineReducers({
 	auth: authReducers,
@@ -12,5 +13,6 @@ export default combineReducers({
 	properties: propertyReducers,
 	account: accountReducers,
 	addProperty: addPropertyReducers,
-	category: categoryReducers
+	category: categoryReducers,
+	dashboard: dashboardReducers
 });
