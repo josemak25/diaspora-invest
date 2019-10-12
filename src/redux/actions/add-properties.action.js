@@ -4,7 +4,6 @@ import SupportHeader from "../../utils/SupportHeader";
 import { SET_CATEGORY, PROPERTY_UPLOADING } from "../types";
 
 
-
 export const uploadProperty = propertyValues => async dispatch => {
   try {
     const res = await axios.post(`${process.env.REACT_APP_ENDPOINT_URL}/property/create`, propertyValues, SupportHeader());

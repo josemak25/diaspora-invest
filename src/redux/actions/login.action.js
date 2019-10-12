@@ -15,6 +15,7 @@ import { createToken, eraseToken } from '../../utils/token';
 import SupportHeader from '../../utils/SupportHeader';
 
 import { getAgencyProfileDetails } from './account.action';
+import { getAgencies } from './dashboard.action';
 
 // User loading
 export const fetchingUser = payload => {
@@ -46,6 +47,10 @@ export const loginUser = (values, navigateUser) => async dispatch => {
 			dispatch({ type: AGENCY_LOADING, payload: false });
 		}
 
+		if (res.data.payload.user_type === "admin") {
+			store.dispatch(getAgencies());
+		}
+
 		dispatch(fetchingUser(false));
 		dispatch({ type: CLEAR_ERRORS });
 		navigateUser && navigateUser();
@@ -72,7 +77,7 @@ export const getUser = () => async dispatch => {
 			payload: res.data,
 		});
 
-		if( res.data.payload.user_type === 'seller') {
+		if (res.data.payload.user_type === 'seller') {
 			store.dispatch(getAgencyProfileDetails(userId));
 		};
   }
