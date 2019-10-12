@@ -1,37 +1,31 @@
 #main-wrapper {
-  border: 1px black solid;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .account-setup-section {
   margin-top: 8rem;
 }
 
-@media only screen and (max-width: 320px) {
-  #main-wrapper {
-    height: 100%;
-  }
+.account-setup-title h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  opacity: 0.8;
+  letter-spacing: 2px;
+  text-align: center;
+}
 
-  .account-setup-title h1 {
-    font-size: 1rem;
-    font-weight: 700;
-    opacity: 0.8;
-    letter-spacing: 2px;
-    text-align: center;
-  }
+.account-setup-title p {
+  text-align: center;
+}
 
-  .account-setup-title p {
-    text-align: center;
-  }
+.profile-setup-submit {
+  text-align: center;
+}
 
-  .profile-setup-submit {
-    text-align: center;
-  }
-
-  .profile-setup-submit button {
-    width: inherit;
-  }
+.profile-setup-submit button {
+  width: inherit;
+  border-radius: 2px;
 }
 
 .profile-setup-input-tags span {
@@ -58,6 +52,10 @@
   font-size: 10px;
 }
 
+.document-upload-preview {
+  height: 0%;
+}
+
 .document-upload-preview div {
   padding: 0px;
   width: 80px;
@@ -71,4 +69,135 @@
 
 .complete-business-profile-setup {
   font-size: x-small;
+}
+
+@media only screen and (max-width: 320px) {
+  .document-upload-preview div {
+    margin-right: 1px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    width: 70px;
+  }
+
+  .property-upload-preview span {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 360px) {
+  #main-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .account-setup-title h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  .account-setup-title p {
+    text-align: center;
+  }
+
+  .business-name,
+  .profile-setup-input-tags,
+  .upload-container,
+  .upload-success-message,
+  .setup-main-contanier,
+  .profile-setup-submit {
+    padding: 0;
+  }
+
+  .account-setup-section {
+    margin-top: 10rem;
+  }
+
+  .business-profile-upload-container {
+    margin-bottom: 15px;
+  }
+
+  .business-profile-upload-container i {
+    font-size: 25px;
+    margin-bottom: 0px;
+  }
+
+  .document-upload-preview div {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  #main-wrapper {
+    height: 100vh;
+    border: 1px solid black;
+  }
+
+  .account-setup-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .account-setup-title p {
+    font-size: 22px;
+  }
+
+  .form-container {
+    padding: 0 7rem;
+  }
+
+  .form-container div {
+    margin-bottom: 20px !important;
+  }
+
+  .profile-setup-input-tags:last-child {
+    margin-bottom: 0px !important;
+  }
+
+  .complete-business-profile-setup {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .account-setup-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .account-setup-section {
+    margin-top: 15rem !important;
+  }
+
+  .form-container {
+    padding: 0 13rem;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  #main-wrapper {
+    height: 100%;
+    border: 1px solid black;
+  }
+
+  .form-container {
+    padding: 0 24rem;
+  }
+
+  .form-container div {
+    margin-bottom: 30px !important;
+  }
+
+  .form-container div:last-child {
+    margin-bottom: 0px !important;
+  }
+
+  .business-profile-upload-container {
+    padding: 1.5rem 0;
+  }
+
+  .spinner-border {
+    margin-bottom: 0px !important;
+  }
 }

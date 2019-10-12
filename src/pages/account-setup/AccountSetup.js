@@ -61,7 +61,7 @@ const SellerSetup = ({ inputFields }) => {
     <div id="main-wrapper">
       <div className="container">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 setup-main-contanier">
             <div className="account-setup-section section pb-60 pb-lg-40 pb-md-30 pb-sm-20 pb-xs-10">
               <div className="container">
                 {/* <!--Section Title start--> */}
@@ -77,8 +77,8 @@ const SellerSetup = ({ inputFields }) => {
 
                 {/* <!--Setup Form Business Profile start--> */}
                 <form onSubmit={handleSubmit}>
-                  <div className="row">
-                    <div className="col-12 mb-30">
+                  <div className="row form-container">
+                    <div className="col-12 mb-30 business-name">
                       <label htmlFor="name">Business Name</label>
                       <Input
                         name="name"
@@ -93,7 +93,7 @@ const SellerSetup = ({ inputFields }) => {
                     <div className="col-12">
                       <div className="row">
                         {inputFields.map((field, i) => (
-                          <div className="col-md-6 col-12 mb-30 profile-setup-input-tags" key={i}>
+                          <div className="col-md-12 col-12 mb-30 profile-setup-input-tags" key={i}>
                             <label htmlFor="personal_email">
                               Business
                               <span>
@@ -115,7 +115,7 @@ const SellerSetup = ({ inputFields }) => {
                       </div>
                     </div>
 
-                    <div className="col-12 mb-30">
+                    <div className="col-12 mb-30 upload-container">
                       <label>Upload Documents</label>
                       <div className="container text-center mt-5 business-upload-container">
                         <div
@@ -154,8 +154,11 @@ const SellerSetup = ({ inputFields }) => {
                       )}
                     </div>
 
-                    <div className="col-12 mb-15 mt-0">
-                      <div className="alert alert-success pb-0 pt-0 complete-business-profile-setup" role="alert">
+                    <div className="col-12 mb-15 mt-0 upload-success-message">
+                      <div
+                        className="alert alert-success pb-0 pt-0 complete-business-profile-setup"
+                        role="alert"
+                      >
                         Created Business Profile Successfully !!!
                       </div>
                     </div>

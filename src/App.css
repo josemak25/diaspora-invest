@@ -924,12 +924,18 @@ header.header.is-sticky {
 
 /*-- Header Logo --*/
 .header-logo {
-  margin: 15px 0;
+  height: 70px !important;
 }
 
 .header-logo a {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
+
+
 
 .header-logo a img {
   max-width: 100%;
@@ -7011,7 +7017,8 @@ header.header.is-sticky {
 }
 
 .footer-widget img {
-  margin-bottom: 18px;
+  height: 150px;
+  width: 150px
 }
 
 .footer-widget p {
