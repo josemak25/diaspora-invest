@@ -82,6 +82,24 @@
   .property-upload-preview span {
     width: 60%;
   }
+
+  .custom-filter-selector {
+    margin-bottom: 25px;
+  }
+
+  .css-1wa3eu0-placeholder {
+    font-size: 10px;
+  }
+
+  .custom-filter-selector div {
+    margin: 0px !important;
+  }
+
+  .css-yk16xz-control,
+  .css-1hwfws3,
+  .css-1wa3eu0-placeholder {
+    margin: 0px !important;
+  }
 }
 
 @media only screen and (min-width: 360px) {
@@ -128,12 +146,29 @@
     margin-bottom: 5px;
     border-radius: 5px;
   }
+
+  .custom-filter-selector {
+    margin-bottom: 25px;
+  }
+
+  .css-1wa3eu0-placeholder {
+    font-size: 12px;
+  }
+
+  .custom-filter-selector div {
+    margin: 0px !important;
+  }
+
+  .css-yk16xz-control,
+  .css-1hwfws3,
+  .css-1wa3eu0-placeholder {
+    margin: 0px !important;
+  }
 }
 
 @media only screen and (min-width: 640px) {
   #main-wrapper {
     height: 100vh;
-    border: 1px solid black;
   }
 
   .account-setup-title h1 {
@@ -159,6 +194,16 @@
   .complete-business-profile-setup {
     text-align: center;
   }
+
+  .custom-filter-selector div {
+    margin: 0px !important;
+  }
+
+  .css-yk16xz-control,
+  .css-1hwfws3,
+  .css-1wa3eu0-placeholder {
+    margin: 0px !important;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -173,12 +218,21 @@
   .form-container {
     padding: 0 13rem;
   }
+
+  .custom-filter-selector div {
+    margin: 0px !important;
+  }
+
+  .css-yk16xz-control,
+  .css-1hwfws3,
+  .css-1wa3eu0-placeholder {
+    margin: 0px !important;
+  }
 }
 
 @media only screen and (min-width: 1280px) {
   #main-wrapper {
     height: 100%;
-    border: 1px solid black;
   }
 
   .form-container {
@@ -199,5 +253,15 @@
 
   .spinner-border {
     margin-bottom: 0px !important;
+  }
+
+  .custom-filter-selector div {
+    margin: 0px !important;
+  }
+
+  .css-yk16xz-control,
+  .css-1hwfws3,
+  .css-1wa3eu0-placeholder {
+    margin: 0px !important;
   }
 }

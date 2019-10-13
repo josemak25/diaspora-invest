@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import { Input } from '../../components/Input';
 import Button from '../../components/Button';
+import Select from '../../components/select';
 import { uploaders } from '../../utils/image-uploader';
 import { uploadProperty } from '../../redux/actions/add-properties.action';
 
 import '../../assets/css/account-setup.css';
 
-const SellerSetup = ({ inputFields }) => {
+const SellerSetup = ({ inputFields, documents }) => {
   const initialImageState = {
     images: [],
     imageUpload: false
@@ -51,6 +52,10 @@ const SellerSetup = ({ inputFields }) => {
     const imageIndex = e.currentTarget.getAttribute('data-key');
     const newImages = imageState.images.filter((image, index) => index !== +imageIndex);
     setImages(newImages);
+  };
+
+  const handleOnSelect = ({ label, value }) => {
+    setValues({ ...values, [label]: value });
   };
 
   const handleSubmit = e => {
@@ -116,6 +121,11 @@ const SellerSetup = ({ inputFields }) => {
                     </div>
 
                     <div className="col-12 mb-30 upload-container">
+                      <Select
+                        options={documents}
+                        placeholder="Select name of document"
+                        onChange={handleOnSelect}
+                      />
                       <label>Upload Documents</label>
                       <div className="container text-center mt-5 business-upload-container">
                         <div
@@ -220,5 +230,9 @@ SellerSetup.defaultProps = {
       id: 'business_address',
       errorMessage: 'Business address must be more than six characters'
     }
+  ],
+  documents: [
+    { value: 'C_A_C', label: 'CAC' },
+    { value: 'company_profile', label: 'Company Profile' }
   ]
 };

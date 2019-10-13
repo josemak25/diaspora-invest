@@ -79,7 +79,7 @@ function Main({ authenticated }) {
             path="/login-signup"
             component={LoginSignup}
           />
-          <PublicRoute
+          <PrivateRoute
             hasValidAccess={authenticated}
             exact
             path="/account-setup"

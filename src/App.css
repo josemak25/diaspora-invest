@@ -7267,8 +7267,16 @@ header.header.is-sticky {
   border-radius: 5px !important;
 }
 
+.css-1uccc91-singleValue {
+  color: #666666 !important
+}
+
 #mc-email {
   border-radius: 0 !important;
   height: 40px;
   background: #fff !important
+}
+
+.custom-filter-selector {
+  width: 100% !important;
 }

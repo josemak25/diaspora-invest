@@ -44,7 +44,7 @@ const Header = ({ authenticated, menuLink }) => {
                   {menuLink.map((link, index) =>
                     !authenticated && link.name === 'Properties' ? null : (
                       <li key={index}>
-                        <NavLink to={link.path} activeClassName="activeLink">
+                        <NavLink exact to={link.path} activeClassName="activeLink">
                           {link.name}
                         </NavLink>
                       </li>
