@@ -12,9 +12,13 @@ const isSeller = isUserType("seller");
 
 const Sidebar = ({ links, logout }) => {
   const { user_type } = useSelector(({auth}) => auth.user );
+  const { hasAgency } = useSelector(({ account }) => account);
 
   const ListItems = links.map((link, index) => {
-    if ( (user_type !== 'seller') && (link.name === "Agency Profile")) {
+    if (
+      (user_type !== "seller" && link.name === "Agency Profile") ||
+      (user_type === "seller" && !hasAgency && link.name === "Agency Profile")
+    ) {
       return null;
     };
     return <SidebarLink key={index} text={link.name} url={link.url} icon={link.icon} />
@@ -28,7 +32,7 @@ const Sidebar = ({ links, logout }) => {
     <>
       <ul className="myaccount-tab-list nav">
         {ListItems}
-        {user_type === "seller" && (
+        {(user_type === "seller" && hasAgency) && (
           <li>
             <NavLink to="/add-properties">
               <i className="pe-7s-home adjust"></i>

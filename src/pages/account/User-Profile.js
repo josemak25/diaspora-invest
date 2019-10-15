@@ -108,7 +108,7 @@ const UserProfile = (props) => {
                   )
                 }
                 moreStyle="property-submit"
-              />{" "}
+              />
             </div>
           </div>
         </form>
