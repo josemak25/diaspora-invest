@@ -17,6 +17,7 @@
     "npm": "^6.11.2",
     "popper.js": "^1.15.0",
     "react": "^16.9.0",
+    "react-compound-slider": "^2.3.0",
     "react-cookie": "^4.0.1",
     "react-dom": "^16.9.0",
     "react-dropzone": "^10.1.10",
