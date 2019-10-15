@@ -15,7 +15,7 @@ export const Input = ({ name, defaultValue, value, type, placeholder, id, onChan
         checked={checked}
         readOnly={readOnly}
       />
-      {error && (<span className="error-message">{errorMessage ? errorMessage : (`${name} is required*`)}</span>)}
+      {error && (<span className="error-message" style={{fontSize:'70%'}}>{errorMessage ? errorMessage : (`${name} is required*`)}</span>)}
     </>
   );
 };
