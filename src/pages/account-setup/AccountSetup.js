@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
+
 import { Input } from '../../components/Input';
 import Button from '../../components/Button';
 import Select from '../../components/select';
+
 import { uploaders } from '../../utils/image-uploader';
+import { setUpAgencyProfile } from '../../redux/actions/account.action'
 import { uploadProperty } from '../../redux/actions/add-properties.action';
+import { validateAgencyProfileFields } from '../../utils/editProfile';
 
 import '../../assets/css/account-setup.css';
 
-const SellerSetup = ({ inputFields, documents }) => {
+const SellerSetup = ({ inputFields, documents, setUpAgencyProfile }) => {
+  const { loading, error, hasAgency } = useSelector(({ account }) => account);
   const initialImageState = {
     images: [],
     imageUpload: false
@@ -18,9 +23,16 @@ const SellerSetup = ({ inputFields, documents }) => {
 
   const [errors, setErrors] = useState({});
   const [imageState, setImages] = useState(initialImageState);
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({
+    business_name: "",
+    email: "",
+    business_address: '',
+    website: '',
+    phone: ''
+  });
 
   const handleChange = ({ target: { name, value } }) => {
+    console.log({ name: value });
     setErrors({ ...errors, [name]: '' });
     setValues({ ...values, [name]: value });
   };
@@ -33,9 +45,10 @@ const SellerSetup = ({ inputFields, documents }) => {
 
     // Once all the files are uploaded
     axios.all(uploaders(files)).then(data => {
+      
       setImages({
         ...imageState,
-        images: [...images, ...data],
+        images: [...images, {[values.label]: data[0]}],
         imageUpload: false
       });
     });
@@ -54,14 +67,22 @@ const SellerSetup = ({ inputFields, documents }) => {
     setImages(newImages);
   };
 
-  const handleOnSelect = ({ label, value }) => {
-    setValues({ ...values, [label]: value });
+  const handleOnSelect = ({ value }) => {
+    setValues({ ...values, label: value });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log(imageState.images)
+    const formIsValid = validateAgencyProfileFields(values, values.email, imageState.images);
+    if (Object.keys(formIsValid).length) {
+      setErrors(formIsValid);
+      return;
+    }
+    setUpAgencyProfile({...values, documents: imageState.images  });
     setErrors({});
   };
+  
   return (
     <div id="main-wrapper">
       <div className="container">
@@ -86,23 +107,29 @@ const SellerSetup = ({ inputFields, documents }) => {
                     <div className="col-12 mb-30 business-name">
                       <label htmlFor="name">Business Name</label>
                       <Input
-                        name="name"
+                        name="business_name"
                         type="text"
                         id="name"
-                        value=""
+                        value={values.business_name}
                         onChange={handleChange}
-                        error={errors.name}
+                        error={errors.business_name}
                         errorMessage="Name must be more than three characters"
+                        readOnly={hasAgency}
                       />
                     </div>
                     <div className="col-12">
                       <div className="row">
                         {inputFields.map((field, i) => (
-                          <div className="col-md-12 col-12 mb-30 profile-setup-input-tags" key={i}>
+                          <div
+                            className="col-md-12 col-12 mb-30 profile-setup-input-tags"
+                            key={i}
+                          >
                             <label htmlFor="personal_email">
                               Business
                               <span>
-                                {`${field.name.charAt(0).toUpperCase()}${field.name.substr(
+                                {`${field.name
+                                  .charAt(0)
+                                  .toUpperCase()}${field.name.substr(
                                   1,
                                   field.name.length
                                 )}`}
@@ -112,8 +139,11 @@ const SellerSetup = ({ inputFields, documents }) => {
                               name={field.name}
                               type={field.text}
                               id={field.id}
-                              value=""
+                              value={values[field.name]}
                               onChange={handleChange}
+                              error={errors[field.name]}
+                              errorMessage={errors[field.name]}
+                              readOnly={hasAgency}
                             />
                           </div>
                         ))}
@@ -121,18 +151,24 @@ const SellerSetup = ({ inputFields, documents }) => {
                     </div>
 
                     <div className="col-12 mb-30 upload-container">
+                      <label>Upload Documents</label>
                       <Select
                         options={documents}
                         placeholder="Select name of document"
                         onChange={handleOnSelect}
+                        isDisabled={hasAgency}
                       />
-                      <label>Upload Documents</label>
-                      <div className="container text-center mt-5 business-upload-container">
+                      <div
+                        className="container text-center mt-5 business-upload-container"
+                        id={hasAgency && "disabled-div"}
+                      >
                         <div
                           {...getRootProps()}
                           className="property-upload business-profile-upload-container"
                         >
-                          {!imageState.imageUpload ? <input {...getInputProps()} /> : null}
+                          {!imageState.imageUpload ? (
+                            <input {...getInputProps()} />
+                          ) : null}
                           {!isDragActive && (
                             <>
                               <i className="pe-7s-cloud-upload" />
@@ -148,11 +184,15 @@ const SellerSetup = ({ inputFields, documents }) => {
                       {imageState.images.length > 0 && (
                         <div className="text-danger mt-2 property-upload-preview document-upload-preview">
                           {imageState.images.map((url, index) => (
-                            <div key={index} data-key={index} onClick={handleImageDelete}>
+                            <div
+                              key={index}
+                              data-key={index}
+                              onClick={handleImageDelete}
+                            >
                               <span style={{ backgroundImage: `url(${url})` }}>
                                 <img
                                   alt="cancel-icon"
-                                  src={require('../../assets/images/icons/cancel-image.svg')}
+                                  src={require("../../assets/images/icons/cancel-image.svg")}
                                 />
                               </span>
                             </div>
@@ -160,25 +200,46 @@ const SellerSetup = ({ inputFields, documents }) => {
                         </div>
                       )}
                       {errors.images && (
-                        <span className="error-message">Upload at least one document*</span>
+                        <span className="error-message">{errors.images}*</span>
                       )}
                     </div>
 
-                    <div className="col-12 mb-15 mt-0 upload-success-message">
-                      <div
-                        className="alert alert-success pb-0 pt-0 complete-business-profile-setup"
-                        role="alert"
-                      >
-                        Created Business Profile Successfully !!!
+                    {loading && (
+                      <div className="col-12 mb-15 mt-0 upload-success-message">
+                        <div
+                          className="alert alert-success pb-0 pt-0 complete-business-profile-setup"
+                          role="alert"
+                        >
+                          Created Business Profile Successfully !!!
+                        </div>
                       </div>
-                    </div>
+                    )}
+                    {(error || hasAgency) && (
+                      <div className="col-12 mb-15 mt-0 upload-success-message">
+                        <div
+                          className="alert alert-danger pb-0 pt-0 complete-business-profile-setup"
+                          role="alert"
+                        >
+                          {error ||
+                            "You already have an agency profile, Check your Account"}
+                        </div>
+                      </div>
+                    )}
                     <div className="col-12 mb-30 profile-setup-submit">
                       <Button
+                        disabled={hasAgency}
                         submit="submit"
                         textContent={
-                          <div className="spinner-border text-success" role="status">
-                            <span className="sr-only">Loading...</span>
-                          </div>
+                          loading ? (
+                            <div
+                              className="spinner-border text-success"
+                              role="status"
+                            >
+                              <span className="sr-only">Loading...</span>
+                            </div>
+                          ) : (
+                            "Submit"
+                          )
                         }
                         moreStyle="profile-submit"
                       />
@@ -196,7 +257,8 @@ const SellerSetup = ({ inputFields, documents }) => {
 };
 
 const mapActionsToProps = {
-  uploadProperty
+  uploadProperty,
+  setUpAgencyProfile
 };
 
 export default connect(
@@ -207,32 +269,32 @@ export default connect(
 SellerSetup.defaultProps = {
   inputFields: [
     {
-      name: 'email',
-      type: 'email',
-      id: 'business_email',
-      errorMessage: 'Business email must be a valid email'
+      name: "email",
+      type: "email",
+      id: "business_email",
+      errorMessage: "Business email must be a valid email"
     },
     {
-      name: 'phone',
-      type: 'number',
-      id: 'business_number',
-      errorMessage: 'Phone number must be valid'
+      name: "phone",
+      type: "number",
+      id: "business_number",
+      errorMessage: "Phone number must be valid"
     },
     {
-      name: 'website',
-      type: 'text',
-      id: 'business_website',
-      errorMessage: 'Business website must be more than six characters'
+      name: "website",
+      type: "text",
+      id: "business_website",
+      errorMessage: "Business website must be more than six characters"
     },
     {
-      name: 'address',
-      type: 'text',
-      id: 'business_address',
-      errorMessage: 'Business address must be more than six characters'
+      name: "business_address",
+      type: "text",
+      id: "business_address",
+      errorMessage: "Business address must be more than six characters"
     }
   ],
   documents: [
-    { value: 'C_A_C', label: 'CAC' },
-    { value: 'company_profile', label: 'Company Profile' }
+    { value: "CAC", label: "CAC" },
+    { value: "company_profile", label: "Company Profile" }
   ]
 };
