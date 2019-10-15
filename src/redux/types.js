@@ -34,3 +34,7 @@ export const RESET = "RESET";
 export const AGENCIES = "AGENCIES";
 export const AGENCIES_LOADING = "AGENCIES_LOADING";
 export const APPROVAL_PROCESSING = "APPROVAL_PROCESSING";
+
+//Agency Profile Setup
+export const SAVING_AGENCY_PROFILE = "SAVING_AGENCY_PROFILE";
+export const HAS_AGENCY = "HAS_AGENCY";
