@@ -1,5 +1,4 @@
 import { SET_CURRENT_USER, USER_LOADING, SET_ERRORS, SET_AUTHENTICATED, SET_NEW_USER, SET_UNAUTHENTICATED, CLEAR_ERRORS, RESET } from '../types';
-// import isEmpty from 'is-empty';
 
 const initialState = {
   isAuthenticated: false,

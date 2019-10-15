@@ -49,7 +49,6 @@ export default function SignUpForm({ history, ...props }) {
 					setErrors(res.data.errors);
 				}
 				if (res.data.statusCode === 200) {
-					alert(`Welcome ${res.data.payload.name}`);
 					setValues({
 						name: '',
 						email: '',
