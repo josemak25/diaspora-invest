@@ -10,8 +10,9 @@ import PartnersList from './PartnersList';
 
 import formatPrice from '../../utils/formatPrice';
 
-const HomePage = ({ heroProperty, packages, downloads, agents }) => {
+const HomePage = ({ heroProperty, packages, downloads }) => {
   const { properties } = useSelector(({ properties }) => properties);
+  const { isAuthenticated } = useSelector(({ auth }) => auth);
 
   return (
     <div id="main-wrapper">
@@ -39,18 +40,34 @@ const HomePage = ({ heroProperty, packages, downloads, agents }) => {
               <div className="property-item col-lg-4 col-md-6 col-12 mb-40" key={i}>
                 <div className="property-inner">
                   <div className="image">
-                    <a href="single-properties.html">
+                    <Link
+                      to={{
+                        pathname: `${
+                          isAuthenticated ? `/property/${property.id}` : '/login-signup'
+                        }`,
+                        state: property
+                      }}
+                    >
                       <img
                         src={property.images[Math.floor(Math.random() * property.images.length)]}
                         alt="property_image"
                         className="property-inner-image"
                       />
-                    </a>
+                    </Link>
                   </div>
                   <div className="content">
                     <div className="left">
                       <h3 className="title">
-                        <a href="single-properties.html">{property.name.substr(0, 20)}...</a>
+                        <Link
+                          to={{
+                            pathname: `${
+                              isAuthenticated ? `/property/${property.id}` : '/login-signup'
+                            }`,
+                            state: property
+                          }}
+                        >
+                          {property.name.substr(0, 20)}...
+                        </Link>
                       </h3>
                       <span className="location">
                         <img
@@ -157,7 +174,7 @@ const HomePage = ({ heroProperty, packages, downloads, agents }) => {
       {/* <!--Services section end--> */}
 
       <div className="agent-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
-        <AgentList agents={agents} />
+        {/* <AgentList agents={agents} /> */}
       </div>
 
       <div className="brand-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
@@ -167,8 +184,6 @@ const HomePage = ({ heroProperty, packages, downloads, agents }) => {
     </div>
   );
 };
-
-export default HomePage;
 
 HomePage.defaultProps = {
   heroProperty: [
@@ -234,3 +249,5 @@ HomePage.defaultProps = {
     })
   ]
 };
+
+export default HomePage;

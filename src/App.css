@@ -5542,7 +5542,7 @@ header.header.is-sticky {
 }
 
 .brand img {
-  max-width: 100%;
+  max-width: 50% !important;  
   margin: auto;
 }
 
