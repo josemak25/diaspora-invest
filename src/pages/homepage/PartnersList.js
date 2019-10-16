@@ -30,12 +30,5 @@ const PartnersList = ({ partners }) => {
 export default PartnersList;
 
 PartnersList.defaultProps = {
-  partners: [
-    'brand-1.png',
-    'brand-2.png',
-    'brand-3.png',
-    'brand-4.png',
-    'brand-5.png',
-    'brand-6.png'
-  ]
+  partners: ['brand-1.png', 'brand-4.svg', 'brand-3.png']
 };
