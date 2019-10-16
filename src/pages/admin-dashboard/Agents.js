@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from "react-redux";
-
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import DashboardHeader from './DashboardHeader';
 import Select from '../../components/select';
 import AgentCard from '../../components/AgentCard';
-import { formatAgentListsDate } from '../../utils/formatDate';
 
-export default function Agents({ options, agency_profiles }) {
+export default function Agents({ options }) {
   const { agencies, loading } = useSelector(({ dashboard }) => dashboard);
 
   const [agent, setAgent] = useState('');
@@ -30,14 +28,8 @@ export default function Agents({ options, agency_profiles }) {
         <div className="filter-agents">
           <Select options={options} placeholder="Filter Agents" />
         </div>
-        <div className="current-time-date">
-          <span>{formatAgentListsDate()}</span>
-          <div />
-        </div>
         <div className="main-body-agent-list">
-          {!loading && agencies.map((agent, i) => (
-            <AgentCard key={i} agent={agent} />
-          ))}
+          {!loading && agencies.map((agent, i) => <AgentCard key={i} agent={agent} />)}
         </div>
       </main>
     </>

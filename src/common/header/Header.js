@@ -93,14 +93,6 @@ Header.defaultProps = {
       path: '/properties'
     },
     {
-      name: 'Agent',
-      path: '/agent'
-    },
-    {
-      name: 'Agencies',
-      path: '/agencies'
-    },
-    {
       name: 'Contact Us',
       path: '/contact-us'
     }

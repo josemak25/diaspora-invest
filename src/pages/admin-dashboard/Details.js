@@ -1,7 +1,7 @@
 import React from 'react';
-import moment from "moment";
+import moment from 'moment';
 
-export default function Details({ details, user }) {
+export default function Details({ details, docHeaderLinks }) {
   const {
     profile_id,
     noOfProperties,
@@ -30,13 +30,13 @@ export default function Details({ details, user }) {
         <div className="agent-details-status">
           <div>
             <span>
-              <p>Created: {moment(Date.now()).format("ll")}</p>
+              <p>Created: {moment(Date.now()).format('ll')}</p>
               <p>Email: {profile_email}</p>
             </span>
             <span className="agent-account-approval-status">
               <p>status</p>
-              <p style={{ color: `${isApproved ? "#008e87" : "red"}` }}>
-                {isApproved ? "approved account" : "unapproved account"}
+              <p style={{ color: `${isApproved ? '#008e87' : 'red'}` }}>
+                {isApproved ? 'approved account' : 'unapproved account'}
               </p>
             </span>
           </div>
@@ -47,7 +47,7 @@ export default function Details({ details, user }) {
                 <div>90%</div>
               </span>
               <img
-                src={require("../../assets/images/icons/shield.svg")}
+                src={require('../../assets/images/icons/shield.svg')}
                 alt="account-completeness-checker"
               ></img>
             </div>
@@ -69,12 +69,11 @@ export default function Details({ details, user }) {
               <span>{user_email}</span>
             </div>
             <div>
-              <span>email verified:</span>{" "}
-              <span>{email_verified ? "yes" : "no"}</span>
+              <span>email verified:</span> <span>{email_verified ? 'yes' : 'no'}</span>
             </div>
             <div>
               <span>created:</span>
-              <span>{moment(createdAt).format("ll")}</span>
+              <span>{moment(createdAt).format('ll')}</span>
             </div>
           </div>
           <div className="agent-details-record-container">
@@ -97,7 +96,7 @@ export default function Details({ details, user }) {
             </div>
             <div>
               <span>approved date:</span>
-              <span>{moment(approvedAt).format("ll")}</span>
+              <span>{moment(approvedAt).format('ll')}</span>
             </div>
           </div>
           <div className="agent-details-record-container">
@@ -112,7 +111,42 @@ export default function Details({ details, user }) {
           </div>
         </div>
       </div>
-      <div className="agent-details-top-properties"></div>
+      <div className="agent-details-documents">
+        <div className="agent-details-documents-header">
+          <ul>
+            {docHeaderLinks.map((link, i) => (
+              <li key={i}>{link}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="agent-details-documents-data">
+          <ul>
+            {documents.map((doc, i) => (
+              <li key={i}>
+                <span>{doc.name}</span>
+                <span>{doc.type}</span>
+                <span>
+                  <div id="agent-details-documents-status-cover">
+                    <div id="agent-details-documents-status-content" />
+                  </div>
+                </span>
+                <span>
+                  <a href={doc.link} download target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={require('../../assets/images/icons/download.svg')}
+                      alt="agent-document"
+                    />
+                  </a>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </>
   );
 }
+
+Details.defaultProps = {
+  docHeaderLinks: ['Doc Name', 'Doc Type', 'Status', 'Download']
+};
