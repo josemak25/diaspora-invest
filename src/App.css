@@ -7301,3 +7301,12 @@ header.header.is-sticky {
   pointer-events: none;
   opacity: 0.4;
 }
+
+/* @media only screen and (min-width: 360px)  */
+.custom-filter-selector .css-2b097c-container {
+  margin-bottom: 8px!important;
+}
+
+.submit-btn {
+  color: white!important;
+}

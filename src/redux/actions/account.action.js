@@ -67,7 +67,6 @@ export const setUpAgencyProfile = ({ business_name, email, business_address, web
       },
       SupportHeader()
     );
-    console.log(res);
     setTimeout(() => {
       dispatch({ type: SAVING_AGENCY_PROFILE, payload: false });
     }, 3000);

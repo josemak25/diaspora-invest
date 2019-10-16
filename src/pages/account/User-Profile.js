@@ -8,9 +8,11 @@ import Button from '../../components/Button';
 import { validateProfileFields } from '../../utils/editProfile';
 
 import { editUserDetails } from "../../redux/actions/account.action";
+import _ from "../../utils/isEqual";
 
 const UserProfile = (props) => {
   const { user: {id, name, email, phone}, loading } = useSelector(({ auth }) => auth);
+  const formData = {id, name, email, phone };
 
   const [errors, setErrors] = useState({});
 
@@ -41,6 +43,8 @@ const UserProfile = (props) => {
 
     setErrors({});
   };
+
+  const diff = _.isEqual(values, formData)
 
   return (
     <>
@@ -97,6 +101,7 @@ const UserProfile = (props) => {
             )}
             <div className="col-12 mb-30">
               <Button
+                disabled={diff}
                 submit="submit"
                 textContent={
                   loading ? (

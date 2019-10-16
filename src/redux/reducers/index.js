@@ -6,6 +6,8 @@ import accountReducers from './account.reducers';
 import addPropertyReducers from './add-properties.reducers';
 import categoryReducers from './category.reducer';
 import dashboardReducers from '../reducers/dashboard.reducers';
+import bookmarkedPropertiesReducers from '../reducers/bookmark.reducers';
+import agencyPropertiesReducers from '../reducers/agency-properties.reducers';
 
 export default combineReducers({
 	auth: authReducers,
@@ -14,5 +16,7 @@ export default combineReducers({
 	account: accountReducers,
 	addProperty: addPropertyReducers,
 	category: categoryReducers,
-	dashboard: dashboardReducers
+	dashboard: dashboardReducers,
+	bookmarkedProperties: bookmarkedPropertiesReducers,
+	agencyProperties: agencyPropertiesReducers
 });

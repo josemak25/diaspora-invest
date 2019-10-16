@@ -22,7 +22,7 @@ export const agenciesApproval = ({ id, action }) => async dispatch => {
   try {
     dispatch({ type: APPROVAL_PROCESSING, payload: true });
     const res = await axios.post(`${process.env.REACT_APP_ENDPOINT_URL}/agency-profile/approval`, { id, action }, SupportHeader());
-    console.log(res);
+
     dispatch({ type: APPROVAL_PROCESSING, payload: false });
   } catch (error) {
     dispatch({ type: APPROVAL_PROCESSING, payload: false });
