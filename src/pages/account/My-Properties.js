@@ -1,24 +1,56 @@
-import React from 'react';
-import Property from '../../components/Property';
+import React, { useEffect } from 'react';
 
-const MyProperties = ({ properties }) => {
+import { useSelector, connect } from 'react-redux';
+import Property from '../../components/Property';
+import { getSavedProperties, getAgencyProperties } from "../../redux/actions/property.action";
+
+
+const MyProperties = props => {
+  const { user_type } = useSelector(({ auth }) => auth.user);
+  const { agencyProperties, loading, error } = useSelector(({ agencyProperties }) => agencyProperties);
+  const { bookmarkedProperties } = useSelector(({ bookmarkedProperties}) => bookmarkedProperties);
+
+  const properties = (user_type === 'seller') ? agencyProperties : bookmarkedProperties;
+
   const PropertyCards = properties.map((property, index) => (
     <Property
       property={property}
-      cardSize='property-item col-md-6 col-12 mb-40'
+      cardSize="property-item col-md-6 col-12 mb-40"
       key={index}
     />
   ));
+
+  useEffect(() => {
+    if (user_type === 'seller'){
+      props.getAgencyProperties();
+    } else {
+      props.getSavedProperties()
+    }
+  }, [user_type]);
+
   return (
     <>
-      <div id='properties-tab' className='tab-pane'>
-        <div className='row'>{PropertyCards}</div>
+      {error && (
+        <div className="col-12 mb-15 mt-0">
+          <div className="alert alert-success pb-0 pt-0" role="alert">
+            {error}
+          </div>
+        </div>
+      )}
+      <div id="properties-tab" className="tab-pane">
+        <div className="row">{PropertyCards}</div>
       </div>
     </>
   );
 };
 
-export default MyProperties;
+const mapActionsToProps = {
+  getSavedProperties,
+  getAgencyProperties
+};
+
+export default connect(null, mapActionsToProps)(MyProperties);
+
 
 MyProperties.defaultProps = {
   properties: [

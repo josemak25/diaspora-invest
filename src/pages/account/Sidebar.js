@@ -5,22 +5,25 @@ import { NavLink } from "react-router-dom";
 import SidebarLink from './Sidebar-Link';
 import { useSelector } from 'react-redux';
 
-import { isUserType } from "../../utils/roles";
 import { logout } from '../../redux/actions/login.action';
-
-const isSeller = isUserType("seller");
 
 const Sidebar = ({ links, logout }) => {
   const { user_type } = useSelector(({auth}) => auth.user );
-  const { hasAgency } = useSelector(({ account }) => account);
+  const { agencyProfile: { isApproved } } = useSelector(({ account }) => account);
 
   const ListItems = links.map((link, index) => {
     if (
-      (user_type !== "seller" && link.name === "Agency Profile") ||
-      (user_type === "seller" && !hasAgency && link.name === "Agency Profile")
+      link.name === "Agency Profile" && (user_type !== "seller" ||
+      (user_type === "seller" && !isApproved && link.name === "Agency Profile"))
     ) {
       return null;
     };
+    if (link.name === "My Properties" && user_type === "admin") {
+      return null;
+    }
+    else if (link.name === "My Properties" && user_type === "investor") {
+      link.name = 'Bookmarked Properties';
+    }
     return <SidebarLink key={index} text={link.name} url={link.url} icon={link.icon} />
   });
 
@@ -32,7 +35,7 @@ const Sidebar = ({ links, logout }) => {
     <>
       <ul className="myaccount-tab-list nav">
         {ListItems}
-        {(user_type === "seller" && hasAgency) && (
+        {(user_type === "seller" && isApproved) && (
           <li>
             <NavLink to="/add-properties">
               <i className="pe-7s-home adjust"></i>

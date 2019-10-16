@@ -6,11 +6,10 @@ import Sidebar from './Sidebar';
 import UserProfile from './User-Profile';
 import AgencyProfile from './Agency-Profile';
 import MyProperties from './My-Properties';
-import { isUserType } from "../../utils/roles";
 import Footer from '../../common/footer/Footer';
 
 const Account = () => {
-  const { user_type } = useSelector(({auth}) => auth.user )
+  const { user_type } = useSelector(({auth}) => auth.user );
   return (
     <>
       <Jumbotron

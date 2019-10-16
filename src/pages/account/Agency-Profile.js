@@ -4,6 +4,7 @@ import { connect, useSelector } from "react-redux";
 import { editAgencyProfileDetails } from '../../redux/actions/account.action';
 
 import { validateAgencyProfileFields } from '../../utils/editProfile';
+import _ from '../../utils/isEqual';
 
 import { Input } from '../../components/Input';
 import Button from '../../components/Button';
@@ -12,6 +13,8 @@ const AgencyProfile = ({ editAgency }) => {
   const { agencyProfile: { business_name, phone, website, business_address, id, email }, loading } = useSelector(
     ({ account }) => account
   );
+
+  const formData = { business_name, phone, website, business_address, id, email }
 
   const [values, setValues] = useState(() => {
     if (localStorage.getItem("agency")) {
@@ -41,6 +44,8 @@ const AgencyProfile = ({ editAgency }) => {
 
     editAgency({ values });
   };
+
+  const diff = _.isEqual(values, formData);
 
   return (
     <>
@@ -119,6 +124,7 @@ const AgencyProfile = ({ editAgency }) => {
             )}
             <div className="col-12 mb-30">
               <Button
+                disabled={diff}
                 submit="submit"
                 textContent={
                   loading ? (
@@ -145,12 +151,3 @@ const mapActionsToProps = {
 
 export default connect(null, mapActionsToProps)(AgencyProfile);
 
-AgencyProfile.defaultProps = {
-  details: {
-    name: 'Brains & Hammers',
-    email: 'customerservice@brainsandhammers.com',
-    address: '112A Olabode George, Off Ajose Adeogun, Victoria Island, Lagos',
-    phone: '08023456789',
-    website: 'www.brainsandhammers.com'
-  }
-};

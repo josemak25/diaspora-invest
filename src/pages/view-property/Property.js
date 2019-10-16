@@ -1,29 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
+
+import { bookmarkProperty } from '../../redux/actions/bookmark.action';
 
 import Footer from "../../common/footer/Footer";
 import FeatureProperty from "../../pages/properties/FeatureProperty";
 import Jumbotron from "../../common/jumbotron/Jumbotron";
 
+import Button from '../../components/Button';
+
 const Property = props => {
-  const { properties } = useSelector(({properties}) => properties);
-  const property = props.location.state
+  const { user_type } = useSelector(({ auth }) => auth.user);
+  const { properties } = useSelector(({ properties }) => properties);
+  const { error, bookmarkedProperties } = useSelector(({ bookmarkedProperties }) => bookmarkedProperties);
+  
+  const property = props.location.state;
 
   const {
+    id,
     name,
     location,
     address,
     images,
     price,
     description,
-    user_id,
-    category_id,
     has_C_of_O,
     status,
     payment_duration,
     avg_monthly_payment
   } = property;
+
+  const bookmarked = () => bookmarkedProperties.every(property => {
+    console.log(1, property.id,  id)
+    return property.id === id;
+  });
+
+  const handleOnClick = e => {
+    e.preventDefault();
+
+    const details = { property_id: id };
+    props.bookmarkProperty(details);
+  }
+
+  const isBookmarked = bookmarked();
+
+  console.log(bookmarked()); 
   
   return (
     <div id="main-wrapper">
@@ -45,10 +67,11 @@ const Property = props => {
                         <h1 className="title">{name}</h1>
                         <span className="location">
                           <img
-                            src={require('../../assets/images/icons/marker.png')}
+                            src={require("../../assets/images/icons/marker.png")}
                             alt=""
                           />
-                          {address}, <b style={{marginLeft: '10px'}}>{location}</b>
+                          {address},{" "}
+                          <b style={{ marginLeft: "10px" }}>{location}</b>
                         </span>
                       </div>
                       <div className="right">
@@ -107,6 +130,29 @@ const Property = props => {
                           </ul>
                         </div>
                       </div>
+                      {error && (
+                        <div className="col-12 mb-15 mt-0">
+                          <div
+                            className="alert alert-success pb-0 pt-0"
+                            role="alert"
+                          >
+                            {error}
+                          </div>
+                        </div>
+                      )}
+                      {user_type === "investor" && (
+                        <div onClick={handleOnClick}>
+                          <Button
+                            textContent={
+                              isBookmarked
+                                ? "You have bookmarked this Property"
+                                : "Bookmark Property"
+                            }
+                            moreStyle={"submit-btn"}
+                            disabled={isBookmarked}
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -133,43 +179,9 @@ const Property = props => {
     </div>
   );
 };
-export default Property;
 
-Property.defaultProps = {
-  property: {
-    status: "active",
-    name: "Friuli-Venezia Giulia",
-    location: "568 E 1st Ave, Miami",
-    address: "Abuja",
-    price: 19500000,
-    figure: "M",
-    description: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, 
-                  making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more 
-                  obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered 
-                  the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) 
-                  by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 
-                  "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced 
-                  below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact 
-                  original form, accompanied by English versions from the 1914 translation by H. Rackham.`,
-    images: [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0"
-    ],
-    payment_duration: 10,
-    avg_monthly_payment: 300000,
-    has_C_of_O: true,
-    id: "466928bc-d210-46ea-93b5-2269e9682dca"
-  },
-  featureProperties: [
-    ...new Array(6).fill({
-      name: "Friuli-Venezia Giulia",
-      location: "568 E 1st Ave, Miami",
-      amount: "$550",
-      figure: "Month",
-      decision: "For Sale",
-      id: "466928bc-d210-46ea-93b5-2269e9682dca",
-      images: [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTLWHeMzd1jGkh2ALFfZOVvLg6s5qemL6vtsUjRMhsLb_aXeLP0"
-      ]
-    })
-  ]
+const mapActionsToProps = {
+  bookmarkProperty,
 };
+
+export default connect(null, mapActionsToProps)(Property);

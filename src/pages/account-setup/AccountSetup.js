@@ -15,7 +15,7 @@ import { validateAgencyProfileFields } from '../../utils/editProfile';
 import '../../assets/css/account-setup.css';
 
 const SellerSetup = ({ inputFields, documents, setUpAgencyProfile }) => {
-  const { loading, error, hasAgency } = useSelector(({ account }) => account);
+  const { agencyProfile: { isApproved }, loading, error } = useSelector(({ account }) => account);
   const initialImageState = {
     images: [],
     imageUpload: false
@@ -114,7 +114,7 @@ const SellerSetup = ({ inputFields, documents, setUpAgencyProfile }) => {
                         onChange={handleChange}
                         error={errors.business_name}
                         errorMessage="Name must be more than three characters"
-                        readOnly={hasAgency}
+                        readOnly={isApproved}
                       />
                     </div>
                     <div className="col-12">
@@ -143,7 +143,7 @@ const SellerSetup = ({ inputFields, documents, setUpAgencyProfile }) => {
                               onChange={handleChange}
                               error={errors[field.name]}
                               errorMessage={errors[field.name]}
-                              readOnly={hasAgency}
+                              readOnly={isApproved}
                             />
                           </div>
                         ))}
@@ -156,11 +156,11 @@ const SellerSetup = ({ inputFields, documents, setUpAgencyProfile }) => {
                         options={documents}
                         placeholder="Select name of document"
                         onChange={handleOnSelect}
-                        isDisabled={hasAgency}
+                        isDisabled={isApproved}
                       />
                       <div
                         className="container text-center mt-5 business-upload-container"
-                        id={hasAgency && "disabled-div"}
+                        id={isApproved && "disabled-div"}
                       >
                         <div
                           {...getRootProps()}
@@ -214,7 +214,7 @@ const SellerSetup = ({ inputFields, documents, setUpAgencyProfile }) => {
                         </div>
                       </div>
                     )}
-                    {(error || hasAgency) && (
+                    {(error || isApproved) && (
                       <div className="col-12 mb-15 mt-0 upload-success-message">
                         <div
                           className="alert alert-danger pb-0 pt-0 complete-business-profile-setup"
@@ -227,7 +227,7 @@ const SellerSetup = ({ inputFields, documents, setUpAgencyProfile }) => {
                     )}
                     <div className="col-12 mb-30 profile-setup-submit">
                       <Button
-                        disabled={hasAgency}
+                        disabled={isApproved}
                         submit="submit"
                         textContent={
                           loading ? (
