@@ -19,7 +19,7 @@ export const validatePropertyFields = (fields) => {
   if (!fields.price) {
     errorFields.price = true;
   }
-  if (fields.has_C_of_O === '') {
+  if (!fields.has_C_of_O) {
     errorFields.has_C_of_O = true;
   }
   if (!fields.images.length) {

@@ -18,7 +18,6 @@ export const validateAgencyProfileFields = (
   email = undefined,
   images = undefined
 ) => {
-  console.log(values, email, images);
   const errorFields = {};
 
   if (!values.business_name) {
