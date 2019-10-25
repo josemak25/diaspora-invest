@@ -10,6 +10,8 @@ export const SET_NEW_USER = "SET_NEW_USER";
 export const SET_ERRORS = "SET_ERRORS";
 export const PROPERTY_LOADING = "PROPERTY_LOADING";
 export const SET_PROPERTIES = "SET_PROPERTIES";
+export const SET_TOTAL_PROPERTIES = "SET_TOTAL_PROPERTIES";
+export const SET_TOTAL_PAGES = "SET_TOTAL_PAGES";
 
 //Agency Types
 export const SET_AGENCY = "SET_AGENCY";

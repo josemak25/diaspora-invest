@@ -7,7 +7,9 @@ import {
   PROPERTY_LOADING,
   SET_AGENCY_PROPERTIES,
   AGENCY_PROPERTIES_LOADING,
-  SET_AGENCY_PROPERTIES_ERRORS
+  SET_AGENCY_PROPERTIES_ERRORS,
+  SET_TOTAL_PROPERTIES,
+  SET_TOTAL_PAGES
 } from "../types";
 import SupportHeader from "../../utils/SupportHeader";
 
@@ -34,7 +36,9 @@ export const getProperties = ({
       SupportHeader()
     );
 
-    dispatch({ type: SET_PROPERTIES, payload: res.data.payload });
+    dispatch({ type: SET_PROPERTIES, payload: res.data.payload.properties });
+    dispatch({ type: SET_TOTAL_PROPERTIES, payload: res.data.payload.count });
+    dispatch({ type: SET_TOTAL_PAGES, payload: res.data.payload.totalPages });
     dispatch({ type: PROPERTY_LOADING, payload: false });
   } catch (err) {
     dispatch({ type: PROPERTY_LOADING, payload: false });

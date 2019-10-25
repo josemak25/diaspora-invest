@@ -137,6 +137,7 @@ function AddProperty(props) {
                           <Input
                             type="text"
                             name="name"
+                            placeholder="eg: TerraForm Homes"
                             value={fields.name}
                             id="property_title"
                             onChange={handleOnChange}
@@ -164,6 +165,7 @@ function AddProperty(props) {
                           <Input
                             type="text"
                             name="address"
+                            placeholder="eg: 123 John Avenue Lekki"
                             value={fields.address}
                             id="property_address"
                             onChange={handleOnChange}
@@ -189,12 +191,13 @@ function AddProperty(props) {
                         <div className="col-md-4 col-12 mb-30">
                           <Label
                             htmlFor="property_price"
-                            children="Price (USD)"
+                            children="Price  (&#x20a6;)"
                           />
                           <Input
                             type="text"
                             name="price"
                             value={fields.price}
+                            placeholder="eg: 5000000"
                             id="property_address"
                             onChange={handleOnChange}
                             error={errors.price}
