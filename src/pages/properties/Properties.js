@@ -131,8 +131,8 @@ const useProperty = () => {
 
   const initialPriceState = {
     min: 100000,
-    max: 100000000,
-    defaultValues: [100000 / 2, 100000000 / 2]
+    max: 10000000,
+    defaultValues: [10000 / 2, 10000000 / 2]
   };
 
   const initialPropertyState = {

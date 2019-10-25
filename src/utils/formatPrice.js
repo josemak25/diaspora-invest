@@ -10,3 +10,9 @@ export default function formatPrice({ price }) {
   }
   if (money.length > 7) return `${money.substr(0, money.length - 6)}M`;
 }
+
+export const formatToolTipPrice = price => {
+  const money = price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+  return `${money.substr(0, money.length - 3).slice(0, -1)}M`;
+};
