@@ -6,7 +6,7 @@ import style from 'styled-components';
 
 export default function PriceRange({ initialPriceState, handleRangeChange }) {
   const tipFormatter = value => {
-    return `$₦{value}`;
+    return `₦${value}`;
   };
 
   return (

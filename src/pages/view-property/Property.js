@@ -1,20 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 import { connect, useSelector } from 'react-redux';
 
 import { bookmarkProperty } from '../../redux/actions/bookmark.action';
 
-import Footer from "../../common/footer/Footer";
-import FeatureProperty from "../../pages/properties/FeatureProperty";
-import Jumbotron from "../../common/jumbotron/Jumbotron";
+import Footer from '../../common/footer/Footer';
+import FeatureProperty from '../../pages/properties/FeatureProperty';
+import Jumbotron from '../../common/jumbotron/Jumbotron';
 
 import Button from '../../components/Button';
 
 const Property = props => {
   const { user_type } = useSelector(({ auth }) => auth.user);
   const { properties } = useSelector(({ properties }) => properties);
-  const { error, bookmarkedProperties } = useSelector(({ bookmarkedProperties }) => bookmarkedProperties);
-  
+  const { error, bookmarkedProperties } = useSelector(
+    ({ bookmarkedProperties }) => bookmarkedProperties
+  );
+
   let bookmarked = false;
 
   const property = props.location.state;
@@ -33,35 +35,26 @@ const Property = props => {
     avg_monthly_payment
   } = property;
 
-
-
   const handleOnClick = e => {
     e.preventDefault();
 
     const details = { property_id: id };
-    console.log(details);
     props.bookmarkProperty(details);
     bookmarked = true;
-  }
+  };
 
   useEffect(() => {
-      bookmarkedProperties.some(property => {
-        console.log("xx", property.property_id, id);
-        if (property.property_id === id) {
-          bookmarked = true;
-          console.log("xx");
-        }
-      });
+    bookmarkedProperties.some(property => {
+      console.log('xx', property.property_id, id);
+      if (property.property_id === id) {
+        bookmarked = true;
+      }
+    });
   }, [bookmarkedProperties]);
-  
+
   return (
     <div id="main-wrapper">
-      <Jumbotron
-        origin={name}
-        originTitle={address}
-        path="/property/:id"
-        pathTitle={location}
-      />
+      <Jumbotron origin={name} originTitle={address} path="/property/:id" pathTitle={location} />
       <div className="property-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div className="container">
           <div className="row">
@@ -73,12 +66,9 @@ const Property = props => {
                       <div className="left">
                         <h1 className="title">{name}</h1>
                         <span className="location">
-                          <img
-                            src={require("../../assets/images/icons/marker.png")}
-                            alt=""
-                          />
-                          {address},{" "}
-                          <b style={{ marginLeft: "10px" }}>{location}</b>
+                          <img src={require('../../assets/images/icons/marker.png')} alt="" />
+                          {address}
+                          <b style={{ marginLeft: '10px' }}>{location}</b>
                         </span>
                       </div>
                       <div className="right">
@@ -92,28 +82,28 @@ const Property = props => {
                     <div className="image mb-30">
                       <div className="single-property-gallery">
                         <div className="item">
-                          <img src={images[0]} alt="" />
+                          <img src={images[0]} alt="property-gallery" />
                         </div>
                       </div>
                       <div className="single-property-thumb">
                         {images[1] && (
                           <div className="item">
-                            <img src={images[1]} alt="" />
+                            <img src={images[1]} alt="property-gallery" />
                           </div>
                         )}
                         {images[2] && (
                           <div className="item">
-                            <img src={images[2]} alt="" />
+                            <img src={images[2]} alt="property-gallery" />
                           </div>
                         )}
                         {images[3] && (
                           <div className="item">
-                            <img src={images[3]} alt="" />
+                            <img src={images[3]} alt="property-gallery" />
                           </div>
                         )}
                         {images[4] && (
                           <div className="item">
-                            <img src={images[4]} alt="" />
+                            <img src={images[4]} alt="property-gallery" />
                           </div>
                         )}
                       </div>
@@ -126,36 +116,31 @@ const Property = props => {
 
                       <div className="row mt-30 mb-30">
                         <div className="col-md-7 col-12">
-                          <h3>Other informations</h3>
+                          <h3>Other information's</h3>
                           <ul className="amenities-list">
                             <li>Payment duration: {payment_duration} years</li>
                             <li>
                               Average Monthly Payment: &#8358;
                               {avg_monthly_payment}
                             </li>
-                            <li>C of O: {has_C_of_O ? "Yes" : "No"}</li>
+                            <li>C of O: {has_C_of_O ? 'Yes' : 'No'}</li>
                           </ul>
                         </div>
                       </div>
                       {error && (
                         <div className="col-12 mb-15 mt-0">
-                          <div
-                            className="alert alert-success pb-0 pt-0"
-                            role="alert"
-                          >
+                          <div className="alert alert-success pb-0 pt-0" role="alert">
                             {error}
                           </div>
                         </div>
                       )}
-                      {user_type === "investor" && (
+                      {user_type === 'investor' && (
                         <div onClick={handleOnClick}>
                           <Button
                             textContent={
-                              bookmarked
-                                ? "You have bookmarked this Property"
-                                : "Bookmark Property"
+                              bookmarked ? 'You have bookmarked this Property' : 'Bookmark Property'
                             }
-                            moreStyle={"submit-btn"}
+                            moreStyle={'submit-btn'}
                             disabled={bookmarked}
                           />
                         </div>
@@ -188,7 +173,10 @@ const Property = props => {
 };
 
 const mapActionsToProps = {
-  bookmarkProperty,
+  bookmarkProperty
 };
 
-export default connect(null, mapActionsToProps)(Property);
+export default connect(
+  null,
+  mapActionsToProps
+)(Property);

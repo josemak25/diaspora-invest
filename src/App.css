@@ -3128,6 +3128,8 @@ header.header.is-sticky {
   margin-bottom: 25px;
   position: relative;
   overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .property-inner-image {
@@ -6239,6 +6241,7 @@ header.header.is-sticky {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
+  width: 60%;
 }
 
 .sidebar-property:last-child {
@@ -6309,6 +6312,8 @@ header.header.is-sticky {
 .sidebar-property .image a {
   display: block;
   overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .sidebar-property .image a img {
@@ -6316,6 +6321,8 @@ header.header.is-sticky {
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  width: 100px;
+  height: 80px;
 }
 
 .sidebar-property .content {
@@ -6329,11 +6336,14 @@ header.header.is-sticky {
   margin-bottom: 10px;
 }
 
-.sidebar-property .content .location {
+.sidebar-property .location {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
+  display: flex;
+  width: 190%;
+  margin-top: 7px;
+  font-weight: 500;
   -ms-flex-align: center;
   align-items: center;
   font-size: 13px;
@@ -6341,7 +6351,7 @@ header.header.is-sticky {
   margin-bottom: 10px;
 }
 
-.sidebar-property .content .location img {
+.sidebar-property .location img {
   height: 16px;
   margin-right: 5px;
 }
@@ -7290,4 +7300,17 @@ header.header.is-sticky {
 
 a {
   color: inherit !important;
+}
+
+.ant-slider-rail,
+.ant-slider-step,
+.ant-slider-track {
+  height: 15px !important;
+  border-radius: 15px !important;
+}
+
+.ant-slider-handle {
+  width: 20px !important;
+  height: 20px !important;
+  margin-top: -2.5px !important;
 }
