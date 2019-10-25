@@ -6,7 +6,7 @@ const initialState = {
   count: 0,
   totalPages: 0,
   error: {}
-}
+};
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -39,4 +39,3 @@ export default function(state = initialState, action) {
       return state;
   }
 }
-

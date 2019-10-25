@@ -1,26 +1,30 @@
-export const paginationReducer = (state, action) => {
-  switch (action) {
-    case "next":
+import { NEXT_PROPERTIES, PREVIOUS_PROPERTIES } from '../types';
+
+const PAGINATION_LIMIT = +process.env.REACT_APP_PAGINATION_NUMBER;
+
+export default function paginationReducer(state, action) {
+  switch (action.type) {
+    case NEXT_PROPERTIES:
       return {
         ...state,
-        paginate: state.paginate + 1,
-        properties: properties.slice(
-          state.paginate * 10,
-          state.paginate * 10 + 10
+        paginate: action.payload.paginate + 1,
+        properties: action.payload.properties.slice(
+          action.payload.paginate * PAGINATION_LIMIT,
+          action.payload.paginate * PAGINATION_LIMIT + PAGINATION_LIMIT
         )
       };
-    case "prev":
-      return state.paginate === 0
+    case PREVIOUS_PROPERTIES:
+      return action.payload.paginate === 0
         ? state
         : {
             ...state,
-            paginate: state.paginate - 1,
-            properties: properties.slice(
-              state.paginate * 10,
-              state.paginate * 10 - 10
+            paginate: action.payload.paginate - 1,
+            properties: action.payload.properties.slice(
+              action.payload.paginate * PAGINATION_LIMIT,
+              action.payload.paginate * PAGINATION_LIMIT - PAGINATION_LIMIT
             )
           };
     default:
-      return state.paginate;
+      return state;
   }
-};
+}
