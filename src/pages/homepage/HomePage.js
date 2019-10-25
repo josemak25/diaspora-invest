@@ -173,9 +173,9 @@ const HomePage = ({ heroProperty, packages, downloads }) => {
       </div>
       {/* <!--Services section end--> */}
 
-      <div className="agent-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
-        {/* <AgentList agents={agents} /> */}
-      </div>
+      {/* <AgentList agents={agents} /> */}
+      {/* <div className="agent-section section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
+      </div> */}
 
       <div className="brand-section section pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <PartnersList />

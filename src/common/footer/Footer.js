@@ -85,7 +85,7 @@ const Footer = ({ socialLinks, widgetLinks }) => {
               </p>
 
               <form id="mc-form" className="mc-form footer-newsletter">
-                <Input id="mc-email" type="email" placeholder="Email Here.." value="" />
+                <Input id="mc-email" type="email" placeholder="Email Here.." value="" readOnly={true}/>
                 <button id="mc-submit">
                   <i className="fa fa-paper-plane-o"></i>
                 </button>

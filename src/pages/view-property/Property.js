@@ -15,6 +15,8 @@ const Property = props => {
   const { properties } = useSelector(({ properties }) => properties);
   const { error, bookmarkedProperties } = useSelector(({ bookmarkedProperties }) => bookmarkedProperties);
   
+  let bookmarked = false;
+
   const property = props.location.state;
 
   const {
@@ -31,21 +33,26 @@ const Property = props => {
     avg_monthly_payment
   } = property;
 
-  const bookmarked = () => bookmarkedProperties.every(property => {
-    console.log(1, property.id,  id)
-    return property.id === id;
-  });
+
 
   const handleOnClick = e => {
     e.preventDefault();
 
     const details = { property_id: id };
+    console.log(details);
     props.bookmarkProperty(details);
+    bookmarked = true;
   }
 
-  const isBookmarked = bookmarked();
-
-  console.log(bookmarked()); 
+  useEffect(() => {
+      bookmarkedProperties.some(property => {
+        console.log("xx", property.property_id, id);
+        if (property.property_id === id) {
+          bookmarked = true;
+          console.log("xx");
+        }
+      });
+  }, [bookmarkedProperties]);
   
   return (
     <div id="main-wrapper">
@@ -144,12 +151,12 @@ const Property = props => {
                         <div onClick={handleOnClick}>
                           <Button
                             textContent={
-                              isBookmarked
+                              bookmarked
                                 ? "You have bookmarked this Property"
                                 : "Bookmark Property"
                             }
                             moreStyle={"submit-btn"}
-                            disabled={isBookmarked}
+                            disabled={bookmarked}
                           />
                         </div>
                       )}

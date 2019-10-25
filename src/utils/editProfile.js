@@ -36,11 +36,11 @@ export const validateAgencyProfileFields = (
     errorFields.phone = "A valid phone number is required";
   }
 
-  if (email != undefined && !emailRegex.test(email)) {
+  if (email !== undefined && !emailRegex.test(email)) {
     errorFields.email = "A valid email is required";
   }
 
-  if (images != undefined && images.length < 2) {
+  if (images !== undefined && images.length < 2) {
     errorFields.images = "Please upload all required documents";
   }
 

@@ -18,24 +18,24 @@ export default Services;
 Services.defaultProps = {
   services: [
     {
-      title: 'Buy Property',
-      content: `Diaspora Invest - Real Estate Bootstrap 4 Template best theme for elit, seddo eiumod tempor dolor sit.`,
-      icon: require('../../assets/images/service/service-1.png')
+      title: "Buy Property",
+      content: `Making real estate transactions eco-friendly. Converting garages into living spaces. Hearing marbles rolling around upstairs...`,
+      icon: require("../../assets/images/service/service-1.png")
     },
     {
-      title: 'Sale Property',
-      content: `Diaspora Invest - Real Estate Bootstrap 4 Template best theme for elit, seddo eiumod tempor dolor sit.`,
-      icon: require('../../assets/images/service/service-2.png')
+      title: "Sale Property",
+      content: `Making real estate transactions eco-friendly. Converting garages into living spaces. Hearing marbles rolling around upstairs...`,
+      icon: require("../../assets/images/service/service-2.png")
     },
     {
-      title: 'Rent Property',
-      content: `Diaspora Invest - Real Estate Bootstrap 4 Template best theme for elit, seddo eiumod tempor dolor sit.`,
-      icon: require('../../assets/images/service/service-3.png')
+      title: "Rent Property",
+      content: `Making real estate transactions eco-friendly. Converting garages into living spaces. Hearing marbles rolling around upstairs...`,
+      icon: require("../../assets/images/service/service-3.png")
     },
     {
-      title: 'Mortgage Property',
-      content: `Diaspora Invest - Real Estate Bootstrap 4 Template best theme for elit, seddo eiumod tempor dolor sit.`,
-      icon: require('../../assets/images/service/service-4.png')
+      title: "Mortgage Property",
+      content: `Making real estate transactions eco-friendly. Converting garages into living spaces. Hearing marbles rolling around upstairs...`,
+      icon: require("../../assets/images/service/service-4.png")
     }
   ]
 };

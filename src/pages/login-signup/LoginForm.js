@@ -20,6 +20,7 @@ function LoginForm(props) {
   }, [loading, error]);
 
   const onChange = ({ target: { name, value } }) => {
+    setErrors({ ...errors, resError: "" });
     setValues({ ...values, [name]: value });
     // remove the error display once a value is entered
     setErrors({ ...errors, [name]: "" });
@@ -45,15 +46,13 @@ function LoginForm(props) {
     <form onSubmit={onSubmit}>
       <div className="row">
         <div className="col-12 mb-30">
-          {errors.resError ? (
-            <Label
-              useFor="validation_error"
-              className="list-group-item-danger"
-              htmlFor="login-button"
-            >
-              {errors.resError}
-            </Label>
-          ) : null}
+          {errors.resError && (
+            <div>
+              <span className="error-message" style={{ fontSize: "100%" }}>
+                {errors.resError}
+              </span>
+            </div>
+          )}
         </div>
         <div className="col-12 mb-30">
           <Input
@@ -63,16 +62,8 @@ function LoginForm(props) {
             placeholder="you@example.com"
             id="login-email"
             onChange={onChange}
+            error={errors.email}
           />
-          {errors.email ? (
-            <Label
-              useFor="validation_error"
-              className="list-group-item-danger"
-              htmlFor="login-email"
-            >
-              {errors.email}
-            </Label>
-          ) : null}
         </div>
         <div className="col-12 mb-30">
           <Input
@@ -82,16 +73,8 @@ function LoginForm(props) {
             placeholder="Password"
             id="login-password"
             onChange={onChange}
+            error={errors.password}
           />
-          {errors.password ? (
-            <Label
-              useFor="validation_error"
-              className="list-group-item-danger"
-              htmlFor="login-password"
-            >
-              {errors.password}
-            </Label>
-          ) : null}
         </div>
         <div className="col-12 mb-30">
           <Button
