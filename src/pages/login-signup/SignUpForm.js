@@ -6,73 +6,75 @@ import Button from '../../components/Button';
 import { Input, Label } from '../../components/Input';
 import '../../App.css';
 
+const DATABASE_URI = process.env.REACT_APP_ENDPOINT_URL;
+
 export default function SignUpForm({ history, ...props }) {
-	const [errors, setErrors] = useState({});
-	const [loading, setLoader] = useState(false);
-	const [success, setSuccess] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoader] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-	const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
-	const [values, setValues] = useState({
-		name: '',
-		email: '',
-		password: '',
-		password2: '',
-		phone: '',
-		user_type: 'investor',
-	});
+  const [values, setValues] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+    phone: '',
+    user_type: 'investor'
+  });
 
-	const onChange = ({ target: { name, value } }) => {
-		setValues({ ...values, [name]: value });
+  const onChange = ({ target: { name, value } }) => {
+    setValues({ ...values, [name]: value });
 
-		// remove the error display once a value is entered
-		setErrors({ ...errors, [name]: '' });
-	};
+    // remove the error display once a value is entered
+    setErrors({ ...errors, [name]: '' });
+  };
 
-	const check = e => {
-		setIsChecked(e.target.checked);
-		setErrors({ ...errors, checkbox: '' });
-	};
+  const check = e => {
+    setIsChecked(e.target.checked);
+    setErrors({ ...errors, checkbox: '' });
+  };
 
-	const onSubmit = event => {
-		event.preventDefault();
+  const onSubmit = event => {
+    event.preventDefault();
 
-		const errorFields = signupValidator(values, isChecked);
+    const errorFields = signupValidator(values, isChecked);
 
-		if (Object.keys(errorFields).length > 0) {
-			setErrors(errorFields);
-			return;
-		}
-		setLoader(true);
-		axios
-			.post('auth/signup', values)
-			.then(res => {
-				if (res.data.statusCode !== 200) {
-					setErrors(res.data.errors);
-				}
-				if (res.data.statusCode === 200) {
-					setSuccess(true)
-					setValues({
-						name: '',
-						email: '',
-						password: '',
-						password2: '',
-						phone: '',
-						user_type: 'investor',
-					});
+    if (Object.keys(errorFields).length > 0) {
+      setErrors(errorFields);
+      return;
+    }
+    setLoader(true);
+    axios
+      .post(`${DATABASE_URI}/auth/signup`, values)
+      .then(res => {
+        if (res.data.statusCode !== 200) {
+          setErrors(res.data.errors);
+        }
+        if (res.data.statusCode === 200) {
+          setSuccess(true);
+          setValues({
+            name: '',
+            email: '',
+            password: '',
+            password2: '',
+            phone: '',
+            user_type: 'investor'
+          });
 
-					setErrors({});
+          setErrors({});
 
-					setIsChecked(false);
-					setLoader(false);
-				}
-			})
-			.catch(err => {
-				return err;
-			});
-	};
+          setIsChecked(false);
+          setLoader(false);
+        }
+      })
+      .catch(err => {
+        return err;
+      });
+  };
 
-	return (
+  return (
     <form onSubmit={onSubmit} data-testid="signup-form">
       <div className="row">
         <div className="col-12 mb-30">
@@ -134,12 +136,7 @@ export default function SignUpForm({ history, ...props }) {
         <div className="col-12 mb-30">
           <ul>
             <li>
-              <Input
-                type="checkbox"
-                id="accept_terms"
-                checked={isChecked}
-                onChange={check}
-              />
+              <Input type="checkbox" id="accept_terms" checked={isChecked} onChange={check} />
               <Label htmlFor="accept_terms">
                 I agree with your <a href="/">Terms & Conditions</a>
               </Label>
@@ -147,10 +144,7 @@ export default function SignUpForm({ history, ...props }) {
           </ul>
           {errors.checkbox && (
             <div>
-              <span
-                className="error-message"
-                style={{ fontSize: "70%" }}
-              >
+              <span className="error-message" style={{ fontSize: '70%' }}>
                 Please accept terms and conditions
               </span>
             </div>
@@ -164,7 +158,7 @@ export default function SignUpForm({ history, ...props }) {
                 name="user_type"
                 value="investor"
                 id="investor"
-                checked={values.user_type === "investor"}
+                checked={values.user_type === 'investor'}
                 onChange={onChange}
               />
               <Label htmlFor="investor">Investor</Label>
@@ -175,7 +169,7 @@ export default function SignUpForm({ history, ...props }) {
                 name="user_type"
                 value="seller"
                 id="seller"
-                checked={values.user_type === "seller"}
+                checked={values.user_type === 'seller'}
                 onChange={onChange}
               />
               <Label htmlFor="seller">Seller</Label>
@@ -185,8 +179,7 @@ export default function SignUpForm({ history, ...props }) {
         {success && (
           <div className="nav d-flex justify-content-end col-12 mb-0 pl-15 pr-15">
             <div className="alert alert-success pb-0 pt-0" role="alert">
-              Your account has been created... &#10; Check your email to verify
-              your account
+              Your account has been created... &#10; Check your email to verify your account
             </div>
           </div>
         )}
@@ -199,7 +192,7 @@ export default function SignUpForm({ history, ...props }) {
                   <span className="sr-only">Loading...</span>
                 </div>
               ) : (
-                "Sign Up"
+                'Sign Up'
               )
             }
             submit={true}

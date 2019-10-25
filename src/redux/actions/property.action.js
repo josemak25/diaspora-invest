@@ -10,8 +10,8 @@ import {
   SET_AGENCY_PROPERTIES_ERRORS,
   SET_TOTAL_PROPERTIES,
   SET_TOTAL_PAGES
-} from "../types";
-import SupportHeader from "../../utils/SupportHeader";
+} from '../types';
+import SupportHeader from '../../utils/SupportHeader';
 
 const baseURL = process.env.REACT_APP_ENDPOINT_URL;
 
@@ -32,7 +32,6 @@ export const getProperties = ({ page = 0, queryParams = initialState }) => async
       `${baseURL}/property/search?skip=${page}&location=${location}&category_id=${category_id}&minPrice=${minPrice}&maxPrice=${maxPrice}&name=${name}`,
       SupportHeader()
     );
-    console.log(queryParams);
 
     dispatch({ type: SET_PROPERTIES, payload: res.data.payload.properties });
     dispatch({ type: SET_TOTAL_PROPERTIES, payload: res.data.payload.count });
